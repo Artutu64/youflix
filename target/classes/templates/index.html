@@ -1,0 +1,493 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+    <head>
+        <meta name="publisher" content="Hugo & Arthur">
+        <meta name="copyright" content="Hugo & Arthur">
+        <meta name="date-creation-yyyymmdd" content="20231018">
+        <meta name="reply-to" content="rimaudiere@cy-tech.fr">
+        <meta name="description" content="YouFlix - Films & Vidéo">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="robots" content="index">
+        <title>YouFlix - Films & Vidéo</title>
+        <link rel="icon" type="image/png" href="/pictures/logo.png"/>
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.css.map">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.css.map">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.min.css.map">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css.map">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.css.map">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.min.css.map">        
+    </head>
+    <body class="font" style="background-color: #282c34; overflow-x: hidden;";>
+
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#"><img width="50" src="/pictures/logo.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" style="font-size: 22px; margin: 0px 12px;">Accueil <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="font-size: 22px; margin: 0px 12px;">Favoris</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 22px; margin: 0px 12px;">
+                        Genres
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Comédie</a>
+                        <a class="dropdown-item" href="#">Horreur</a>
+                        <a class="dropdown-item" href="#">Documentaire</a>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Science-fiction</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline my-2 my-lg-0 ml-auto">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Rechercher un film..." aria-label="Search" style="width: 300px;">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" style="font-weight: bold; border: 2px solid;">Recherche</button>
+                </form>
+            </div>
+        </nav>
+
+        <!-- autre type de présentation -->
+        <!-- à ajouter en hover : fon noir/transparent, agrandissement de l'image, ajout du titre -->
+        <!--
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                        <img src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" style="width: 400px;">
+                        <img src="https://img.youtube.com/vi/WAeqwwWxq_k/maxresdefault.jpg" style="width: 400px;">
+                        <img src="https://img.youtube.com/vi/mBjGWk_A1bE/maxresdefault.jpg" style="width: 400px;">
+                        <img src="https://img.youtube.com/vi/mqBn7jJ_p08/maxresdefault.jpg" style="width: 400px;">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                        <img src="https://img.youtube.com/vi/GBMrMZd_7Ec/maxresdefault.jpg" style="width: 400px;">
+                        <img src="https://img.youtube.com/vi/SdLzd68EC4M/maxresdefault.jpg" style="width: 400px;">
+                        <img src="https://img.youtube.com/vi/wutdecDrFEs/maxresdefault.jpg" style="width: 400px;">
+                        <img src="https://img.youtube.com/vi/JfBW1szd4qc/maxresdefault.jpg" style="width: 400px;">
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="margin-left: -60px;">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="margin-right: -60px;">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        -->
+
+        <div id="contenu-page" style="margin: 30px; padding: 0px;">
+
+            <!-- premier carousel -->
+            <div style="margin: 0px 0px 40px 0px; padding: 0px;">
+                <h3 style="margin: 0px 0px 20px 0px; padding: 0px; color: white; font-size: 35px;">Recommandées pour vous</h3>
+                <div id="carouselRecommandations" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/WAeqwwWxq_k/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/mBjGWk_A1bE/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/GBMrMZd_7Ec/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/3kRyQsFRj3E/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/mqBn7jJ_p08/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/JfBW1szd4qc/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/SdLzd68EC4M/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/wutdecDrFEs/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/4WJa_TA979I/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselRecommandations" role="button" data-slide="prev" style="margin-left: -60px;">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselRecommandations" role="button" data-slide="next" style="margin-right: -60px;">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- second carousel -->
+            <div style="margin: 0px 0px 40px 0px; padding: 0px;">
+                <h3 style="margin: 0px 0px 20px 0px; padding: 0px; color: white; font-size: 35px;">Comédie</h3>
+                <div id="carouselGenre" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/WAeqwwWxq_k/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/mBjGWk_A1bE/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/GBMrMZd_7Ec/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/3kRyQsFRj3E/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/mqBn7jJ_p08/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/JfBW1szd4qc/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/SdLzd68EC4M/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/wutdecDrFEs/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/4WJa_TA979I/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselGenre" role="button" data-slide="prev" style="margin-left: -60px;">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselGenre" role="button" data-slide="next" style="margin-right: -60px;">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- troisième carousel -->
+            <div style="margin: 0px 0px 40px 0px; padding: 0px;">
+                <h3 style="margin: 0px 0px 20px 0px; padding: 0px; color: white; font-size: 35px;">Nouveautés</h3>
+                <div id="carouselNouveautes" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/WAeqwwWxq_k/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/mBjGWk_A1bE/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/GBMrMZd_7Ec/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/3kRyQsFRj3E/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/mqBn7jJ_p08/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/JfBW1szd4qc/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/SdLzd68EC4M/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/wutdecDrFEs/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/4WJa_TA979I/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselNouveautes" role="button" data-slide="prev" style="margin-left: -60px;">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselNouveautes" role="button" data-slide="next" style="margin-right: -60px;">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- quatrième carousel -->
+            <div style="margin: 0px 0px 40px 0px; padding: 0px;">
+                <h3 style="margin: 0px 0px 20px 0px; padding: 0px; color: white; font-size: 35px;">Les plus vues</h3>
+                <div id="carouselLesPlusVues" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/WAeqwwWxq_k/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/mBjGWk_A1bE/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/GBMrMZd_7Ec/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/3kRyQsFRj3E/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/mqBn7jJ_p08/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/JfBW1szd4qc/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/SdLzd68EC4M/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/wutdecDrFEs/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" src="https://img.youtube.com/vi/4WJa_TA979I/maxresdefault.jpg" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselLesPlusVues" role="button" data-slide="prev" style="margin-left: -60px;">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselLesPlusVues" role="button" data-slide="next" style="margin-right: -60px;">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+            
+
+        <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.js.map"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.min.js.map"></script>
+        <script type="text/javascript" src="/js/bootstrap.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.js.map"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js.map"></script>  
+        <script>
+            $(document).ready(function() {
+                $('#carouselRecommandations, #carouselNouveautes, #carouselLesPlusVues, #carouselGenre').carousel({
+                    interval: false
+                });
+            });
+        </script>
+          
+    </body>
+</html>
