@@ -13,7 +13,7 @@ public interface ActeurRepository extends JpaRepository<Acteur, Long>{
     List<Acteur> findActorByNom(String nom);
 
     List<Acteur> findActorByPrenom(String prenom);
-    
-    List<Acteur> findActorById(Long idActeur);
+
+    List<Acteur> findActorByIdActeur(Long idActeur);
     
 }
