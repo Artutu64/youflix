@@ -10,7 +10,7 @@ import fr.cytech.pau.youflix.Models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
     
-    List<User> findUserById(Long userId);
+    List<User> findUserByUserId(Long userId);
 
     List<User> findUserByMail(String mail);
 
