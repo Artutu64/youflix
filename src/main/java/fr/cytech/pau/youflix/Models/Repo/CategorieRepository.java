@@ -10,6 +10,6 @@ import fr.cytech.pau.youflix.Models.Categorie;
 @Repository
 public interface CategorieRepository extends JpaRepository<Categorie, Long>{
 
-    List<Categorie> findCategorieByName(String nom);
+    List<Categorie> findCategorieByNom(String nom);
 
 }
