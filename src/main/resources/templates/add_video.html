@@ -51,8 +51,8 @@
                 </li>
             </ul>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form class="form-inline my-2 my-lg-0 ml-auto">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Rechercher un film..." aria-label="Search" style="width: 300px;">
+                <form class="form-inline my-2 my-lg-0 ml-auto" method="POST">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Rechercher un film..." aria-label="Search" style="width: 300px;" name="contenu-recherche">
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" style="font-weight: bold; border: 2px solid;">Recherche</button>
                 </form>
             </div>
@@ -61,26 +61,26 @@
         <div style="width: 800px; margin-left: calc(50% - 400px); color: white; margin-top: 380px; transform: translateY(-50%);">
             <h2 style="text-align: center">Ajout d'une vidéo</h2>
             <div style="margin-top: 30px;margin-bottom: 30px;margin-left: 20%; margin-right: 20%;">
-              <form>
+              <form method="POST">
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Titre du film</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Titre de la vidéo">
+                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Titre de la vidéo" name="titre-video">
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlInput2">Lien du film</label>
-                  <input type="password" class="form-control" id="exampleFormControlInput2" placeholder="Lien de la video">
+                  <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Lien de la video" name="lien-video">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1" class="form-label">Description de la vidéo</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description-video"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1" class="form-label">Liste des acteurs (sous la forme: 'NomActeur1_PrenomActeur1,NomActeur2_PrenomActeur2')</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="liste-acteurs"></textarea>
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1" class="form-label">Catégorie(s) (sous la forme: 'cat1,cat2')</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="liste-genres"></textarea>
                 </div>
                 <button type="text" class="btn btn-danger btn-lg btn-block">Ajouter le film</button>
               </form>
