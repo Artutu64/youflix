@@ -16,7 +16,6 @@ public class InscriptionController {
     @PostMapping(path = "/inscription")
     public String postInscription(WebRequest request) {
         
-        // récupération de l'adresse mail et du mot de passe
         String prenom = request.getParameter("prenom");
         String nom = request.getParameter("nom");
         String mail = request.getParameter("mail");

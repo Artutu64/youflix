@@ -20,7 +20,6 @@ public class RechercheController {
         //     - un pour faire une recherche
         //     - un pour affiner la recherche
 
-        // récupération de l'adresse mail et du mot de passe
         String contenuRecherche = request.getParameter("contenu-recherche");
         String genre = request.getParameter("genre");
         String acteur = request.getParameter("acteur");

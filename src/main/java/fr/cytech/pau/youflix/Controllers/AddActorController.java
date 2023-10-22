@@ -16,7 +16,6 @@ public class AddActorController {
     @PostMapping(path = "/add-actor")
     public String postAddActor(WebRequest request) {
         
-        // récupération de l'adresse mail et du mot de passe
         String nomActeur = request.getParameter("nom-acteur");
         String prenomActeur = request.getParameter("prenom-acteur");
 
