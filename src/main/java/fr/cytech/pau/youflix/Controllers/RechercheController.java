@@ -5,12 +5,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import fr.cytech.pau.youflix.Utils.RedirectionUtil;
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class RechercheController {
     
     @GetMapping(path = "/search")
-    public String search(){
-        return "resultats_recherche";
+    public String search(HttpServletRequest request){
+        return RedirectionUtil.getReturnForContent(request.getSession(), "resultats_recherche");
     }
 
     @PostMapping(path = "/search")
