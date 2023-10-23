@@ -29,15 +29,15 @@ public class AddActorController {
         String nomActeur = request.getParameter("nom-acteur");
         String prenomActeur = request.getParameter("prenom-acteur");
 
-        if(nomActeur != null && prenomActeur != null){
+        if (nomActeur != null && prenomActeur != null) {
             List<Acteur> acteurs = acteurRepository.findActorByNom(nomActeur);
             boolean exists = false;
             for(Acteur acteur : acteurs){
-                if(acteur.getPrenom().equals(prenomActeur)){
+                if (acteur.getPrenom().equals(prenomActeur)) {
                     exists = true;
                 }
             }
-            if(exists == false){
+            if (!exists) {
                 Acteur acteur = new Acteur();
                 acteur.setIdActeur(5L);
                 acteur.setNom(nomActeur);
