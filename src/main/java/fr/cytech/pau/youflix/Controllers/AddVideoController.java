@@ -110,7 +110,7 @@ public class AddVideoController {
                 List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
                 boolean genreExiste = false;
                 for (Categorie genre : genresExistants) { // faire plutôt un "if genresExistants == null" ?
-                    if (listeGenres[i].equals(genre)) {
+                    if (listeGenres[i].equals(genre.getNom())) {
                         genreExiste = true;
                         setGenresFilm.add(genre);
                     }
