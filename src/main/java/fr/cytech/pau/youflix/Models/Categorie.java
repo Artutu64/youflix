@@ -25,7 +25,7 @@ public class Categorie implements Serializable {
     @JoinTable(name = "LienCatVideo", 
         joinColumns = {@JoinColumn(name = "CNOM", referencedColumnName = "nom")},
         inverseJoinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")})
-    private Set<Video> favoris = new HashSet<>();
+    private Set<Video> linkedvideos = new HashSet<>();
     
 
     public String getNom() {
@@ -44,10 +44,10 @@ public class Categorie implements Serializable {
         return false;
     }
 
-    public Set<Video> getFavoris() {
-        return favoris;
+    public Set<Video> getLinkedvideos() {
+        return linkedvideos;
     }
-    public void setFavoris(Set<Video> favoris) {
-        this.favoris = favoris;
+    public void setLinkedvideos(Set<Video> linkedvideos) {
+        this.linkedvideos = linkedvideos;
     }
 }
