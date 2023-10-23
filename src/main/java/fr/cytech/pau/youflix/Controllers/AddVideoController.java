@@ -1,7 +1,11 @@
 package fr.cytech.pau.youflix.Controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Set;
+import java.util.Date;
+import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,9 +15,11 @@ import org.springframework.web.context.request.WebRequest;
 
 import fr.cytech.pau.youflix.Models.Acteur;
 import fr.cytech.pau.youflix.Models.Categorie;
+import fr.cytech.pau.youflix.Models.Video;
 import fr.cytech.pau.youflix.Models.Repo.ActeurRepository;
-import fr.cytech.pau.youflix.Models.Repo.VideoRepository;
 import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
+import fr.cytech.pau.youflix.Models.Repo.VideoRepository;
+import fr.cytech.pau.youflix.Utils.RandomUtil;
 
 @Controller
 public class AddVideoController {
@@ -23,6 +29,9 @@ public class AddVideoController {
 
     @Autowired
     ActeurRepository acteurRepository;
+
+    @Autowired
+    VideoRepository videoRepository;
     
     @GetMapping(path = "/add-video")
     public String addVideo(){
@@ -30,16 +39,19 @@ public class AddVideoController {
     }
 
     @PostMapping(path = "/add-video")
-    public String postAddVideo(WebRequest request) {
+    public String postAddVideo(WebRequest request) throws ParseException {
         
         // récupération des informations liées à la vidéo
         String titreVideo = request.getParameter("titre-video");
         String lienVideo = request.getParameter("lien-video");
+        String dateSortieVideo = request.getParameter("date-sortie-video");
         String descriptionVideo = request.getParameter("description-video");
         String acteurs = request.getParameter("liste-acteurs");
         String genres = request.getParameter("liste-genres");
 
-        /*
+        // set qui va contenir tous les acteurs associés au film
+        Set<Acteur> setActeursFilm = new HashSet<>();
+
         // vérification des acteurs de la vidéo et ajout éventuel à la BDD s'il/elle n'existe pas encore
         if (acteurs != null) {
 
@@ -63,20 +75,25 @@ public class AddVideoController {
                 for (Acteur acteur : acteursExistants) {
                     if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
                         acteurExiste = true;
+                        setActeursFilm.add(acteur);
                     }
                 }
 
                 // si l'acteur n'existe pas encore, on l'ajoute à la BDD
                 if (!acteurExiste) {
                     Acteur acteur = new Acteur();
+                    acteur.setIdActeur(RandomUtil.getRandomId());
                     acteur.setNom(nomActeur);
                     acteur.setPrenom(prenomActeur);
                     acteurRepository.save(acteur);
+                    setActeursFilm.add(acteur);
                 }
             }
         }
-        */
 
+        // set qui va contenir tous les genres associés au film
+        Set<Categorie> setGenresFilm = new HashSet<>();
+        
         // vérification des genres de la vidéo et ajout éventuel d'un genre à la BDD s'il n'existe pas encore
         if (genres != null) {
 
@@ -92,9 +109,10 @@ public class AddVideoController {
                 // on regarde si le genre existe déjà dans la BDD (genreExiste = true) ou non (genreExiste = false)
                 List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
                 boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
+                for (Categorie genre : genresExistants) { // faire plutôt un "if genresExistants == null" ?
                     if (listeGenres[i].equals(genre)) {
                         genreExiste = true;
+                        setGenresFilm.add(genre);
                     }
                 }
 
@@ -103,18 +121,28 @@ public class AddVideoController {
                     Categorie genre = new Categorie();
                     genre.setNom(listeGenres[i]);
                     genreRepository.save(genre);
+                    setGenresFilm.add(genre);
                 }
+
             }
         }
 
-        /* 
-        // [temporaire] affichage des données
-        System.out.println("Titre de la vidéo             : " + titreVideo);
-        System.out.println("Lien de la vidéo              : " + lienVideo);
-        System.out.println("Description de la vidéo       : " + descriptionVideo);
-        System.out.println("Liste des genres de la vidéo  : " + acteurs);
-        System.out.println("Liste des acteurs de la vidéo : " + genres);
-        */
+        // cast de la chaîne de caractères en date
+        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = formatDate.parse(dateSortieVideo);
+        Date dateSortieVideoSQL = new Date(date.getTime());
+
+        // ajout de la vidéo à la BDD
+        Video video = new Video();
+        video.setCodeVideo(lienVideo);
+        video.setDescription(descriptionVideo);
+        video.setTitre(titreVideo);
+        video.setCategories(setGenresFilm);
+        video.setDateSortie(dateSortieVideoSQL); 
+        video.setJoueDans(setActeursFilm);
+        videoRepository.save(video);
+
+        // date de sortie --> champ créé sur la page mais du coup ça dépasse
 
         return "redirect:/";
 
