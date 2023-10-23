@@ -25,8 +25,6 @@
         <link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.min.css.map">        
     </head>
     <body class="font" style="background-color: #282c34; overflow-x: hidden;";>
-
-        <!-- navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#"><img width="50" src="/pictures/logo.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,46 +58,8 @@
             </div>
         </nav>
 
-        <!-- autre type de présentation -->
-        <!-- à ajouter en hover : fon noir/transparent, agrandissement de l'image, ajout du titre -->
-        <!--
-        <div id="carouselExampleIndicators" class="carousel slide">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
-                        <img src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" style="width: 400px;">
-                        <img src="https://img.youtube.com/vi/WAeqwwWxq_k/maxresdefault.jpg" style="width: 400px;">
-                        <img src="https://img.youtube.com/vi/mBjGWk_A1bE/maxresdefault.jpg" style="width: 400px;">
-                        <img src="https://img.youtube.com/vi/mqBn7jJ_p08/maxresdefault.jpg" style="width: 400px;">
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
-                        <img src="https://img.youtube.com/vi/GBMrMZd_7Ec/maxresdefault.jpg" style="width: 400px;">
-                        <img src="https://img.youtube.com/vi/SdLzd68EC4M/maxresdefault.jpg" style="width: 400px;">
-                        <img src="https://img.youtube.com/vi/wutdecDrFEs/maxresdefault.jpg" style="width: 400px;">
-                        <img src="https://img.youtube.com/vi/JfBW1szd4qc/maxresdefault.jpg" style="width: 400px;">
-                    </div>
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="margin-left: -60px;">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="margin-right: -60px;">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-        -->
-
         <div id="contenu-page" style="margin: 30px; padding: 0px;">
 
-            <!-- premier carousel -->
             <div style="margin: 0px 0px 40px 0px; padding: 0px;">
                 <h3 style="margin: 0px 0px 20px 0px; padding: 0px; color: white; font-size: 35px;">Recommandées pour vous</h3>
                 <div id="carouselRecommandations" class="carousel slide">
@@ -107,37 +67,37 @@
                         <div class="carousel-item active">
                             <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[0].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[0].getName()}">Titre du film</h5>
                                         <a href="#" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/WAeqwwWxq_k/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[1].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[1].getName()}">Titre du film</h5>
                                         <a href="#" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/mBjGWk_A1bE/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[2].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[2].getName()}">Titre du film</h5>
                                         <a href="#" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/GBMrMZd_7Ec/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[3].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[3].getName()}">Titre du film</h5>
                                         <a href="#" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/3kRyQsFRj3E/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[4].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[4].getName()}">Titre du film</h5>
                                         <a href="#" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
@@ -146,37 +106,37 @@
                         <div class="carousel-item">
                             <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/mqBn7jJ_p08/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[5].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[5].getName()}">Titre du film</h5>
                                         <a href="#" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/JfBW1szd4qc/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[6].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[6].getName()}">Titre du film</h5>
                                         <a href="#" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/SdLzd68EC4M/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[7].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[7].getName()}">Titre du film</h5>
                                         <a href="#" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/wutdecDrFEs/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[8].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[8].getName()}">Titre du film</h5>
                                         <a href="#" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/4WJa_TA979I/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[9].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[9].getName()}">Titre du film</h5>
                                         <a href="#" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>

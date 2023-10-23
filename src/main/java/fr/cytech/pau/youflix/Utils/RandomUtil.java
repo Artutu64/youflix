@@ -12,5 +12,10 @@ public class RandomUtil {
     public static Long getRandomId(){
         return getRandomLong(Integer.MAX_VALUE);
     }
+
+    public static int getRandomInt(int n){
+        Random random = new Random();
+        return random.nextInt(n);
+    }
     
 }
