@@ -26,6 +26,7 @@ public class Video  implements Serializable{
 
     private String titre;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Temporal(TemporalType.DATE)
