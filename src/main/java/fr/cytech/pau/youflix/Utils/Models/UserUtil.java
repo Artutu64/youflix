@@ -6,6 +6,7 @@ import java.util.Map;
 import fr.cytech.pau.youflix.Models.Categorie;
 import fr.cytech.pau.youflix.Models.User;
 import fr.cytech.pau.youflix.Models.Video;
+import jakarta.servlet.http.HttpSession;
 
 public class UserUtil {
 
@@ -31,6 +32,15 @@ public class UserUtil {
             }
         }
         return categorie;
+    }
+
+    public static User getCurrentUser(HttpSession session){
+        Object uuser = session.getAttribute("user");
+        if(uuser == null){
+            return null;
+        } else {
+            return (User) uuser;
+        }
     }
     
 }
