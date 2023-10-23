@@ -54,7 +54,7 @@ public class ConnexionController {
             if(user != null){
                 HttpSession session = request2.getSession();
                 session.setAttribute("user", user);
-                return "redirect:/";
+                return "redirect:/search";
             }
         }
         return "login";
