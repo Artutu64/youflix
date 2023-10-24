@@ -18,7 +18,6 @@ import fr.cytech.pau.youflix.Models.Categorie;
 import fr.cytech.pau.youflix.Models.Video;
 import fr.cytech.pau.youflix.Models.Repo.ActeurRepository;
 import fr.cytech.pau.youflix.Models.Repo.VideoRepository;
-import fr.cytech.pau.youflix.Utils.RedirectionUtil;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
@@ -84,13 +83,13 @@ public class RechercheController {
     ActeurRepository acteurRepository;
     
     @GetMapping(path = "/search")
-    public String search(HttpServletRequest request, Model model) {
+    public String search(HttpServletRequest request) {
         // return RedirectionUtil.getReturnForContent(request.getSession(), "resultats_recherche");
         return "resultats_recherche";
     }
 
     @PostMapping(path = "/search")
-    public String postRecherche(WebRequest request) {
+    public String postRecherche(WebRequest request, Model model) {
 
         // récupération les champs potentiellement remplis : recherche, genre (catégorie) et acteur
         String champRecherche = request.getParameter("contenu-recherche");
@@ -226,10 +225,10 @@ public class RechercheController {
         System.out.println("Acteur    : " + champActeur);
         System.out.println("=========================================================="); 
 
-        // ajout de la liste des vidéos au modèle
-        // model.addAttribute(listeVideosAAfficher);
+        // ajout de la liste en tant qu'attribut du modèle
+        model.addAttribute("listeVideosAAfficher", listeVideosAAfficher);
 
-        return "redirect:/search";
+        return "resultats_recherche";
 
     }
 
