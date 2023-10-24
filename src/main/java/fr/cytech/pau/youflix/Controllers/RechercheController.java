@@ -90,64 +90,33 @@ public class RechercheController {
     @PostMapping(path = "/search")
     public String postRecherche(WebRequest request) {
 
-        // note : il y a deux formulaires sur cette page : 
-        //     - un pour faire une recherche
-        //     - un pour affiner la recherche
-
         // récupération les champs potentiellement remplis : recherche, genre (catégorie) et acteur
+        String champRecherche = request.getParameter("contenu-recherche");
         String champGenre = request.getParameter("genre");
         String champActeur = request.getParameter("acteur");
-        String champRecherche = request.getParameter("contenu-recherche");
 
+        // initialisation des variables pour savoir si le genre et l'acteur ont été renseignés
+        boolean genreRenseigne = ((champGenre != null) && (!champGenre.equals("")));
+        boolean acteurRenseigne = ((champActeur != null) && (!champActeur.equals("")));
 
+        // liste des vidéos à afficher en guise de résultats de recherche
+        List<Video> listeVideosAAfficher = new ArrayList<>();
 
+        // liste des vidéos à supprimer car ne correspondant pas aux filtres de recherche
+        List<Video> listeVideosASupprimer = new ArrayList<>();
 
+        // liste qui va devenir la liste des vidéos correspondant aux filtres de recherche
+        List<Video> listeVideosFiltrees = videoRepository.findAll();
 
-
-
-        
-
-        // récupération de tous les films de la base de données
-        List<Video> listeVideosBdd = videoRepository.findAll();
-
-        // récupération de chacun des acteurs
+        // récupération de tous les acteurs de la BDD
         List<Acteur> listeActeursBdd = acteurRepository.findAll();
 
-        // liste des vidéos qui vont devoir être supprimées (recherche + application des filtres)
-        List<Video> videosASupprimer = new ArrayList<>();
+        // le champ "acteur" renseigné par l'utilisateur peut contenir des fautes
+        // on va donc ici rechercher quel acteur correspond à celui qu'il a voulu écrire
+        Acteur acteurConsidere = null;
+        if (acteurRenseigne) {
 
-        // liste des vidéos qui vont correspondre aux filtres de recherches
-        List<Video> videosFiltrees = new ArrayList<>();
-        for (Video video : listeVideosBdd) {
-            videosFiltrees.add(video);
-        }
-
-        // liste des vidéos qui vont être affichées pour l'utilisateur dans les résultats de recherche
-        List<Video> videosAGarder = new ArrayList<>();
-
-        // genre
-        if ((champGenre != null) && (!champGenre.equals(""))) {
-
-            // on ne garde que les films contenant cette catégorie
-            for (Video video : listeVideosBdd) {
-                boolean catExiste = false;
-                for (Categorie cat : video.getCategories()) {
-                    if (champGenre.equals(cat.getNom())) {
-                        catExiste = true;
-                        break;
-                    }
-                }
-                if (!catExiste) {
-                    videosASupprimer.add(video);
-                }
-            }
-
-        }
-
-        // acteur
-        if ((champActeur != null) && (!champActeur.equals(""))) {
-
-            // calcul des distances de Levenshtein
+            // calcul des distances de Levenshtein entre l'acteur renseigné et chacun des acteurs de la BDD
             HashMap<Acteur, Integer> mapDistancesActeurs = new HashMap<>();
             for (Acteur acteur : listeActeursBdd) {
                 int dist = distanceLevenshtein(normaliserChaine(champActeur), normaliserChaine(acteur.getPrenom() + " " + acteur.getNom()));
@@ -156,7 +125,6 @@ public class RechercheController {
 
             // récupération du résultat de recherche le plus pertinent
             int distMin = Integer.MAX_VALUE;
-            Acteur acteurConsidere = null;
             for (Acteur acteur : mapDistancesActeurs.keySet()) {
                 int dist = mapDistancesActeurs.get(acteur);
                 if (dist < distMin) {
@@ -164,32 +132,59 @@ public class RechercheController {
                     acteurConsidere = acteur;
                 }
             }
-
-            // on ne garde que les films dans lesquels l'acteur considéré joue
-            Set<Acteur> acteursFilm;
-            for (Video video : listeVideosBdd) {
-                acteursFilm = video.getJoueDans();
-                boolean acteurJoueDansFilm = false;
-                for (Acteur acteur : acteursFilm) {
-                    if ((acteurConsidere.getNom().equals(acteur.getNom())) && (acteurConsidere.getPrenom().equals(acteur.getPrenom()))) {
-                        acteurJoueDansFilm = true;
-                    }
-                }
-                if (!acteurJoueDansFilm) {
-                    videosASupprimer.add(video);
-                }
-            }
         }
 
-        // suppression des films ne respectant pas les conditions des filtres de recherche
-        videosFiltrees.removeAll(videosASupprimer);
+        // parcours de chacun des films de la BDD
+        for (Video video : listeVideosFiltrees) {
+
+            // initialisation des variables
+            boolean genreFilmCorrespond = false;
+            boolean acteurConsidereJoueDansFilm = false;
+            Set<Acteur> acteursFilm = video.getJoueDans();
+
+            // le genre correspond-il ?
+            if (genreRenseigne) {
+                for (Categorie cat : video.getCategories()) {
+                    if (champGenre.equals(cat.getNom())) {
+                        genreFilmCorrespond = true;
+                        break;
+                    }
+                }
+            }
+
+            // l'acteur joue-t-il dans ce film ?
+            if (acteurRenseigne) {
+                for (Acteur acteur : acteursFilm) {
+                    if ((acteurConsidere.getNom().equals(acteur.getNom())) && (acteurConsidere.getPrenom().equals(acteur.getPrenom()))) {
+                        acteurConsidereJoueDansFilm = true;
+                        break;
+                    }
+                }
+            }
+
+            // suppression du film s'il ne correspond pas à aux filtres de recherche
+            if (
+                (((!genreFilmCorrespond) || (!acteurConsidereJoueDansFilm)) && genreRenseigne && acteurRenseigne)
+                || 
+                (!genreFilmCorrespond && genreRenseigne && !acteurRenseigne)
+                ||
+                (!acteurConsidereJoueDansFilm && !genreRenseigne && acteurRenseigne)
+            ) {
+                listeVideosASupprimer.add(video);
+            }
+
+        }
+
+        // suppression des vidéos ne correspondant pas aux filtres de recherche
+        listeVideosFiltrees.removeAll(listeVideosASupprimer);
 
         // contenu de la recherche
+        // note : la recherche étant requise dans le formulaire HTML, c'est à priori toujours le cas
         if (champRecherche != null) {
 
             // calcul des distances de Levenshtein entre la recherche et chacun des films
             HashMap<Video, Integer> mapDistancesFilms = new HashMap<>();
-            for (Video video : videosFiltrees) {
+            for (Video video : listeVideosFiltrees) {
                 int dist = distanceLevenshtein(normaliserChaine(champRecherche), normaliserChaine(video.getTitre()));
                 mapDistancesFilms.put(video, dist);
             }
@@ -202,7 +197,7 @@ public class RechercheController {
                 for (Video video : mapDistancesFilms.keySet()) {
                     int dist = mapDistancesFilms.get(video);
                     if (dist == i) {
-                        videosAGarder.add(video);
+                        listeVideosAAfficher.add(video);
                         n_resultats_en_cours++;
                         if (n_resultats_en_cours >= n_resultats_voulus) {
                             break;
@@ -215,13 +210,11 @@ public class RechercheController {
                 i++;
             }
 
-        } else {
-            videosAGarder = videosFiltrees;
         }
 
         System.out.println("=========================================================="); 
         System.out.println("---------------------- Films valides ---------------------");
-        for (Video video : videosAGarder) {
+        for (Video video : listeVideosAAfficher) {
             System.out.println(video.getTitre());
         }
         System.out.println("------------------------- Critères -----------------------");
@@ -247,6 +240,8 @@ public class RechercheController {
  *      - faire en sorte de mettre la recherche dans l'URL
  *      - faire en sorte que la recherche depuis une autre page redirige automatiquement vers /search?q=...
  *      - BONUS : ajouter un champ demandant le nombre de résultats de recherche
+ *      - BONUS : afficher des acteurs
+ *      
  */
 
 // 
