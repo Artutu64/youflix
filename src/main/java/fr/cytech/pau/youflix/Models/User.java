@@ -6,6 +6,7 @@ import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -28,19 +29,19 @@ public class User implements Serializable {
 
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "Likes", 
         joinColumns = {@JoinColumn(name = "UID", referencedColumnName = "userId")},
         inverseJoinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")})
     private Set<Video> likes = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "Vues", 
         joinColumns = {@JoinColumn(name = "UID", referencedColumnName = "userId")},
         inverseJoinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")})
     private Set<Video> vues = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "Favoris", 
         joinColumns = {@JoinColumn(name = "UID", referencedColumnName = "userId")},
         inverseJoinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")})

@@ -154,44 +154,44 @@
 
             <!-- second carousel -->
             <div style="margin: 0px 0px 40px 0px; padding: 0px;">
-                <h3 style="margin: 0px 0px 20px 0px; padding: 0px; color: white; font-size: 35px;">Comédie</h3>
+                <h3 style="margin: 0px 0px 20px 0px; padding: 0px; color: white; font-size: 35px;" th:text="${CategorieFavorite}">Comédie</h3>
                 <div id="carouselGenre" class="carousel slide">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoCat[0].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[0].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[0].getLienVideo()}" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/WAeqwwWxq_k/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoCat[1].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[1].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[1].getLienVideo()}" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/mBjGWk_A1bE/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoCat[2].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[2].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[2].getLienVideo()}" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/GBMrMZd_7Ec/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoCat[3].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[3].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[3].getLienVideo()}" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/3kRyQsFRj3E/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoCat[4].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[4].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[4].getLienVideo()}" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                             </div>
@@ -199,38 +199,38 @@
                         <div class="carousel-item">
                             <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/mqBn7jJ_p08/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoCat[5].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[5].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[5].getLienVideo()}" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/JfBW1szd4qc/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoCat[6].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[6].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[6].getLienVideo()}" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/SdLzd68EC4M/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoCat[7].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[7].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[7].getLienVideo()}" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/wutdecDrFEs/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoCat[8].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[8].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[8].getLienVideo()}" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                                 <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
-                                    <img class="card-img-top" src="https://img.youtube.com/vi/4WJa_TA979I/maxresdefault.jpg" alt="Card image cap">
+                                    <img class="card-img-top" th:src="${VideoCat[9].getPicture()}" alt="Card image cap">
                                     <div class="card-body" style="background-color: black; text-align: center;">
-                                        <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[9].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[9].getLienVideo()}" class="btn btn-danger">Voir le film</a>
                                     </div>
                                 </div>
                             </div>
