@@ -23,16 +23,13 @@ public class ConnexionController {
 
     @GetMapping(path = "/connexion")
     public String connexion(HttpServletRequest request) {
-        List<User> users = userRepository.findUserByMail("root@youfix.fr");
-        if(users.size() == 0){
-            User user = new User();
-            user.setUserId(RandomUtil.getRandomId());
-            user.setMail("root@youfix.fr");
-            user.setPassword("password");
-            user.setPrenom("root");
-            user.setNom("root");
-            userRepository.save(user);
-        }
+        User user = new User();
+        user.setUserId(RandomUtil.getRandomId());
+        user.setMail("root@youflix.fr");
+        user.setPassword("password");
+        user.setPrenom("root");
+        user.setNom("root");
+        userRepository.save(user);
         return RedirectionUtil.getReturnForFacade(request.getSession(), "login");
     }
 
@@ -46,11 +43,10 @@ public class ConnexionController {
             List<User> users = userRepository.findAll();
             User user = null;
             for(User u : users){
-                if(u.getPassword().equals(password)){
+                if(u.getMail().equals(mail) && u.getPassword().equals(password)){
                     user = u;
                 }
             }
-            System.out.println(users.size() + " " + mail + " " + password);
             if(user != null){
                 HttpSession session = request2.getSession();
                 session.setAttribute("user", user);
