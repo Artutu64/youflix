@@ -94,109 +94,159 @@ public class RechercheController {
         //     - un pour faire une recherche
         //     - un pour affiner la recherche
 
-        // récupération de l'adresse mail et du mot de passe
-        String champRecherche = request.getParameter("contenu-recherche");
+        // récupération les champs potentiellement remplis : recherche, genre (catégorie) et acteur
         String champGenre = request.getParameter("genre");
         String champActeur = request.getParameter("acteur");
+        String champRecherche = request.getParameter("contenu-recherche");
+
+
+
+
+
+
+
+        
+
+        // récupération de tous les films de la base de données
+        List<Video> listeVideosBdd = videoRepository.findAll();
+
+        // récupération de chacun des acteurs
+        List<Acteur> listeActeursBdd = acteurRepository.findAll();
+
+        // liste des vidéos qui vont devoir être supprimées (recherche + application des filtres)
+        List<Video> videosASupprimer = new ArrayList<>();
+
+        // liste des vidéos qui vont correspondre aux filtres de recherches
+        List<Video> videosFiltrees = new ArrayList<>();
+        for (Video video : listeVideosBdd) {
+            videosFiltrees.add(video);
+        }
+
+        // liste des vidéos qui vont être affichées pour l'utilisateur dans les résultats de recherche
+        List<Video> videosAGarder = new ArrayList<>();
+
+        // genre
+        if ((champGenre != null) && (!champGenre.equals(""))) {
+
+            // on ne garde que les films contenant cette catégorie
+            for (Video video : listeVideosBdd) {
+                boolean catExiste = false;
+                for (Categorie cat : video.getCategories()) {
+                    if (champGenre.equals(cat.getNom())) {
+                        catExiste = true;
+                        break;
+                    }
+                }
+                if (!catExiste) {
+                    videosASupprimer.add(video);
+                }
+            }
+
+        }
+
+        // acteur
+        if ((champActeur != null) && (!champActeur.equals(""))) {
+
+            // calcul des distances de Levenshtein
+            HashMap<Acteur, Integer> mapDistancesActeurs = new HashMap<>();
+            for (Acteur acteur : listeActeursBdd) {
+                int dist = distanceLevenshtein(normaliserChaine(champActeur), normaliserChaine(acteur.getPrenom() + " " + acteur.getNom()));
+                mapDistancesActeurs.put(acteur, dist);
+            }
+
+            // récupération du résultat de recherche le plus pertinent
+            int distMin = Integer.MAX_VALUE;
+            Acteur acteurConsidere = null;
+            for (Acteur acteur : mapDistancesActeurs.keySet()) {
+                int dist = mapDistancesActeurs.get(acteur);
+                if (dist < distMin) {
+                    distMin = dist;
+                    acteurConsidere = acteur;
+                }
+            }
+
+            // on ne garde que les films dans lesquels l'acteur considéré joue
+            Set<Acteur> acteursFilm;
+            for (Video video : listeVideosBdd) {
+                acteursFilm = video.getJoueDans();
+                boolean acteurJoueDansFilm = false;
+                for (Acteur acteur : acteursFilm) {
+                    if ((acteurConsidere.getNom().equals(acteur.getNom())) && (acteurConsidere.getPrenom().equals(acteur.getPrenom()))) {
+                        acteurJoueDansFilm = true;
+                    }
+                }
+                if (!acteurJoueDansFilm) {
+                    videosASupprimer.add(video);
+                }
+            }
+        }
+
+        // suppression des films ne respectant pas les conditions des filtres de recherche
+        videosFiltrees.removeAll(videosASupprimer);
 
         // contenu de la recherche
         if (champRecherche != null) {
-            
-            // récupération de chacun des films
-            List<Video> listeVideos = videoRepository.findAll();
 
-            // calcul des distances de Levenshtein
+            // calcul des distances de Levenshtein entre la recherche et chacun des films
             HashMap<Video, Integer> mapDistancesFilms = new HashMap<>();
-            for (Video video : listeVideos) {
+            for (Video video : videosFiltrees) {
                 int dist = distanceLevenshtein(normaliserChaine(champRecherche), normaliserChaine(video.getTitre()));
                 mapDistancesFilms.put(video, dist);
             }
 
-            // récupération des résultats de recherche : cinq résultats les plus pertinents
+            // récupération des cinq résultats les plus pertinents
             int n_resultats_voulus = 5;
             int n_resultats_en_cours = 0;
             int i = 0;
-            List<Video> videosAGarder = new ArrayList<>();
             while ((n_resultats_en_cours <= n_resultats_voulus) && (n_resultats_en_cours < mapDistancesFilms.size())) {
                 for (Video video : mapDistancesFilms.keySet()) {
                     int dist = mapDistancesFilms.get(video);
                     if (dist == i) {
                         videosAGarder.add(video);
-                        System.out.println(video.getTitre());
                         n_resultats_en_cours++;
+                        if (n_resultats_en_cours >= n_resultats_voulus) {
+                            break;
+                        }
                     }
+                }
+                if (n_resultats_en_cours >= n_resultats_voulus) {
+                    break;
                 }
                 i++;
             }
 
-            // liste des vidéos qui vont devoir être supprimées des vidéos à garder (application des filtres)
-            List<Video> videosASupprimer = new ArrayList<>();
-
-            // acteur
-            if (champActeur != null) {
-
-                // récupération de chacun des acteurs
-                List<Acteur> listeActeurs = acteurRepository.findAll();
-
-                // calcul des distances de Levenshtein
-                HashMap<Acteur, Integer> mapDistancesActeurs = new HashMap<>();
-                for (Acteur acteur : listeActeurs) {
-                    int dist = distanceLevenshtein(normaliserChaine(champActeur), normaliserChaine(acteur.getPrenom() + " " + acteur.getNom()));
-                    mapDistancesActeurs.put(acteur, dist);
-                }
-
-                // récupération du résultat de recherche le plus pertinent
-                int distMin = Integer.MAX_VALUE;
-                Acteur acteurConsidere = null;
-                for (Acteur acteur : mapDistancesActeurs.keySet()) {
-                    int dist = mapDistancesActeurs.get(acteur);
-                    if (dist < distMin) {
-                        distMin = dist;
-                        acteurConsidere = acteur;
-                    }
-                }
-
-                // on ne garde que les films dans lesquels l'acteur considéré joue
-                Set<Acteur> acteursFilm;
-                for (Video video : videosAGarder) {
-                    acteursFilm = video.getJoueDans();
-                    boolean acteurJoueDansFilm = false;
-                    for (Acteur acteur : acteursFilm) {
-                        if ((acteurConsidere.getNom().equals(acteur.getNom())) && (acteurConsidere.getPrenom().equals(acteur.getPrenom()))) {
-                            acteurJoueDansFilm = true;
-                        }
-                    }
-                    if (!acteurJoueDansFilm) {
-                        videosASupprimer.add(video);
-                    }
-                }
-            }
-
-            // genre
-            if (champGenre != null) {
-
-                // on ne garde que les films contenant cette catégorie
-                for (Video video : videosAGarder) {
-                    boolean catExiste = false;
-                    for (Categorie cat : video.getCategories()) {
-                        if (champGenre.equals(cat.getNom())) {
-                            catExiste = true;
-                        }
-                    }
-                    if (!catExiste) {
-                        videosASupprimer.add(video);
-                    }
-                }
-
-            }
-
-            // suppression des vidéos ne répondant pas aux critères des filtres de recherches
-            videosAGarder.removeAll(videosASupprimer);
-
+        } else {
+            videosAGarder = videosFiltrees;
         }
-        
+
+        System.out.println("=========================================================="); 
+        System.out.println("---------------------- Films valides ---------------------");
+        for (Video video : videosAGarder) {
+            System.out.println(video.getTitre());
+        }
+        System.out.println("------------------------- Critères -----------------------");
+        System.out.println("Recherche : " + champRecherche);
+        System.out.println("Genre     : " + champGenre);
+        System.out.println("Acteur    : " + champActeur);
+        System.out.println("=========================================================="); 
+
         return "redirect:/search";
 
     }
 
 }
+
+/*
+ * A FINIR SUR CETTE PAGE :
+ *      - PROBLEME BDD : "Ana de" au lieu de "Ana de Armas" --> vérifier que c'est bon une fois résolu
+ *      - faire en sorte qu'on puisse mettre recherche + filtres
+ *      - améliorer le code (le découper en fonction notamment)
+ *      - faire en sorte d'afficher les bonnes vidéos plutôt que celles de Squeezie...
+ *      - améliorer l'algo de la distance de Levenshtein / en ajouter un autre en complément
+ *      - genres : mettre ceux de la BDD
+ *      - faire en sorte de mettre la recherche dans l'URL
+ *      - faire en sorte que la recherche depuis une autre page redirige automatiquement vers /search?q=...
+ *      - BONUS : ajouter un champ demandant le nombre de résultats de recherche
+ */
+
+// 

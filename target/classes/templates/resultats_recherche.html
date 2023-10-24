@@ -50,38 +50,34 @@
                     </div>
                 </li>
             </ul>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form class="form-inline my-2 my-lg-0 ml-auto" method="POST">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Rechercher un film..." aria-label="Search" style="width: 300px;" name="contenu-recherche">
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" style="font-weight: bold; border: 2px solid;">Recherche</button>
-                </form>
-            </div>
         </nav>
         <div id="recherche" style="margin: 30px 30px 15px 30px;">
             <form method="POST">
-                <h4 style="color: white; font-size: 27px;">Filtres de recherche</h4>
-                <div class="row">
-                    <div class="col form-group row" style="display: flex; align-items: center; justify-content: center;">
-                        <label for="genre" class="col-sm-2 col-form-label" style="color: white; font-size: 23px;">Genre</label>
-                        <select id="genre" name="genre" class="col-sm-3 form-control" style="display: flex; align-items: center;">
+                <h4 style="color: white; font-size: 27px;">Rechercher un film</h4>
+                <div class="row" style="margin: 25px 0px; padding: 0px;">
+                    <input class="form-control col-md-12" type="search" placeholder="Rechercher un film..." aria-label="Search" name="contenu-recherche">
+                </div>
+                <div class="row" style="margin: 25px 0px; padding: 0px;">
+                    <div class="col" style="display: flex; align-items: center; justify-content: center;">
+                        <label for="genre" class="col-sm-2 col-form-label" style="color: white; font-size: 21px;">Genre</label>
+                        <select id="genre" name="genre" class="col-sm-4 form-control">
                             <option disabled selected>Veuillez choisir un genre...</option>
                             <option>Comédie</option>
                             <option>Horreur</option>
-                            <option>Documentaire</option>
                             <option>Action</option>
                             <option>Science-fiction</option>
                         </select>
                     </div>
-                    <div class="col form-group row" style="display: flex; align-items: center; justify-content: center;">
-                        <label for="acteurs" class="col-sm-2 col-form-label" style="color: white; font-size: 23px;">Avec...</label>
-                        <input type="text" id="search-bar" name="acteur" class="col-sm-3 form-control" placeholder="Rechercher un acteur..." style="display: flex; align-items: center;">
+                    <div class="col" style="display: flex; align-items: center; justify-content: center;">
+                        <label for="acteurs" class="col-sm-2 col-form-label" style="color: white; font-size: 21px;">Avec...</label>
+                        <input type="text" id="search-bar" name="acteur" class="col-sm-4 form-control" placeholder="Rechercher un acteur...">
                     </div>
                 </div>
-                <div style="display: flex; justify-content: center;">
+                <div style="margin: 15px 0px 25px 0px; padding: 0px; display: flex; justify-content: center;">
                     <button class="btn btn-danger" style="font-size: 20px;">Affiner la recherche</button>
                 </div>
             </form>
-            <div id="resultats-recherche" style="margin: 20px 0px;">
+            <div id="resultats-recherche" style="margin: 25px 0px;">
                 <h2 style="color: white; font-size: 40px;">Résultats les plus pertinents pour la recherche "Exemple"</h2>
                 <div class="row justify-content-center">
                     <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
