@@ -42,11 +42,9 @@
                         Genres
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Comédie</a>
-                        <a class="dropdown-item" href="#">Horreur</a>
-                        <a class="dropdown-item" href="#">Documentaire</a>
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Science-fiction</a>
+                        <th:block th:each="categorie : ${listeCategories}">
+                            <a th:text="${categorie.getNom()}" class="dropdown-item" href="#"></a>
+                        </th:block>
                     </div>
                 </li>
             </ul>
@@ -62,10 +60,9 @@
                         <label for="genre" class="col-sm-2 col-form-label" style="color: white; font-size: 21px;">Genre</label>
                         <select id="genre" name="genre" class="col-sm-4 form-control">
                             <option disabled selected>Veuillez choisir un genre...</option>
-                            <option>Comédie</option>
-                            <option>Horreur</option>
-                            <option>Action</option>
-                            <option>Science-fiction</option>
+                            <th:block th:each="categorie : ${listeCategories}">
+                                <option th:text="${categorie.getNom()}"></option>
+                            </th:block>
                         </select>
                     </div>
                     <div class="col" style="display: flex; align-items: center; justify-content: center;">
@@ -78,36 +75,29 @@
                 </div>
             </form>
 
-            <div>
-                <p>
-                    <!-- Si la liste des vidéos est vide -->
-                    <th:block th:if="${#lists.isEmpty(listeVideosAAfficher)}">
-                        <p style="color: white;">Aucune vidéo trouvée</p>
-                    </th:block>
-                    <!-- Sinon, des vidéos sont disponibles -->
-                    <th:block th:unless="${#lists.isEmpty(listeVideosAAfficher)}">
-                        <p style="color: white;" th:text="${#lists.size(listeVideosAAfficher)} + ' vidéos trouvées.'"></p>
-                        <th:block th:each="videoAAfficher : ${listeVideosAAfficher}">
+            <div id="resultats-recherche" style="margin: 25px 0px;">
+                <h2 style="color: white; font-size: 40px;">Résultats les plus pertinents pour la recherche "Exemple"</h2>
+                <th:block th:if="${#lists.isEmpty(listeVideosAAfficher)}">
+                    <p style="margin: 20px 0px; padding: 0px; color: white; font-size: 20px;">Aucune vidéo trouvée !</p>
+                </th:block>
+                <th:block th:unless="${#lists.isEmpty(listeVideosAAfficher)}">
+                    <div class="row justify-content">
+                        <th:block th:each="videoAAfficher, videoIter : ${listeVideosAAfficher}">
                             <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
                                 <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none; ">
                                     <img class="card-img-top" th:src="${videoAAfficher.getPicture()}">
                                     <div class="card-body" style="background-color: black; text-align: center;">
                                         <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                        <a href="#" class="btn btn-danger">Voir le film</a>
+                                        <a th:text="${videoIter.index}" href="#" class="btn btn-danger"></a>
                                     </div>
                                 </div>
                             </div>
                         </th:block>
-                    </th:block>
-                </p>
+                    </div>
+                </th:block>
             </div>
-            
-            
-            <!-- 
-           
-            -->
 
-            <!--
+            <!-- 
             <div id="resultats-recherche" style="margin: 25px 0px;">
                 <h2 style="color: white; font-size: 40px;">Résultats les plus pertinents pour la recherche "Exemple"</h2>
                 <div class="row justify-content-center">
