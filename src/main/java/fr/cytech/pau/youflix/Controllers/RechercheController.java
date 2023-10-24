@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
@@ -83,8 +84,9 @@ public class RechercheController {
     ActeurRepository acteurRepository;
     
     @GetMapping(path = "/search")
-    public String search(HttpServletRequest request){
-        return RedirectionUtil.getReturnForContent(request.getSession(), "resultats_recherche");
+    public String search(HttpServletRequest request, Model model) {
+        // return RedirectionUtil.getReturnForContent(request.getSession(), "resultats_recherche");
+        return "resultats_recherche";
     }
 
     @PostMapping(path = "/search")
@@ -212,6 +214,7 @@ public class RechercheController {
 
         }
 
+        // [temporaire] affichage des variables
         System.out.println("=========================================================="); 
         System.out.println("---------------------- Films valides ---------------------");
         for (Video video : listeVideosAAfficher) {
@@ -223,6 +226,9 @@ public class RechercheController {
         System.out.println("Acteur    : " + champActeur);
         System.out.println("=========================================================="); 
 
+        // ajout de la liste des vidéos au modèle
+        // model.addAttribute(listeVideosAAfficher);
+
         return "redirect:/search";
 
     }
@@ -232,8 +238,7 @@ public class RechercheController {
 /*
  * A FINIR SUR CETTE PAGE :
  *      - PROBLEME BDD : "Ana de" au lieu de "Ana de Armas" --> vérifier que c'est bon une fois résolu
- *      - faire en sorte qu'on puisse mettre recherche + filtres
- *      - améliorer le code (le découper en fonction notamment)
+ *      - faire en sorte de ne pouvoir utiliser que les filtres de recherche, sans la barre de recherche
  *      - faire en sorte d'afficher les bonnes vidéos plutôt que celles de Squeezie...
  *      - améliorer l'algo de la distance de Levenshtein / en ajouter un autre en complément
  *      - genres : mettre ceux de la BDD
@@ -241,6 +246,8 @@ public class RechercheController {
  *      - faire en sorte que la recherche depuis une autre page redirige automatiquement vers /search?q=...
  *      - BONUS : ajouter un champ demandant le nombre de résultats de recherche
  *      - BONUS : afficher des acteurs
+ * 
+ *      - faire en sorte que la page ne s'affiche que si l'utilisateur est connecté
  *      
  */
 

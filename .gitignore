@@ -1,4 +1,5 @@
 data/
+.vscode/
 
 # Compiled class file
 *.class
