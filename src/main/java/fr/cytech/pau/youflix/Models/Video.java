@@ -8,6 +8,7 @@ import java.util.Set;
 import fr.cytech.pau.youflix.Utils.Constantes;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -32,31 +33,31 @@ public class Video  implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date dateSortie;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "Likes", 
         joinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")},
         inverseJoinColumns = {@JoinColumn(name = "UID", referencedColumnName = "userId")})
     private Set<User> likes = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "Vues", 
         joinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")},
         inverseJoinColumns = {@JoinColumn(name = "UID", referencedColumnName = "userId")})
     private Set<User> vues = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "Favoris", 
         joinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")},
         inverseJoinColumns = {@JoinColumn(name = "UID", referencedColumnName = "userId")})
     private Set<User> favoris = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "ActeurJoueDansVideo", 
         joinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")},
         inverseJoinColumns = {@JoinColumn(name = "AID", referencedColumnName = "idActeur")})
     private Set<Acteur> joueDans = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "LienCatVideo", 
         joinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")},
         inverseJoinColumns = {@JoinColumn(name = "CNOM", referencedColumnName = "nom")})

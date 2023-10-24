@@ -6,6 +6,7 @@ import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -24,7 +25,7 @@ public class Acteur implements Serializable{
 
     private String prenom;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "ActeurJoueDansVideo", 
         joinColumns = {@JoinColumn(name = "AID", referencedColumnName = "idActeur")},
         inverseJoinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")})
