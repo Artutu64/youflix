@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
+import fr.cytech.pau.youflix.Utils.Constantes;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -32,31 +32,31 @@ public class Video  implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date dateSortie;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "Likes", 
         joinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")},
         inverseJoinColumns = {@JoinColumn(name = "UID", referencedColumnName = "userId")})
     private Set<User> likes = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "Vues", 
         joinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")},
         inverseJoinColumns = {@JoinColumn(name = "UID", referencedColumnName = "userId")})
     private Set<User> vues = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "Favoris", 
         joinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")},
         inverseJoinColumns = {@JoinColumn(name = "UID", referencedColumnName = "userId")})
     private Set<User> favoris = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "ActeurJoueDansVideo", 
         joinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")},
         inverseJoinColumns = {@JoinColumn(name = "AID", referencedColumnName = "idActeur")})
     private Set<Acteur> joueDans = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "LienCatVideo", 
         joinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")},
         inverseJoinColumns = {@JoinColumn(name = "CNOM", referencedColumnName = "nom")})
@@ -140,5 +140,9 @@ public class Video  implements Serializable{
     }
     public void setJoueDans(Set<Acteur> joueDans) {
         this.joueDans = joueDans;
+    }
+
+    public String getLienVideo(){
+        return Constantes.URL + "/video?q=" + this.codeVideo;
     }
 }
