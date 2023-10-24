@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -21,7 +20,7 @@ public class Categorie implements Serializable {
     @Id
     private String nom;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "LienCatVideo", 
         joinColumns = {@JoinColumn(name = "CNOM", referencedColumnName = "nom")},
         inverseJoinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")})

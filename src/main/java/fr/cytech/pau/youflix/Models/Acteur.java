@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -25,7 +24,7 @@ public class Acteur implements Serializable{
 
     private String prenom;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "ActeurJoueDansVideo", 
         joinColumns = {@JoinColumn(name = "AID", referencedColumnName = "idActeur")},
         inverseJoinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")})
