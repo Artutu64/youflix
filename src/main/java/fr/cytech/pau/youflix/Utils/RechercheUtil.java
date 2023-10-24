@@ -21,7 +21,7 @@ public class RechercheUtil {
         // suppression des accents
         nouvelleChaine = nouvelleChaine.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
         
-        // gestion de la casse : mise en majuscules
+        // gestion de la casse : mise en minuscules
         nouvelleChaine = nouvelleChaine.toLowerCase();
 
         // suppression des espaces inutiles
@@ -74,10 +74,7 @@ public class RechercheUtil {
         // calcul des distances de Levenshtein entre l'acteur renseigné et chacun des acteurs de la BDD
         HashMap<Acteur, Integer> mapDistancesActeurs = new HashMap<>();
         for (Acteur acteur : listeActeurs) {
-            int dist = RechercheUtil.distanceLevenshtein(
-                RechercheUtil.normaliserChaine(champActeur), 
-                RechercheUtil.normaliserChaine(acteur.getPrenom() + " " + acteur.getNom())
-            );
+            int dist = distanceLevenshtein(normaliserChaine(champActeur), normaliserChaine(acteur.getPrenom() + " " + acteur.getNom()));
             mapDistancesActeurs.put(acteur, dist);
         }
 
@@ -128,10 +125,7 @@ public class RechercheUtil {
         // calcul des distances de Levenshtein entre la recherche et chacun des films
         HashMap<Video, Integer> mapDistancesFilms = new HashMap<>();
         for (Video video : listeVideosFiltrees) {
-            int dist = RechercheUtil.distanceLevenshtein(
-                RechercheUtil.normaliserChaine(champRecherche), 
-                RechercheUtil.normaliserChaine(video.getTitre())
-            );
+            int dist = distanceLevenshtein(normaliserChaine(champRecherche), normaliserChaine(video.getTitre()));
             mapDistancesFilms.put(video, dist);
         }
 
