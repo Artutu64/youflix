@@ -35,8 +35,6 @@ public class MainPageController {
 
 			if(user != null){
 
-				System.out.println(user.getMail());
-
 				List<Video> videos = videoRepository.findAll();
 				
 				Video[] videosRecommandees = new Video[10];

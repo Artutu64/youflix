@@ -24,7 +24,7 @@
         <link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.min.css">
         <link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.min.css.map">        
     </head>
-    <body class="font" style="background-color: #282c34";>
+    <body class="font" style="background-color: #282c34">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="/"><img width="50" src="/pictures/logo.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,12 +58,12 @@
         <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; margin-bottom: 50px;">
             <li style="width: 50%; margin-top: 50px;">
                 <div style="margin-left: auto; margin-right: auto; width: 850px;">
-                    <iframe width="850" height="478" src="https://www.youtube.com/embed/gyYwBjB7bNM?si=W19f1JraFrWX4PGw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe width="850" height="478" th:src="${Video.getUrl()}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
             </li>
             <li style="width: 50%; margin-top: 50px;">
                 <div style="margin-left: auto; margin-right: auto; width: 850px; color: white; margin-top: 20px;">
-                    <h2>Titre de la vidéo <span class="badge badge-secondary">New</span></h2>
+                    <h2 th:text="${Video.getTitre()}">Titre de la vidéo</h2>
                     <form method="POST" action="/video" id="formLikeFavoriPartage">
                         <input type="hidden" name="valeurBoolLike" id="valeurBoolLike" value="false">
                         <input type="hidden" name="valeurBoolFavori" id="valeurBoolFavori" value="false">
@@ -81,50 +81,26 @@
                             </svg>
                             Favoris
                         </button>
-                        <button type="button" class="btn btn-ouline-secondary" onclick="updateBooleanValue('partage', true)">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
-                                <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
-                            </svg>
-                            Partager
-                        </button>
                     </form>
-                    <p style="font-size: 20px; margin-top: 40px; margin-bottom: 40px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p style="font-size: 20px; margin-top: 40px; margin-bottom: 40px;" th:text="${Video.getTxtDescription()}">Lorem ipsum dolor sit amet, </p>
 
                     <h3>Acteurs:</h3>
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
                         <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
-                            <div class="carousel-item active" data-interval="10000">
-                                <ul style="list-style-type: none; padding: 0px; display: flex; flex-direction: row; width: 26%; margin-left: 37%;">
-                                    <li>
-                                        <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
-                                    </li>
-                                    <li style="font-size: 20px; color: white; margin: auto;">
-                                        Nom Prénom
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="carousel-item" data-interval="2000">
-                                <ul style="list-style-type: none; padding: 0px; display: flex; flex-direction: row; width: 26%; margin-left: 37%;">
-                                    <li>
-                                        <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
-                                    </li>
-                                    <li style="font-size: 20px; color: white; margin: auto;">
-                                        Nom Prénom
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="carousel-item">
-                                <ul style="list-style-type: none; padding: 0px; display: flex; flex-direction: row; width: 26%; margin-left: 37%;">
-                                    <li>
-                                        <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
-                                    </li>
-                                    <li style="font-size: 20px; color: white; margin: auto;">
-                                        Nom Prénom
-                                    </li>
-                                </ul>
-                            </div>
+                            <th:block th:each="acteur, state : ${Video.getJoueDans()}">
+                                <div th:class="${'carousel-item' + ((state.index == 0) ? ' active' : '')}" th:data-interval="${state.index*2000+2000}">
+                                    <ul style="list-style-type: none; padding: 0px; display: flex; flex-direction: row; width: 26%; margin-left: 37%;">
+                                        <li>
+                                            <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
+                                        </li>
+                                        <li style="font-size: 20px; color: white; margin: auto;" th:text="${acteur.getFullName()}">
+                                            Nom Prénom
+                                        </li>
+                                    </ul>
+                                </div>
+                            </th:block>
                             </div>
                             <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
