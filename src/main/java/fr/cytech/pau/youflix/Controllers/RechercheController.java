@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.context.request.WebRequest;
 
 import fr.cytech.pau.youflix.Models.Acteur;
 import fr.cytech.pau.youflix.Models.Categorie;
@@ -31,26 +29,15 @@ public class RechercheController {
     @Autowired
     CategorieRepository categorieRepository;
 
-    List<Categorie> listeCategoriesBdd;
-    
     @GetMapping(path = "/search")
     public String search(HttpServletRequest request, Model model) {
 
-        // ajout des genres au modèle
-        listeCategoriesBdd = categorieRepository.findAll();
-        model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);
-
-        // return RedirectionUtil.getReturnForContent(request.getSession(), "resultats_recherche");
-        return "resultats_recherche";
-    }
-
-    @PostMapping(path = "/search")
-    public String postRecherche(WebRequest request, Model model) {
-
         // récupération les champs potentiellement remplis : recherche, genre (catégorie) et acteur
-        String champRecherche = request.getParameter("contenu-recherche");
-        String champGenre = request.getParameter("genre");
+        String champRecherche = request.getParameter("q");
+        String champGenre = request.getParameter("categorie");
         String champActeur = request.getParameter("acteur");
+
+        System.out.println(champRecherche + "//" + champGenre + "//" + champActeur);
 
         // initialisation des variables pour savoir si le genre et l'acteur ont été renseignés
         boolean genreRenseigne = ((champGenre != null) && (!champGenre.equals("")));
@@ -68,6 +55,9 @@ public class RechercheController {
 
         // récupération de tous les acteurs de la BDD
         List<Acteur> listeActeursBdd = acteurRepository.findAll();
+
+        // récupération de toutes les vidéos de la BDD
+        List<Categorie> listeCategoriesBdd = categorieRepository.findAll();
 
         // le champ "acteur" renseigné par l'utilisateur peut contenir des fautes
         // on va donc ici rechercher quel acteur correspond à celui qu'il a voulu écrire
@@ -122,13 +112,10 @@ public class RechercheController {
         model.addAttribute("champGenre", champGenre);
 
         // ajout de la base de données des genres pour afficher les menus déroulants correctement
-        listeCategoriesBdd = categorieRepository.findAll();
         model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);
 
-
-
+        // return RedirectionUtil.getReturnForContent(request.getSession(), "resultats_recherche");
         return "resultats_recherche";
-
     }
 
 }
@@ -140,9 +127,7 @@ public class RechercheController {
  * 
  * A FINIR SUR CETTE PAGE :
  *      - améliorer l'algo de la distance de Levenshtein / en ajouter un autre en complément
- *      - faire en sorte de mettre la recherche dans l'URL
  *      - faire en sorte que la recherche depuis une autre page redirige automatiquement vers /search?q=...
- *      - tout passer en GET plutôt qu'en POST
  * 
  * BONUS :
  *      - ajouter un champ demandant le nombre de résultats de recherche

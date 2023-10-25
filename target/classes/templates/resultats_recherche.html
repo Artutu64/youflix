@@ -50,15 +50,15 @@
             </ul>
         </nav>
         <div id="recherche" style="margin: 30px 30px 15px 30px;">
-            <form method="POST">
+            <form method="GET" id="form-recherche">
                 <h4 style="color: white; font-size: 27px;">Rechercher un film</h4>
                 <div class="row" style="margin: 25px 0px; padding: 0px;">
-                    <input class="form-control col-md-12" type="search" placeholder="Rechercher un film..." aria-label="Search" name="contenu-recherche">
+                    <input class="form-control col-md-12" id="recherche-film" type="search" placeholder="Rechercher un film..." aria-label="Search" name="q">
                 </div>
                 <div class="row" style="margin: 25px 0px; padding: 0px;">
                     <div class="col" style="display: flex; align-items: center; justify-content: center;">
-                        <label for="genre" class="col-sm-2 col-form-label" style="color: white; font-size: 21px;">Genre</label>
-                        <select id="genre" name="genre" class="col-sm-4 form-control">
+                        <label for="categorie" class="col-sm-2 col-form-label" style="color: white; font-size: 21px;">Genre</label>
+                        <select id="categorie" name="categorie" class="col-sm-4 form-control">
                             <option disabled selected>Veuillez choisir un genre...</option>
                             <th:block th:each="categorie : ${listeCategoriesBdd}">
                                 <option th:text="${categorie.getNom()}"></option>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="col" style="display: flex; align-items: center; justify-content: center;">
                         <label for="acteurs" class="col-sm-2 col-form-label" style="color: white; font-size: 21px;">Avec...</label>
-                        <input type="text" id="search-bar" name="acteur" class="col-sm-4 form-control" placeholder="Rechercher un acteur...">
+                        <input type="text" id="recherche-acteur" name="acteur" class="col-sm-4 form-control" placeholder="Rechercher un acteur...">
                     </div>
                 </div>
                 <div style="margin: 15px 0px 25px 0px; padding: 0px; display: flex; justify-content: center;">
@@ -165,5 +165,24 @@
         <script type="text/javascript" src="/js/bootstrap.js.map"></script>
         <script type="text/javascript" src="/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/js/bootstrap.min.js.map"></script>
+        <script>
+
+            // cette fonction permet d'initialiser les champs vides à "null" plutôt qu'à la chaîne vide
+            // cela les supprime de l'URL
+            function initialiserANull(champID) {
+                const champ = document.getElementById(champID);
+                const valeur = champ.value;
+                if (valeur === "") {
+                    champ.remove();
+                }
+            }
+
+            // application de la fonction précédente sur les barres de recherche des films et des acteurs
+            document.getElementById("form-recherche").addEventListener("submit", function (event) {
+                initialiserANull("recherche-acteur");
+                initialiserANull("recherche-film");
+            });
+
+        </script>
     </body>
 </html>
