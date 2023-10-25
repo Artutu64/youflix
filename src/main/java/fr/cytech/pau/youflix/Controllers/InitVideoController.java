@@ -3693,7 +3693,7 @@ public class InitVideoController {
         titreVideo = "Blade Runner 2049";
         dateSortieVideo = "2017-10-04";
         descriptionVideo = "En 2049, la société est fragilisée par les nombreuses tensions entre les humains et leurs esclaves créés par bioingénierie. L’officier K est un Blade Runner : il fait partie d’une force d’intervention d’élite chargée de trouver et d’éliminer ceux qui n’obéissent pas aux ordres des humains. Lorsqu’il découvre un secret enfoui depuis longtemps et capable de changer le monde, les plus hautes instances décident que c’est à son tour d’être traqué et éliminé. Son seul espoir est de retrouver Rick Deckard, un ancien Blade Runner qui a disparu depuis des décennies…";
-        acteurs = "de_Ana,Gosling_Ryan";
+        acteurs = "De Armas_Ana,Gosling_Ryan";
         genres = "Science-Fiction,Drame";
         lienVideo = "O4C5cwSbXZ8";
         setActeursFilm = new HashSet<>();
@@ -3774,7 +3774,7 @@ public class InitVideoController {
         titreVideo = "À couteaux tirés";
         dateSortieVideo = "2019-11-27";
         descriptionVideo = "Célèbre auteur de polars, Harlan Thrombey est retrouvé mort dans sa somptueuse propriété, le soir de ses 85 ans. L’esprit affûté et la mine débonnaire, le détective Benoit Blanc est alors engagé par un commanditaire anonyme afin d’élucider l’affaire. Mais entre la famille d’Harlan qui s\'entre-déchire et son personnel qui lui reste dévoué, Blanc plonge dans les méandres d’une enquête mouvementée, mêlant mensonges et fausses pistes, où les rebondissements s\'enchaînent à un rythme effréné jusqu\'à la toute dernière minute…";
-        acteurs = "de_Ana";
+        acteurs = "De Armas_Ana";
         genres = "Comédie,Crime,Mystère";
         lienVideo = "OOTOwlSIIdU";
         setActeursFilm = new HashSet<>();
@@ -3855,7 +3855,7 @@ public class InitVideoController {
         titreVideo = "War Dogs";
         dateSortieVideo = "2016-08-18";
         descriptionVideo = "Deux copains âgés d’une vingtaine d’années, vivant à Miami pendant la guerre en Irak, profitent d’un dispositif du gouvernement fédéral totalement méconnu, permettant à de petites entreprises de répondre à des appels d’offres de l’armée américaine. Si leurs débuts sont modestes, ils ne tardent pas à empocher de grosses sommes d’argent et à mener la grande vie. Mais les deux amis sont totalement dépassés par les événements lorsqu’ils décrochent un contrat de 300 millions de dollars destiné à armer les soldats afghans. Car, pour honorer leurs obligations, ils doivent entrer en contact avec des individus très peu recommandables… dont certains font partie du gouvernement américain…";
-        acteurs = "de_Ana";
+        acteurs = "De Armas_Ana";
         genres = "Comédie,Crime,Drame";
         lienVideo = "kmXo1Ncy0aM";
         setActeursFilm = new HashSet<>();
@@ -9202,7 +9202,7 @@ public class InitVideoController {
         titreVideo = "Pulp Fiction";
         dateSortieVideo = "1994-09-10";
         descriptionVideo = "L’odyssée sanglante et burlesque de petits malfrats dans la jungle d’Hollywood : Deux petits tueurs, un dangereux gangster marié à une camée, un boxeur roublard, des prêteurs sur gages sadiques, un caïd élégant et dévoué, un dealer bon mari et deux tourtereaux à la gâchette facile.";
-        acteurs = "Thurman_Uma,L._Samuel,Travolta_John";
+        acteurs = "Thurman_Uma,L. Jackson_Samuel,Travolta_John";
         genres = "Thriller,Crime";
         lienVideo = "gjAJnzTPltc";
         setActeursFilm = new HashSet<>();
@@ -12686,7 +12686,7 @@ public class InitVideoController {
         titreVideo = "Les Huit Salopards";
         dateSortieVideo = "2015-12-25";
         descriptionVideo = "Après la Guerre de Sécession, huit voyageurs se retrouvent coincés dans un refuge au milieu des montagnes. Alors que la tempête s\'abat au-dessus du massif, ils réalisent qu\'ils n\'arriveront peut-être pas à rallier Red Rock comme prévu...";
-        acteurs = "L._Samuel";
+        acteurs = "L. Jackson_Samuel";
         genres = "Drame,Mystère,Western";
         lienVideo = "cM0WxEv5mwg";
         setActeursFilm = new HashSet<>();
@@ -12767,7 +12767,7 @@ public class InitVideoController {
         titreVideo = "Captain Marvel";
         dateSortieVideo = "2019-03-06";
         descriptionVideo = "Captain Marvel raconte l’histoire de Carol Danvers qui va devenir l’une des super-héroïnes les plus puissantes de l’univers lorsque la Terre se révèle l’enjeu d’une guerre galactique entre deux races extraterrestres.";
-        acteurs = "L._Samuel,Grace_Mckenna";
+        acteurs = "L. Jackson_Samuel,Grace_Mckenna";
         genres = "Action,Aventure,Science-Fiction";
         lienVideo = "rndLWLmwgeA";
         setActeursFilm = new HashSet<>();
@@ -14388,7 +14388,7 @@ public class InitVideoController {
         titreVideo = "Sicario";
         dateSortieVideo = "2015-09-17";
         descriptionVideo = "La zone frontalière entre les États‐Unis et le Mexique est devenue un territoire de non‐droit. Kate, une jeune recrue idéaliste du FBI, y est enrôlée pour aider un groupe d’intervention d’élite dirigé par un agent du gouvernement dans la lutte contre le trafic de drogues. Menée par un consultant énigmatique l’équipe se lance dans un périple clandestin, obligeant Kate à remettre en question ses convictions pour pouvoir survivre.";
-        acteurs = "Blunt_Emily,del_Benicio";
+        acteurs = "Blunt_Emily,del Toro_Benicio";
         genres = "Action,Crime,Thriller";
         lienVideo = "Y6Y1IkKVmOM";
         setActeursFilm = new HashSet<>();
@@ -22083,7 +22083,7 @@ public class InitVideoController {
         titreVideo = "Sicario : La Guerre des cartels";
         dateSortieVideo = "2018-06-27";
         descriptionVideo = "Quelques années après les événements de Sicario, la lutte contre le trafic de drogue est toujours aussi âpre sur la frontière, et les cartels sont plus puissants que jamais. Matt et Alejandro sont à nouveau dépêchés sur place pour retrouver Carlos Reyes, un ponte des cartels qui s\'est lancé dans d\'autres affaires lucratives : il traite désormais avec les terroristes. Ce qui aurait dû être une opération coup de poing rondement menée se révèle en fait un sombre et tortueux combat orchestré dans l\'ombre par la CIA…";
-        acteurs = "del_Benicio";
+        acteurs = "del Toro_Benicio";
         genres = "Action,Crime,Thriller";
         lienVideo = "W-fZg709doU";
         setActeursFilm = new HashSet<>();
@@ -22164,7 +22164,7 @@ public class InitVideoController {
         titreVideo = "The French Dispatch";
         dateSortieVideo = "2021-10-21";
         descriptionVideo = "Le journal américain The Evening Sun de Liberty dans le Kansas possède une antenne nommée The French Dispatch à Ennui-sur-Blasé, une ville française fictive évoquant Paris dans les années 1950-60. Arthur Howitzer Jr., le rédacteur en chef du French Dispatch, meurt subitement d\'une crise cardiaque. Selon les souhaits exprimés dans son testament, la publication du journal est immédiatement suspendue après un dernier numéro d\'adieu, dans lequel trois articles des éditions précédentes du journal sont republiés, ainsi qu\'une nécrologie : Les trois articles traitent de Moses Rosenthaler, un détenu psychopathe qui se révèle être un grand artiste peintre, des évènements de Mai 68 et enfin d\'une enquête gastronomique qui vire au polar.";
-        acteurs = "del_Benicio";
+        acteurs = "del Toro_Benicio";
         genres = "Drame,Comédie";
         lienVideo = "w1GFLATs2Qw";
         setActeursFilm = new HashSet<>();

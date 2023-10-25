@@ -122,13 +122,12 @@ public class RechercheController {
 
 /*
  * 
- * PROBLEMES BDD : 
+ * PROBLEMES BDD :
  *      - "Ana de" au lieu de "Ana de Armas" --> vérifier que c'est bon une fois résolu
  * 
  * A FINIR SUR CETTE PAGE :
  *      - améliorer l'algo de la distance de Levenshtein / en ajouter un autre en complément
- *      - faire en sorte que la recherche depuis une autre page redirige automatiquement vers /search?q=...
- * 
+ *  
  * BONUS :
  *      - ajouter un champ demandant le nombre de résultats de recherche
  *      - afficher des acteurs en guise de résultats
