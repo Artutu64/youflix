@@ -2,6 +2,7 @@ package fr.cytech.pau.youflix.Utils;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -124,9 +125,42 @@ public class RechercheUtil {
 
         // calcul des distances de Levenshtein entre la recherche et chacun des films
         HashMap<Video, Integer> mapDistancesFilms = new HashMap<>();
+
+        // parcours des vidéos filtrées
         for (Video video : listeVideosFiltrees) {
-            int dist = distanceLevenshtein(normaliserChaine(champRecherche), normaliserChaine(video.getTitre()));
-            mapDistancesFilms.put(video, dist);
+
+            // longueur du titre du film
+            int longueurTitrefilm = video.getTitre().length();
+
+            // tableau qui va contenir les valeurs des distances de Levenshtein entre la recherche et chacune des
+            // sous-chaînes du titre du film
+            // par exemple, tabLevenshteinSsChaines[i][j] contiendra la distance de Levenshtein entre la recherche et
+            // la sous-chaîne du titre du film allant du caractère i (inclus) au caractère j (exclus)
+            int[][] tabLevenshteinSsChaines = new int[longueurTitrefilm][longueurTitrefilm];
+            for (int i = 0; i < longueurTitrefilm; i++) {
+                for (int j = 0; j < longueurTitrefilm; j++) {
+                    tabLevenshteinSsChaines[i][j] = Integer.MAX_VALUE;
+                }
+            }
+
+            // parcours des sous-chaînes du titre du film
+            for (int i = 0; i < longueurTitrefilm; i++) {
+                for (int j = i; j < longueurTitrefilm; j++) {
+                    String ssChaine = video.getTitre().substring(i, j+1);
+                    tabLevenshteinSsChaines[i][j] = distanceLevenshtein(normaliserChaine(champRecherche), normaliserChaine(ssChaine));
+                }
+            }
+
+            // recherche du minimum dans le tableau
+            int minimum = tabLevenshteinSsChaines[0][0];
+            for (int i = 0; i < tabLevenshteinSsChaines.length; i++) {
+                if (Arrays.stream(tabLevenshteinSsChaines[i]).min().getAsInt() < minimum) {
+                    minimum = Arrays.stream(tabLevenshteinSsChaines[i]).min().getAsInt();
+                }
+            }
+
+            mapDistancesFilms.put(video, minimum);
+
         }
 
         // récupération des nbrResultatsVoulus résultats les plus pertinents
@@ -152,5 +186,6 @@ public class RechercheUtil {
         return (listeVideosAAfficher);
 
     }
+
 
 }
