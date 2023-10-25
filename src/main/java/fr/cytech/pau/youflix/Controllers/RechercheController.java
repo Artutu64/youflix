@@ -15,6 +15,7 @@ import fr.cytech.pau.youflix.Models.Repo.ActeurRepository;
 import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
 import fr.cytech.pau.youflix.Models.Repo.VideoRepository;
 import fr.cytech.pau.youflix.Utils.RechercheUtil;
+import fr.cytech.pau.youflix.Utils.RedirectionUtil;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
@@ -115,16 +116,14 @@ public class RechercheController {
         // ajout de la base de données des genres pour afficher les menus déroulants correctement
         model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);
 
-        // return RedirectionUtil.getReturnForContent(request.getSession(), "resultats_recherche");
-        return "resultats_recherche";
+        return RedirectionUtil.getReturnForContent(request.getSession(), "resultats_recherche");
     }
 
 }
 
 /*
- * A FINIR SUR CETTE PAGE :
+ * A FINIR :
  *      - améliorer l'algo de la distance de Levenshtein / en ajouter un autre en complément
- *      - enlever la méthode post pour la recherche sur chacune des pages
  * 
  * BONUS :
  *      - ajouter un champ demandant le nombre de résultats de recherche
@@ -133,8 +132,6 @@ public class RechercheController {
  * FIN : 
  *      - revoir le code
  *      - faire en sorte que la page ne s'affiche que si l'utilisateur est connecté
- *      
- * 
  */
 
 // 
