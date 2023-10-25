@@ -80,6 +80,10 @@ public class Video  implements Serializable{
         return "" + this.titre;
     }
 
+    public String getUrl(){
+        return "https://www.youtube.com/embed/" + getCodeVideo() +"?si=W19f1JraFrWX4PGw";
+    }
+
     public String getCodeVideo() {
         return codeVideo;
     }
@@ -96,6 +100,9 @@ public class Video  implements Serializable{
 
     public String getDescription() {
         return description;
+    }
+    public String getTxtDescription(){
+        return "" + getDescription();
     }
     public void setDescription(String description) {
         this.description = description;

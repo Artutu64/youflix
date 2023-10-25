@@ -15,7 +15,6 @@ import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
 import fr.cytech.pau.youflix.Models.Repo.VideoRepository;
 import fr.cytech.pau.youflix.Utils.RandomUtil;
 import fr.cytech.pau.youflix.Utils.RedirectionUtil;
-import fr.cytech.pau.youflix.Utils.Models.CategorieUtil;
 import fr.cytech.pau.youflix.Utils.Models.UserUtil;
 import fr.cytech.pau.youflix.Utils.Models.VideoUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,8 +34,6 @@ public class MainPageController {
 			User user = UserUtil.getCurrentUser(request.getSession());
 
 			if(user != null){
-
-				System.out.println(user.getMail());
 
 				List<Video> videos = videoRepository.findAll();
 				

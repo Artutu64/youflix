@@ -47,6 +47,10 @@ public class Acteur implements Serializable{
         this.idActeur = idActeur;
     }
 
+    public String getFullName(){
+        return getNom() + " " + getPrenom();
+    }
+
     public String getNom() {
         return nom;
     }
