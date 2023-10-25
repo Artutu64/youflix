@@ -35,7 +35,7 @@
                     <a class="nav-link" href="#" style="font-size: 22px; margin: 0px 12px;">Accueil <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" style="font-size: 22px; margin: 0px 12px;">Favoris</a>
+                    <a class="nav-link" href="/favoris" style="font-size: 22px; margin: 0px 12px;">Favoris</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 22px; margin: 0px 12px;">
@@ -58,7 +58,7 @@
                 <div class="row" style="margin: 25px 0px; padding: 0px;">
                     <div class="col" style="display: flex; align-items: center; justify-content: center;">
                         <label for="categorie" class="col-sm-2 col-form-label" style="color: white; font-size: 21px;">Genre</label>
-                        <select id="categorie" name="categorie" class="col-sm-4 form-control">
+                        <select id="recherche-categorie" name="categorie" class="col-sm-4 form-control">
                             <option disabled selected>Veuillez choisir un genre...</option>
                             <th:block th:each="categorie : ${listeCategoriesBdd}">
                                 <option th:text="${categorie.getNom()}"></option>
@@ -75,17 +75,11 @@
                 </div>
             </form>
             <div id="resultats-recherche" style="margin: 25px 0px;">
-
-                
                 <h2 style="color: white;">Résultats les plus pertinents pour votre recherche
                     <span th:if="${champRecherche}" th:text="' - &quot;' + ${champRecherche} + '&quot;'"></span>
                     <span th:if="${champGenre}" th:text="' - ' + ${champGenre}"></span>
                     <span th:if="${champActeur}" th:text="' - ' + ${champActeur}"></span>
                 </h2>
-                
-
-
-                
                 <th:block th:if="${#lists.isEmpty(listeVideosAAfficher)}">
                     <p style="margin: 20px 0px; padding: 0px; color: white; font-size: 20px;">Aucune vidéo trouvée !</p>
                 </th:block>
@@ -115,21 +109,35 @@
         <script type="text/javascript" src="/js/bootstrap.min.js.map"></script>
         <script>
 
-            // cette fonction permet d'initialiser les champs vides à "null" plutôt qu'à la chaîne vide
-            // cela les supprime de l'URL
-            function initialiserANull(champID) {
-                const champ = document.getElementById(champID);
+            // initialiser les champs vides à "null" plutôt qu'à la chaîne vide, cela les supprime de l'URL
+            function initialiserANull(champId) {
+                const champ = document.getElementById(champId);
                 const valeur = champ.value;
                 if (valeur === "") {
                     champ.remove();
                 }
             }
 
-            // application de la fonction précédente sur les barres de recherche des films et des acteurs
+            // récupérer les paramètres de l'URL pour les mettre dans le formulaire
+            function ajouterParamsForm(paramAExtraire, idElementDest) {
+                var url = new URL(window.location.href);
+                var valeurParam = url.searchParams.get(paramAExtraire);
+                console.log(paramAExtraire + "//" + idElementDest + "//" + valeurParam)
+                if (valeurParam != null) {
+                    document.getElementById(idElementDest).value = valeurParam;
+                }
+            }
+
+            // initialisation à "null" des barres de recherche des films et des acteurs, si non renseignées
             document.getElementById("form-recherche").addEventListener("submit", function (event) {
                 initialiserANull("recherche-acteur");
                 initialiserANull("recherche-film");
             });
+
+            // mise des paramètres de l'URL dans le formulaire
+            ajouterParamsForm("q", "recherche-film");
+            ajouterParamsForm("acteur", "recherche-acteur");
+            ajouterParamsForm("categorie", "recherche-categorie");
 
         </script>
     </body>
