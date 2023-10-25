@@ -37,8 +37,6 @@ public class RechercheController {
         String champGenre = request.getParameter("categorie");
         String champActeur = request.getParameter("acteur");
 
-        System.out.println(champRecherche + "//" + champGenre + "//" + champActeur);
-
         // initialisation des variables pour savoir si le genre et l'acteur ont été renseignés
         boolean genreRenseigne = ((champGenre != null) && (!champGenre.equals("")));
         boolean acteurRenseigne = ((champActeur != null) && (!champActeur.equals("")));
@@ -110,6 +108,9 @@ public class RechercheController {
         model.addAttribute("listeVideosAAfficher", listeVideosAAfficher);
         model.addAttribute("champRecherche", champRecherche);
         model.addAttribute("champGenre", champGenre);
+        if (acteurRenseigne) {
+            model.addAttribute("champActeur", acteurConsidere.getPrenom() + " " + acteurConsidere.getNom());
+        }
 
         // ajout de la base de données des genres pour afficher les menus déroulants correctement
         model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);

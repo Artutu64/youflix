@@ -75,7 +75,17 @@
                 </div>
             </form>
             <div id="resultats-recherche" style="margin: 25px 0px;">
-                <h2 style="color: white;">Résultats pour la recherche "[[${champRecherche}]]" - "[[${champGenre}]]"</h2>
+
+                
+                <h2 style="color: white;">Résultats les plus pertinents pour votre recherche
+                    <span th:if="${champRecherche}" th:text="' - &quot;' + ${champRecherche} + '&quot;'"></span>
+                    <span th:if="${champGenre}" th:text="' - ' + ${champGenre}"></span>
+                    <span th:if="${champActeur}" th:text="' - ' + ${champActeur}"></span>
+                </h2>
+                
+
+
+                
                 <th:block th:if="${#lists.isEmpty(listeVideosAAfficher)}">
                     <p style="margin: 20px 0px; padding: 0px; color: white; font-size: 20px;">Aucune vidéo trouvée !</p>
                 </th:block>
