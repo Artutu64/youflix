@@ -76,33 +76,30 @@
             </form>
 
             <div id="resultats-recherche" style="margin: 25px 0px;">
-                <h2 style="color: white; font-size: 40px;">Résultats les plus pertinents pour la recherche "Exemple"</h2>
+                <h2 style="color: white;">Résultats pour la recherche "[[${champRecherche}]]" - "[[${champGenre}]]"</h2>
                 <th:block th:if="${#lists.isEmpty(listeVideosAAfficher)}">
                     <p style="margin: 20px 0px; padding: 0px; color: white; font-size: 20px;">Aucune vidéo trouvée !</p>
                 </th:block>
                 <th:block th:unless="${#lists.isEmpty(listeVideosAAfficher)}">
-
-                    <div th:each="i : ${#numbers.sequence(0, listeVideosAAfficher.size()/3)}" style="border: 2px solid red; display: flex; justify-content: center;">
-                        <div class="row justify-content">
-
-
-                            <th:block th:each="j : ${#numbers.sequence(i*3, i*3+2)}">
-                                <div th:if="${j < listeVideosAAfficher.size()}" class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                                    <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
-                                        <img class="card-img-top" th:src="${listeVideosAAfficher[j].getPicture()}">
-                                        <div class="card-body" style="background-color: black; text-align: center;">
-                                            <h5 th:text="${listeVideosAAfficher[j].getTitre()}" class="card-title" style="color: white;"></h5>
-                                            <a href="#" class="btn btn-danger">Voir le film</a>
-                                        </div>
-                                    </div>
+                    <div class="row justify-content">
+                        <div th:each="video, videoIter : ${listeVideosAAfficher}" class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
+                            <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
+                                <img class="card-img-top" th:src="${video.getPicture()}">
+                                <div class="card-body" style="background-color: black; text-align: center;">
+                                    <h5 th:text="${video.getTitre()}" class="card-title" style="color: white;"></h5>
+                                    <a href="#" class="btn btn-danger">Voir le film</a>
                                 </div>
-                            </th:block>
-
+                            </div>
                         </div>
                     </div>
-
                 </th:block>
             </div>
+
+
+
+
+
+                
 
             <!-- 
             <div id="resultats-recherche" style="margin: 25px 0px;">
