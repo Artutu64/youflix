@@ -140,18 +140,22 @@ public class RechercheController {
 }
 
 /*
+ * 
+ * PROBLEMES BDD : 
+ *      - "Ana de" au lieu de "Ana de Armas" --> vérifier que c'est bon une fois résolu
+ *      - une catégorie "vide" pour les genres de film
+ * 
  * A FINIR SUR CETTE PAGE :
- *      - PROBLEMES BDD : 
- *          - "Ana de" au lieu de "Ana de Armas" --> vérifier que c'est bon une fois résolu
- *          - une catégorie "vide" pour les genres de film
  *      - améliorer l'algo de la distance de Levenshtein / en ajouter un autre en complément
  *      - faire en sorte de mettre la recherche dans l'URL
  *      - faire en sorte que la recherche depuis une autre page redirige automatiquement vers /search?q=...
- *      
- *      - BONUS : ajouter un champ demandant le nombre de résultats de recherche
- *      - BONUS : afficher des acteurs en guise de résultats
  * 
- *      - FIN : faire en sorte que la page ne s'affiche que si l'utilisateur est connecté
+ * BONUS :
+ *      - ajouter un champ demandant le nombre de résultats de recherche
+ *      - afficher des acteurs en guise de résultats
+ * 
+ * FIN : 
+ *      - faire en sorte que la page ne s'affiche que si l'utilisateur est connecté
  *      
  * 
  */
