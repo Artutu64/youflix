@@ -86,14 +86,14 @@
                                 <img class="card-img-top" th:src="${video.getPicture()}">
                                 <div class="card-body" style="background-color: black; text-align: center;">
                                     <h5 th:text="${video.getTitre()}" class="card-title" style="color: white;"></h5>
-                                    <a href="#" class="btn btn-danger">Voir le film</a>
+                                    <a th:href="${'video?q=' + video.getCodeVideo()}" class="btn btn-danger">Voir le film</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </th:block>
             </div>
-        </div>
+        </div> 
         <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
         <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
         <script type="text/javascript" src="/js/bootstrap.bundle.js.map"></script>
