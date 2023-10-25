@@ -122,9 +122,6 @@ public class RechercheController {
 }
 
 /*
- * A FINIR :
- *      - améliorer l'algo de la distance de Levenshtein / en ajouter un autre en complément
- * 
  * BONUS :
  *      - ajouter un champ demandant le nombre de résultats de recherche
  *      - afficher des acteurs en guise de résultats
