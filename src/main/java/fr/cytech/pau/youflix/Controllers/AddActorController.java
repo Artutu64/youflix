@@ -4,21 +4,31 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import fr.cytech.pau.youflix.Models.Acteur;
+import fr.cytech.pau.youflix.Models.Categorie;
 import fr.cytech.pau.youflix.Models.Repo.ActeurRepository;
+import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
 
 @Controller
 public class AddActorController {
 
     @Autowired
     ActeurRepository acteurRepository;
+
+    @Autowired
+    CategorieRepository categorieRepository;
     
     @GetMapping(path = "/add-actor")
-    public String addActor(){
+    public String addActor(Model model){
+
+        List<Categorie> listeCategoriesBdd = categorieRepository.findAll();
+        model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);
+
         return "add_actor";
     }
 

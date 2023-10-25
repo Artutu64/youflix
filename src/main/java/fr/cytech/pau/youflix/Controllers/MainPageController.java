@@ -15,7 +15,9 @@ import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
 import fr.cytech.pau.youflix.Models.Repo.VideoRepository;
 import fr.cytech.pau.youflix.Utils.RandomUtil;
 import fr.cytech.pau.youflix.Utils.RedirectionUtil;
+import fr.cytech.pau.youflix.Utils.Models.CategorieUtil;
 import fr.cytech.pau.youflix.Utils.Models.UserUtil;
+import fr.cytech.pau.youflix.Utils.Models.VideoUtil;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
@@ -65,9 +67,16 @@ public class MainPageController {
 					videos2[i] = goodCatVideos.get(RandomUtil.getRandomInt(goodCatVideos.size()));
 				}
 
+				List<Video> videosRecentes = VideoUtil.getNewVideos(videoRepository, 10);
+				List<Video> videosPlusVues = VideoUtil.getVideosMostSeen(videoRepository, 10);
+				List<Categorie> listeCategoriesBdd = categorieRepository.findAll();
+
 				model.addAttribute("VideoRecommandees", videosRecommandees);
 				model.addAttribute("VideoCat", videos2);
 				model.addAttribute("CategorieFavorite", cat.getNom());
+				model.addAttribute("VideoRecentes", videosRecentes);
+				model.addAttribute("VideoMostSeen", videosPlusVues);
+				model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);
 
 			}
 

@@ -26,27 +26,25 @@
     </head>
     <body class="font" style="background-color: #282c34; overflow-x: hidden;";>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#"><img width="50" src="/pictures/logo.png"></a>
+            <a class="navbar-brand" href="/"><img width="50" src="/pictures/logo.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#" style="font-size: 22px; margin: 0px 12px;">Accueil <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/" style="font-size: 22px; margin: 0px 12px;">Accueil <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" style="font-size: 22px; margin: 0px 12px;">Favoris</a>
+                    <a class="nav-link" href="/favoris" style="font-size: 22px; margin: 0px 12px;">Favoris</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 22px; margin: 0px 12px;">
                         Genres
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Comédie</a>
-                        <a class="dropdown-item" href="#">Horreur</a>
-                        <a class="dropdown-item" href="#">Documentaire</a>
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Science-fiction</a>
+                        <th:block th:each="categorie : ${listeCategoriesBdd}">
+                            <a th:text="${categorie.getNom()}" class="dropdown-item" th:href="${categorie.getSearch()}"></a>
+                        </th:block>
                     </div>
                 </li>
             </ul>

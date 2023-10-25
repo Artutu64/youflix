@@ -44,6 +44,10 @@ public class Categorie implements Serializable {
         return false;
     }
 
+    public String getSearch(){
+        return "/search?categorie=" + getNom();
+    }
+
     public Set<Video> getLinkedvideos() {
         return linkedvideos;
     }

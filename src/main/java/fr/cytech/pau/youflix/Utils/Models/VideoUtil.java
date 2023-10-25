@@ -14,7 +14,7 @@ public class VideoUtil {
     public static List<Video> getNewVideos(VideoRepository repo, int amount){
         List<Video> videos = repo.findAll();
         videos.sort((Video arg0, Video arg1) -> {
-            if(arg0.getDateSortie().after(arg1.getDateSortie())) return 1;
+            if(arg0.getDateSortie().getTime() < arg1.getDateSortie().getTime()) return 1;
             else return -1;
         });
         return videos.subList(0, amount);
@@ -23,7 +23,7 @@ public class VideoUtil {
     public static List<Video> getVideosMostSeen(VideoRepository repo, int amount){
         List<Video> videos = repo.findAll();
         videos.sort((Video arg0, Video arg1) -> {
-            if(arg0.getVues().size() > arg1.getVues().size()) return 1;
+            if(arg0.getVues().size() < arg1.getVues().size()) return 1;
             else return -1;
         });
         return videos.subList(0, amount);

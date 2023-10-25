@@ -9,6 +9,7 @@ import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
@@ -32,9 +33,15 @@ public class AddVideoController {
 
     @Autowired
     VideoRepository videoRepository;
+
+    @Autowired
+    CategorieRepository categorieRepository;
     
     @GetMapping(path = "/add-video")
-    public String addVideo(){
+    public String addVideo(Model model){
+
+        List<Categorie> listeCategoriesBdd = categorieRepository.findAll();
+        model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);
         return "add_video";
     }
 
