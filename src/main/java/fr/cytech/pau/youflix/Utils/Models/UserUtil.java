@@ -25,7 +25,7 @@ public class UserUtil {
             Categorie categorie = null;
             int value = -1;
             for(Categorie cat : countCat.keySet()){
-                int v = countCat.get(categorie);
+                int v = countCat.get(cat);
                 if(v > value){
                     value = v;
                     categorie = cat;
