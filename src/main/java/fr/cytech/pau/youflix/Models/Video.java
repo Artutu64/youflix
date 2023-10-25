@@ -73,7 +73,7 @@ public class Video  implements Serializable{
     }
 
     public String getPicture(){
-        return "https://img.youtube.com/vi/" + this.codeVideo + "/maxresdefault.jpg";
+        return "https://img.youtube.com/vi/" + this.codeVideo + "/0.jpg";
     }
 
     public String getName(){
