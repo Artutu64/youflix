@@ -25,6 +25,15 @@ public class Video  implements Serializable{
     @Id
     private String codeVideo;
 
+    private int nbVues = 0;
+
+    public int getNbVues() {
+        return nbVues;
+    }
+    public void incrementVues(){
+        this.nbVues++;
+    }
+
     private String titre;
 
     @Column(columnDefinition = "TEXT")
