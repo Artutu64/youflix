@@ -124,7 +124,6 @@ public class RechercheController {
 /*
  * A FINIR SUR CETTE PAGE :
  *      - améliorer l'algo de la distance de Levenshtein / en ajouter un autre en complément
- *      - mettre le value correct dans la barre de recherche quand on vient d'une autre page
  *      - enlever la méthode post pour la recherche sur chacune des pages
  * 
  * BONUS :
