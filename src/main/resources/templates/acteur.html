@@ -65,172 +65,34 @@
             <div>
                 <h3 style="margin: 30px 0px; padding: 0px; font-size: 35px;">Film le plus vu</h3>
                 <div style="display: flex; align-items: center;">
-                    <img width="900" src="https://img.youtube.com/vi/WAeqwwWxq_k/maxresdefault.jpg" style="border-radius: 15px;">
+                    <img th:src="${filmLePlusVu.getPicture()}" style="border-radius: 15px; width: 2500px;">
                     <div style="margin: 0px 0px 0px 30px; padding: 0px;">
-                        <h4 style="font-size: 40px; font-weight: bold;">QUI EST L'IMPOSTEUR ? (ft Jérôme Niel & Panayotis Pascot)</h4>
-                        <p style="font-size: 20px; text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique libero ac ultrices tincidunt. Nullam convallis ac velit sit amet lacinia. Fusce non dignissim dui. Vestibulum interdum euismod eros, at cursus ligula volutpat nec. Phasellus auctor, felis a suscipit bibendum, tellus nunc cursus ex, sed viverra arcu elit eu metus. Sed sit amet pharetra urna. Sed non massa non justo congue dapibus. In hac habitasse platea dictumst. Quisque ultrices lorem a libero venenatis, sed scelerisque justo eleifend. Sed scelerisque odio at justo bibendum, ac aliquam arcu sollicitudin.</p>    
+                        <h4 th:text="${filmLePlusVu.getTitre()}" style="font-size: 40px; font-weight: bold;"></h4>
+                        <p th:text="${filmLePlusVu.getDescription()}" style="font-size: 20px; text-align: justify;"></p>    
                         <div style="margin-top: 20px; padding: 0px; display: flex; justify-content: center;">
-                            <a href="#" class="btn btn-danger" style="font-size: 20px;">Voir le film</a>
+                            <a th:href="${filmLePlusVu.getLienVideo()}" class="btn btn-danger" style="font-size: 20px;">Voir le film</a>
                         </div>
                     </div>
                 </div>                
             </div>
             <div>
-                <h3 style="margin: 40px 0px 30px 0px; padding: 0px; font-size: 35px;">Découvrir d'autres films de Squeezie</h3>
-                
-                
-                <div class="row justify-content-center">
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none; ">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
+                <th:block th:if="${#lists.isEmpty(listeAutresFilmsActeur)}">
+                    <p style="margin: 20px 0px; padding: 0px; color: white; font-size: 20px;">Aucune autre vidéo !</p>
+                </th:block>
+                <th:block th:unless="${#lists.isEmpty(listeAutresFilmsActeur)}">
+                    <h3 th:text="'Découvrir d\'autres films de ' + ${acteurConsidere.getFullName()}" style="margin: 40px 0px 30px 0px; padding: 0px; font-size: 35px;"></h3>
+                    <div class="row justify-content">
+                        <div th:each="video, videoIter : ${listeAutresFilmsActeur}" class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
+                            <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
+                                <img class="card-img-top" th:src="${video.getPicture()}">
+                                <div class="card-body" style="background-color: black; text-align: center;">
+                                    <h5 th:text="${video.getTitre()}" class="card-title" style="color: white;"></h5>
+                                    <a th:href="${'video?q=' + video.getCodeVideo()}" class="btn btn-danger">Voir le film</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/wutdecDrFEs/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/ebe46p_ULao/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/JfBW1szd4qc/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none; ">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/Ybk8BrTmwPg/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/mBjGWk_A1bE/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/GBMrMZd_7Ec/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/WAeqwwWxq_k/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none; ">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/ypT5BGms-Z4/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/UbFOU_XR85E/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/dWbPdqns5Xk/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/4WJa_TA979I/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none; ">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/0o4_-8LQOjk/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/6XGj35f-row/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/N-TCJquxeFk/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
-                        <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
-                            <img class="card-img-top" src="https://img.youtube.com/vi/r67zVQK7zE0/maxresdefault.jpg">
-                            <div class="card-body" style="background-color: black; text-align: center;">
-                                <h5 class="card-title" style="color: white;">Titre du film</h5>
-                                <a href="#" class="btn btn-danger">Voir le film</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </th:block>
             </div>
         </div>
         <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>

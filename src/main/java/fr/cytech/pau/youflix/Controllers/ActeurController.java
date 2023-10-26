@@ -1,6 +1,7 @@
 package fr.cytech.pau.youflix.Controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import fr.cytech.pau.youflix.Models.Acteur;
 import fr.cytech.pau.youflix.Models.Categorie;
+import fr.cytech.pau.youflix.Models.Video;
 import fr.cytech.pau.youflix.Models.Repo.ActeurRepository;
 import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
 import fr.cytech.pau.youflix.Utils.RedirectionUtil;
@@ -48,12 +50,30 @@ public class ActeurController {
         }
 
         // si l'acteur n'existe pas, on redirige l'utilisateur vers la page 404
-        // s'il existe, on l'ajoute au modèle
         if (!acteurExiste) {
-            return "404";
-        } else {
-            model.addAttribute("acteurConsidere", acteurConsidere);
+            return RedirectionUtil.getReturnForContent(request.getSession(), "404");
         }
+
+        // récupération de tous les films dans lesquels joue l'acteur considéré
+        Set<Video> listeAutresFilmsActeur = acteurConsidere.getJoueDans();
+
+        // [à faire] recherche du film le plus vu de l'acteur
+        int nbrVuesMax = -1;
+        Video filmLePlusVu = null;
+        for (Video video : listeAutresFilmsActeur) {
+            if (video.getNbVues() > nbrVuesMax) {
+                nbrVuesMax = video.getNbVues();
+                filmLePlusVu = video;
+            }
+        }
+
+        // suppression de la vidéo la plus vue de la liste pour qu'elle ne soit pas affichée en doublon sur la page
+        listeAutresFilmsActeur.remove(filmLePlusVu);
+
+        // ajout des attributs au modèle
+        model.addAttribute("acteurConsidere", acteurConsidere);
+        model.addAttribute("listeAutresFilmsActeur", listeAutresFilmsActeur);
+        model.addAttribute("filmLePlusVu", filmLePlusVu);
 
         return RedirectionUtil.getReturnForContent(request.getSession(), "acteur");
 

@@ -123,12 +123,6 @@ public class RechercheController {
 
 /*
  * BONUS :
- *      - ajouter un champ demandant le nombre de résultats de recherche
+ *      - ajouter un champ demandant le nombre de résultats de recherche (?)
  *      - afficher des acteurs en guise de résultats
- * 
- * FIN : 
- *      - revoir le code
- *      - faire en sorte que la page ne s'affiche que si l'utilisateur est connecté
  */
-
-// 
