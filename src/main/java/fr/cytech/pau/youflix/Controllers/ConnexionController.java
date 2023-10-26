@@ -23,13 +23,23 @@ public class ConnexionController {
 
     @GetMapping(path = "/connexion")
     public String connexion(HttpServletRequest request) {
-        User user = new User();
-        user.setUserId(RandomUtil.getRandomId());
-        user.setMail("root@youflix.fr");
-        user.setPassword("password");
-        user.setPrenom("root");
-        user.setNom("root");
-        userRepository.save(user);
+        List<User> users = userRepository.findAll();
+        boolean adminExiste = false;
+        for(User usr : users){
+            if(usr.getMail().equals("root@youflix.fr")){
+                adminExiste = true;
+            }
+        }
+        if(adminExiste == false){
+            User user = new User();
+            user.setUserId(RandomUtil.getRandomId());
+            user.setMail("root@youflix.fr");
+            user.setPassword("password");
+            user.setPrenom("root");
+            user.setNom("root");
+            userRepository.save(user);
+        }
+        
         return RedirectionUtil.getReturnForFacade(request.getSession(), "login");
     }
 

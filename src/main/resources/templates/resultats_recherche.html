@@ -122,7 +122,6 @@
             function ajouterParamsForm(paramAExtraire, idElementDest) {
                 var url = new URL(window.location.href);
                 var valeurParam = url.searchParams.get(paramAExtraire);
-                console.log(paramAExtraire + "//" + idElementDest + "//" + valeurParam)
                 if (valeurParam != null) {
                     document.getElementById(idElementDest).value = valeurParam;
                 }
