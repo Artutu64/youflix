@@ -212,87 +212,7 @@ public class InitVideoController {
         descriptionVideo = "Pour les livraisons à haut risque, Franck est toujours là. Comme les autres, il obéit aux trois règles d\'or : ne poser aucune question, ne pas ouvrir les colis et ne pas enfreindre les deux premières au risque d\'y trouver la mort. Mais cette fois-ci, Franck a ouvert le sac posé dans son coffre et a découvert une jeune femme se nommant Lai. Face à ce cas de conscience et à une sombre affaire de trafic humain, il ne va plus pouvoir fermer les yeux et décide d\'aider ce \"colis\" un peu spécial.";
         acteurs = "Statham_Jason";
         genres = "Action,Crime,Thriller";
-        lienVideo = "CxMDrew0INA";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-    public void ajout4(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Selina\'s Gold";
-        dateSortieVideo = "2022-10-28";
-        descriptionVideo = "";
-        acteurs = "Khang_Angeli,Acosta_Azi";
-        genres = "Drame";
-        lienVideo = "FDIotNxWpkc";
+        lienVideo = "7FnbLyv2oio";
         setActeursFilm = new HashSet<>();
         if (acteurs != null) {
             String[] listeActeurs = acteurs.split(",");
@@ -455,87 +375,6 @@ public class InitVideoController {
         acteurs = "Shobhan_Sangeeth";
         genres = "Comédie,Romance,Drame";
         lienVideo = "tpKQtYWiRDY";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
-    public void ajout7(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "American Pie présente : Girls Power";
-        dateSortieVideo = "2020-10-06";
-        descriptionVideo = "Quatre lycéennes décident de conclure un pacte pour régler leurs problèmes de cœur avant la soirée du lycée. Jusqu’au jour où, un nouveau et beau garçon fait son entrée au lycée, toutes tombent immédiatement sous son charme…";
-        acteurs = "Broadway_Lizze";
-        genres = "Comédie";
-        lienVideo = "1lNnnj-FTPk";
         setActeursFilm = new HashSet<>();
         if (acteurs != null) {
             String[] listeActeurs = acteurs.split(",");
@@ -941,87 +780,6 @@ public class InitVideoController {
         acteurs = "Gugino_Carla";
         genres = "Action,Aventure,Comédie,Familial,Fantastique";
         lienVideo = "fY8F6Ymg2B8";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
-    public void ajout13(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Jessie";
-        dateSortieVideo = "2017-09-29";
-        descriptionVideo = "Alors qu\'ils essayent de pimenter leur mariage dans leur maison isolée près d\'un lac, Jessie doit se battre pour survivre lorsque son mari meurt subitement, la laissant menottée au lit.";
-        acteurs = "Gugino_Carla,Greenwood_Bruce,Siegel_Kate";
-        genres = "Horreur,Thriller";
-        lienVideo = "kWJNd6dWqgQ";
         setActeursFilm = new HashSet<>();
         if (acteurs != null) {
             String[] listeActeurs = acteurs.split(",");
@@ -1813,168 +1571,6 @@ public class InitVideoController {
         videoRepository.save(video);  
     }
 
-    public void ajout24(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Us X Her";
-        dateSortieVideo = "2022-11-25";
-        descriptionVideo = "";
-        acteurs = "Raval_AJ";
-        genres = "Drame,Romance,Thriller";
-        lienVideo = "zc9pCi_f28g";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
-    public void ajout25(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Kaliwaan";
-        dateSortieVideo = "2022-04-29";
-        descriptionVideo = "";
-        acteurs = "Raval_AJ";
-        genres = "Thriller";
-        lienVideo = "DRrceG2RFZk";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
     public void ajout26(){
         String titreVideo = "";
         String lienVideo = "";
@@ -2480,87 +2076,6 @@ public class InitVideoController {
         acteurs = "Connelly_Jennifer,Crowe_Russell";
         genres = "Drame,Romance";
         lienVideo = "tZJufJqEccA";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
-    public void ajout33(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Requiem for a Dream";
-        dateSortieVideo = "2000-10-06";
-        descriptionVideo = "Harry Goldfarb est un junkie. Il passe ses journées en compagnie de sa petite amie Marion et son copain Tyrone. Ensemble, ils s’inventent un paradis artificiel. En quête d’une vie meilleure, le trio est entraîné dans une spirale infernale qui les enfonce toujours un peu plus dans l’angoisse et le désespoir. La mère d’Harry, Sara, souffre d’une autre forme d’addiction, la télévision. Juive, fantasque et veuve depuis des années, elle vit seule à Coney Island et nourrit dans le secret l’espoir de participer un jour à son émission préférée. Afin de satisfaire aux canons esthétiques de la télévision, elle s’astreint à un régime draconien. Un jour, elle le sait, elle passera de l’autre côté de l’écran.";
-        acteurs = "Connelly_Jennifer";
-        genres = "Crime,Drame";
-        lienVideo = "mGMT1z5ng2w";
         setActeursFilm = new HashSet<>();
         if (acteurs != null) {
             String[] listeActeurs = acteurs.split(",");
@@ -4748,87 +4263,6 @@ public class InitVideoController {
         acteurs = "Escaño_Mabel";
         genres = "Horreur";
         lienVideo = "kYm27zxO1-Y";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
-    public void ajout61(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Eugenie (Historia de una perversión)";
-        dateSortieVideo = "1980-07-01";
-        descriptionVideo = "";
-        acteurs = "Escaño_Mabel";
-        genres = "Drame";
-        lienVideo = "Hg_tUY2mNEY";
         setActeursFilm = new HashSet<>();
         if (acteurs != null) {
             String[] listeActeurs = acteurs.split(",");
@@ -7079,249 +6513,6 @@ public class InitVideoController {
         videoRepository.save(video);  
     }
 
-    public void ajout91(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Pamasahe";
-        dateSortieVideo = "2022-12-09";
-        descriptionVideo = "";
-        acteurs = "Acosta_Azi";
-        genres = "Drame";
-        lienVideo = "okUUPctJt2E";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
-    public void ajout93(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "X";
-        dateSortieVideo = "2022-03-17";
-        descriptionVideo = "Fin des années 70, une équipe de tournage investit une maison isolée du fin fond du Texas pour y réaliser un film X. À la tombée de la nuit, les propriétaires des lieux surprennent les cinéastes amateurs en plein acte. Le tournage vire brutalement au cauchemar.";
-        acteurs = "Goth_Mia,Ortega_Jenna";
-        genres = "Horreur,Thriller,Mystère";
-        lienVideo = "VtxL4ITdF_E";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
-    public void ajout94(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "A Cure for Life";
-        dateSortieVideo = "2017-02-15";
-        descriptionVideo = "Lockhart, jeune cadre ambitieux, est lancé sur la trace de son patron disparu dans un mystérieux centre de bien-être en Suisse. Pris au piège de l’Institut et de son énigmatique corps médical, il découvre peu à peu la sinistre nature des soins proposés aux patients. Alors qu’on lui diagnostique le même mal qui habite l’ensemble des pensionnaires, Lockhart n’a plus d’autres choix que de se soumettre à l’étrange traitement délivré par le centre… la Cure.";
-        acteurs = "Goth_Mia";
-        genres = "Horreur,Mystère,Science-Fiction";
-        lienVideo = "ZC9S5suXOAA";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
     public void ajout95(){
         String titreVideo = "";
         String lienVideo = "";
@@ -7337,7 +6528,7 @@ public class InitVideoController {
         Video video;
         titreVideo = "Pearl";
         dateSortieVideo = "2022-09-16";
-        descriptionVideo = "Le cinéaste Ti West est de retour avec un nouveau chapitre tiré du monde tordu de son précédent film « X », un des films d’horreur les plus acclamés de la dernière année. Piégée sur la ferme familiale et isolée de tout, Pearl doit prendre soin de son père malade sous le contrôle autoritaire de sa mère, une femme stricte et pieuse. Attirée par le monde séduisant des films qu’elle écoute sans retenue, les ambitions de Pearl, ses tentations et ses répressions s’entrechoquent dans ce prologue racontant les origines de l’iconique vilaine de X.";
+        descriptionVideo = "Piégée sur la ferme familiale et isolée de tout, Pearl doit prendre soin de son père malade sous le contrôle autoritaire de sa mère, une femme stricte et pieuse. Attirée par le monde séduisant des films qu’elle écoute sans retenue, les ambitions de Pearl, ses tentations et ses répressions s’entrechoquent dans ce prologue racontant les origines de l’iconique vilaine de X.";
         acteurs = "Goth_Mia";
         genres = "Horreur,Drame,Thriller";
         lienVideo = "UJSseBDe-4o";
@@ -8537,87 +7728,6 @@ public class InitVideoController {
         videoRepository.save(video);  
     }
 
-    public void ajout110(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "La piel que habito";
-        dateSortieVideo = "2011-08-17";
-        descriptionVideo = "Depuis que sa femme a été victime de brûlures dans un accident de voiture, le docteur Robert Ledgard, éminent chirurgien esthétique, se consacre à la création d’une nouvelle peau grâce à laquelle il aurait pu la sauver. Douze ans après le drame, il réussit à cultiver une peau qui est une véritable cuirasse contre toute agression. Outre les années de recherche et d’expérimentation, il faut aussi à Robert un cobaye, un complice et une absence totale de scrupules. Les scrupules ne l’ont jamais étouffé. Marilia, la femme qui s’est occupée de Robert depuis le jour où il est né, est la plus fidèle des complices. Quant au cobaye…";
-        acteurs = "Banderas_Antonio";
-        genres = "Drame,Horreur,Mystère,Thriller";
-        lienVideo = "PnKRaGjbq0c";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
     public void ajout111(){
         String titreVideo = "";
         String lienVideo = "";
@@ -9284,7 +8394,7 @@ public class InitVideoController {
         descriptionVideo = "Au lycée où il vient d’arriver, on trouve Charlie bizarre. Sa sensibilité et ses goûts sont en décalage avec ceux de ses camarades de classe. Pour son prof de Lettres, c’est sans doute un prodige, pour les autres, c’est juste un « loser ». En attendant, il reste en marge – jusqu’au jour où deux terminales, Patrick et la jolie Sam, le prennent sous leur aile. Grâce à eux, il va découvrir la musique, les fêtes, le sexe… pour Charlie, un nouveau monde s’offre à lui.";
         acteurs = "Dobrev_Nina";
         genres = "Drame";
-        lienVideo = "EcwoEkF5tko";
+        lienVideo = "e-edyZBUyNk";
         setActeursFilm = new HashSet<>();
         if (acteurs != null) {
             String[] listeActeurs = acteurs.split(",");
@@ -13236,87 +12346,6 @@ public class InitVideoController {
         videoRepository.save(video);  
     }
 
-    public void ajout171(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Gone Girl";
-        dateSortieVideo = "2014-10-01";
-        descriptionVideo = "Amy et Nick forment en apparence un couple modèle. Victimes de la crise, ils quittent Manhattan pour retourner s\'installer dans la ville du Missouri où Nick a grandi. Mais le jour de leur 5ème anniversaire de mariage, Amy disparaît et Nick retrouve leur maison saccagée. Lors de l\'enquête tout semble accuser Nick. Celui‐ci décide, de son côté, de tout faire pour savoir ce qui est arrivé à Amy et découvre qu\'elle lui dissimulait beaucoup de choses.";
-        acteurs = "Pike_Rosamund";
-        genres = "Mystère,Thriller,Drame";
-        lienVideo = "ItEpaXZ6R_M";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
     public void ajout172(){
         String titreVideo = "";
         String lienVideo = "";
@@ -13741,87 +12770,6 @@ public class InitVideoController {
         acteurs = "Grace_Chloë";
         genres = "Drame,Horreur";
         lienVideo = "sYjn50LDTQs";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
-    public void ajout181(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "À contre-sens";
-        dateSortieVideo = "2023-06-08";
-        descriptionVideo = "Noah doit quitter sa ville, son petit ami et ses amis pour emménager dans le manoir de William Leister, le nouveau et riche mari de sa mère. Âgée de dix-sept ans, fière et indépendante, Noah rencontre Nick, son nouveau demi-frère, et leurs fortes personnalités s’entrechoquent dès le début. Noah découvre bientôt que derrière l\'image d\'un fils modèle, Nick cache une vie de bagarre, de jeu et de courses automobiles illégales. Malgré l\'abîme qui les sépare, tous deux commencent à ressentir une attirance irrésistible qui se transformera bientôt en feu et en folle passion. Ni la rivalité permanente, ni l\'opposition de leur entourage ne peuvent les empêcher de tomber secrètement et follement amoureux. Mais le présent turbulent de Nick et le passé orageux de Noah mettront à l\'épreuve leur vie et leur amour interdit.";
-        acteurs = "Guevara_Gabriel";
-        genres = "Drame,Romance";
-        lienVideo = "Llb2kbIM4vk";
         setActeursFilm = new HashSet<>();
         if (acteurs != null) {
             String[] listeActeurs = acteurs.split(",");
@@ -14633,87 +13581,6 @@ public class InitVideoController {
         acteurs = "Curry_Tim";
         genres = "Action,Aventure,Comédie,Crime,Thriller";
         lienVideo = "qrcTDuCS55g";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
-    public void ajout195(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Les Voyeurs";
-        dateSortieVideo = "2021-08-25";
-        descriptionVideo = "Après avoir emménagé dans un magnifique loft au centre-ville de Montréal, un jeune couple s\'intéresse de plus en plus à la vie sexuelle de leurs excentriques voisins d\'en face. Ce qui n\'est au départ qu\'une curiosité innocente se transforme lentement en une obsession malsaine, après avoir découvert que l\'un de ces voisins trompe l\'autre. La tentation et le désir font que leurs vies s\'entremêlent de manière inattendue, entraînant des conséquences mortelles. En insufflant une nouvelle vie au genre oublié du thriller érotique, The Voyeurs pose la question « A-t-on le droit de regarder ? ».";
-        acteurs = "Sweeney_Sydney";
-        genres = "Thriller";
-        lienVideo = "UB9F2eKvbVM";
         setActeursFilm = new HashSet<>();
         if (acteurs != null) {
             String[] listeActeurs = acteurs.split(",");
@@ -15748,87 +14615,6 @@ public class InitVideoController {
         videoRepository.save(video);  
     }
 
-    public void ajout208(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "X-Deal 2";
-        dateSortieVideo = "2022-03-25";
-        descriptionVideo = "";
-        acteurs = "Guinto_Robb";
-        genres = "Drame";
-        lienVideo = "mPqoM9P08JY";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
     public void ajout209(){
         String titreVideo = "";
         String lienVideo = "";
@@ -15848,87 +14634,6 @@ public class InitVideoController {
         acteurs = "Guinto_Robb";
         genres = "Thriller,Horreur";
         lienVideo = "aqAuH-Myke8";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
-    public void ajout210(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Virgin Forest";
-        dateSortieVideo = "2022-06-24";
-        descriptionVideo = "";
-        acteurs = "Guinto_Robb";
-        genres = "Thriller,Crime,Drame";
-        lienVideo = "3DTNZ303fZU";
         setActeursFilm = new HashSet<>();
         if (acteurs != null) {
             String[] listeActeurs = acteurs.split(",");
@@ -17387,87 +16092,6 @@ public class InitVideoController {
         acteurs = "Kidman_Nicole";
         genres = "Aventure,Fantastique";
         lienVideo = "QLnDTHbJtXg";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
-    public void ajout229(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Moulin Rouge !";
-        dateSortieVideo = "2001-05-24";
-        descriptionVideo = "À la fin du XIXe siècle, dans le Paris de la Belle Époque, Christian, un jeune poète désargenté, s\'installe dans le quartier de Montmartre. Il découvre un univers où se mêlent sexe, drogue et french cancan, mais se rebelle contre ce milieu décadent en menant une vie de bohème. Christian rêve d\'écrire une grande pièce, et le peintre Henri de Toulouse-Lautrec est prêt à lui donner sa chance. Celui-ci a besoin d\'un spectacle grandiose pour le Moulin Rouge et le poète est embauché pour rédiger le livret de la revue. C\'est là qu\'il tombe amoureux de la courtisane Satine, la star du prodigieux cabaret....";
-        acteurs = "Kidman_Nicole";
-        genres = "Drame,Romance,Musique";
-        lienVideo = "ASxyB5LElV8";
         setActeursFilm = new HashSet<>();
         if (acteurs != null) {
             String[] listeActeurs = acteurs.split(",");
@@ -25161,7 +23785,7 @@ public class InitVideoController {
         dateSortieVideo = "2012-03-10";
         descriptionVideo = "Carlos et Kendall vont enfin pouvoir réaliser leur rêve : faire une tournée avec leur groupe de rock préféré. Arrivés à Londres, les garçons se rendent compte que leur sac a été échangé contre un autre et sont alors entraînés dans une mystérieuse histoire d\'espionnage...";
         acteurs = "Schmidt_Kendall";
-        genres = "Comédie,Téléfilm";
+        genres = "Comédie";
         lienVideo = "DfEdI1qYgzQ";
         setActeursFilm = new HashSet<>();
         if (acteurs != null) {
@@ -26541,7 +25165,7 @@ public class InitVideoController {
         descriptionVideo = "Nouveaux mariés, Ted et Tami‐Lynn essayent d’avoir un bébé et demandent à John d’être le donneur en vue d’une insémination artificielle. Cependant, s’il veut avoir la garde de l’enfant, Ted va devoir prouver devant un tribunal qu’il est véritablement humain.";
         acteurs = "Wahlberg_Mark";
         genres = "Comédie,Fantastique";
-        lienVideo = "Ewp9umK4V0E";
+        lienVideo = "S3AVcCggRnU";
         setActeursFilm = new HashSet<>();
         if (acteurs != null) {
             String[] listeActeurs = acteurs.split(",");
@@ -26785,87 +25409,6 @@ public class InitVideoController {
         acteurs = "Klementieff_Pom";
         genres = "Science-Fiction,Aventure,Action";
         lienVideo = "WxA-eZ72FsQ";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
-    public void ajout357(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Bad Moms";
-        dateSortieVideo = "2016-07-28";
-        descriptionVideo = "En apparence, Amy a une vie parfaite : un mariage heureux, de beaux enfants et une carrière qui décolle. En réalité, elle se met tellement la pression pour être au top sur tous les fronts, qu’elle est sur le point de craquer. Au bout du rouleau, elle trouve comme alliées deux autres mères épuisées elles aussi par le stress des règles imposées par Gwendoline, la toute puissante présidente des parents d’élèves. Ces trois nouvelles meilleures amies se lancent dans une folle virée en quête de fun et de détente, loin de leurs responsabilités conventionnelles de mères de famille. Ce qui a tendance à crisper le clan de Gwendoline et ses mères parfaites…";
-        acteurs = "Kunis_Mila";
-        genres = "Comédie";
-        lienVideo = "ph83oVAVpxA";
         setActeursFilm = new HashSet<>();
         if (acteurs != null) {
             String[] listeActeurs = acteurs.split(",");
@@ -28062,87 +26605,6 @@ public class InitVideoController {
         videoRepository.save(video);  
     }
 
-    public void ajout375(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Vampire Academy";
-        dateSortieVideo = "2014-02-07";
-        descriptionVideo = "Rose, une adolescente de 17 ans, est une Dhampir, une créature mi-humaine mi-vampire, gardienne des Moroi, une race de vampires mortels pacifiques. Elle doit enseigner les fonctions de gardienne à sa meilleure amie Lissa et affronter les Strigoi, une race de vampires maléfiques. Tout en devant jongler avec son amour pour Dmitri, son professeur.";
-        acteurs = "Deutch_Zoey";
-        genres = "Comédie,Action,Fantastique";
-        lienVideo = "UeF_w3-WZAI";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
     public void ajout376(){
         String titreVideo = "";
         String lienVideo = "";
@@ -28162,87 +26624,6 @@ public class InitVideoController {
         acteurs = "Farmiga_Taissa";
         genres = "Horreur,Mystère,Thriller";
         lienVideo = "hxRjOBRINu0";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
-    public void ajout377(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Scream Girl";
-        dateSortieVideo = "2015-10-09";
-        descriptionVideo = "Une jeune femme faisant le deuil de sa mère, qui était une célèbre actrice des années 80, se retrouve projetée dans l’un de ses films. Les deux femmes désormais réunies vont tenter de combattre le meurtrier qui s’y trouve.";
-        acteurs = "Farmiga_Taissa";
-        genres = "Comédie,Horreur";
-        lienVideo = "UWr8zw2yqOY";
         setActeursFilm = new HashSet<>();
         if (acteurs != null) {
             String[] listeActeurs = acteurs.split(",");
@@ -29439,250 +27820,6 @@ public class InitVideoController {
         videoRepository.save(video);  
     }
 
-    public void ajout392(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Scorpio Nights 3";
-        dateSortieVideo = "2022-07-28";
-        descriptionVideo = "";
-        acteurs = "Bermas_Christine";
-        genres = "Thriller";
-        lienVideo = "u_mv_kzHcLs";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
-    public void ajout393(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Island of Desire";
-        dateSortieVideo = "2022-04-01";
-        descriptionVideo = "";
-        acteurs = "Bermas_Christine";
-        genres = "Drame,Thriller";
-        lienVideo = "r31DmMPTXak";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-
-    public void ajout394(){
-        String titreVideo = "";
-        String lienVideo = "";
-        String dateSortieVideo = "";
-        String descriptionVideo = "";
-        String genres = "";
-        String acteurs = "";
-        Set<Acteur> setActeursFilm = new HashSet<>();
-        Set<Categorie> setGenresFilm = new HashSet<>();
-        SimpleDateFormat formatDate;
-        Date date = new Date(LocalDate.now().toEpochDay());;
-        Date dateSortieVideoSQL;
-        Video video;
-        titreVideo = "Relyebo";
-        dateSortieVideo = "2022-10-14";
-        descriptionVideo = "";
-        acteurs = "Bermas_Christine";
-        genres = "Thriller";
-        lienVideo = "jQ9QnsH94Bo";
-        setActeursFilm = new HashSet<>();
-        if (acteurs != null) {
-            String[] listeActeurs = acteurs.split(",");
-            for (int i=0; i<listeActeurs.length; i++) {
-                listeActeurs[i] = listeActeurs[i].trim();
-                String[] nomPrenom = listeActeurs[i].split("_");
-                String nomActeur = nomPrenom[0];
-                String prenomActeur = nomPrenom[1];
-                List<Acteur> acteursExistants = acteurRepository.findActorByNom(nomActeur);
-                boolean acteurExiste = false;
-                for (Acteur acteur : acteursExistants) {
-                    if (nomActeur.equals(acteur.getNom()) && prenomActeur.equals(acteur.getPrenom())) {
-                        acteurExiste = true;
-                        setActeursFilm.add(acteur);
-                    }
-                }
-                if (!acteurExiste) {
-                    Acteur acteur = new Acteur();
-                    acteur.setIdActeur(RandomUtil.getRandomId());
-                    acteur.setNom(nomActeur);
-                    acteur.setPrenom(prenomActeur);
-                    acteurRepository.save(acteur);
-                    setActeursFilm.add(acteur);
-                }
-            }
-        }
-        setGenresFilm = new HashSet<>();
-        if (genres != null) {
-            String[] listeGenres = genres.split(",");
-            for (int i=0; i<listeGenres.length; i++) {
-                listeGenres[i] = listeGenres[i].trim();
-                List<Categorie> genresExistants = genreRepository.findCategorieByNom(listeGenres[i]);
-                boolean genreExiste = false;
-                for (Categorie genre : genresExistants) {
-                    if (listeGenres[i].equals(genre.getNom())) {
-                        genreExiste = true;
-                        setGenresFilm.add(genre);
-                    }
-                }
-                if (!genreExiste) {
-                    Categorie genre = new Categorie();
-                    genre.setNom(listeGenres[i]);
-                    genreRepository.save(genre);
-                    setGenresFilm.add(genre);
-                }
-            }
-        }
-        formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(dateSortieVideo);
-        } catch(Exception e){ }
-        dateSortieVideoSQL = new Date(date.getTime());
-        video = new Video();
-        video.setCodeVideo(lienVideo);
-        video.setDescription(descriptionVideo);
-        video.setTitre(titreVideo);
-        video.setCategories(setGenresFilm);
-        video.setDateSortie(dateSortieVideoSQL); 
-        video.setJoueDans(setActeursFilm);
-        videoRepository.save(video);  
-    }
-    
-
     public void ajout398(){
         String titreVideo = "";
         String lienVideo = "";
@@ -30174,16 +28311,13 @@ public class InitVideoController {
         ajout0();
         ajout1();
         ajout2();
-        ajout4();
         ajout5();
         ajout6();
-        ajout7();
         ajout8();
         ajout9();
         ajout10();
         ajout11();
         ajout12();
-        ajout13();
         ajout14();
         ajout15();
         ajout16();
@@ -30192,8 +28326,6 @@ public class InitVideoController {
         ajout19();
         ajout20();
         ajout21();
-        ajout24();
-        ajout25();
         ajout26();
         ajout27();
         ajout28();
@@ -30201,7 +28333,6 @@ public class InitVideoController {
         ajout30();
         ajout31();
         ajout32();
-        ajout33();
         ajout34();
         ajout35();
         ajout36();
@@ -30229,7 +28360,6 @@ public class InitVideoController {
         ajout58();
         ajout59();
         ajout60();
-        ajout61();
         ajout62();
         ajout63();
         ajout64();
@@ -30257,9 +28387,6 @@ public class InitVideoController {
         ajout88();
         ajout89();
         ajout90();
-        ajout91();
-        ajout93();
-        ajout94();
         ajout95();
         ajout96();
         ajout97();
@@ -30275,7 +28402,6 @@ public class InitVideoController {
         ajout107();
         ajout108();
         ajout109();
-        ajout110();
         ajout111();
         ajout112();
         ajout113();
@@ -30333,14 +28459,12 @@ public class InitVideoController {
         ajout168();
         ajout169();
         ajout170();
-        ajout171();
         ajout172();
         ajout173();
         ajout177();
         ajout178();
         ajout179();
         ajout180();
-        ajout181();
         ajout182();
         ajout183();
         ajout184();
@@ -30351,7 +28475,6 @@ public class InitVideoController {
         ajout192();
         ajout193();
         ajout194();
-        ajout195();
         ajout196();
         ajout197();
         ajout198();
@@ -30364,9 +28487,7 @@ public class InitVideoController {
         ajout205();
         ajout206();
         ajout207();
-        ajout208();
         ajout209();
-        ajout210();
         ajout211();
         ajout212();
         ajout213();
@@ -30385,7 +28506,6 @@ public class InitVideoController {
         ajout226();
         ajout227();
         ajout228();
-        ajout229();
         ajout230();
         ajout231();
         ajout232();
@@ -30501,7 +28621,6 @@ public class InitVideoController {
         ajout354();
         ajout355();
         ajout356();
-        ajout357();
         ajout358();
         ajout359();
         ajout360();
@@ -30516,9 +28635,7 @@ public class InitVideoController {
         ajout372();
         ajout373();
         ajout374();
-        ajout375();
         ajout376();
-        ajout377();
         ajout378();
         ajout379();
         ajout380();
@@ -30533,9 +28650,6 @@ public class InitVideoController {
         ajout389();
         ajout390();
         ajout391();
-        ajout392();
-        ajout393();
-        ajout394();
         ajout398();
         ajout399();
         ajout400();
