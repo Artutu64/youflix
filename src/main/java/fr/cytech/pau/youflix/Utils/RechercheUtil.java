@@ -58,8 +58,8 @@ public class RechercheUtil {
         // note : charAt récupère un caractère à une position spécifique
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
-                int cout = (mot1.charAt(i - 1) != mot2.charAt(j - 1)) ? 1 : 0;
-                matrice[i][j] = Math.min(Math.min(matrice[i - 1][j] + 1, matrice[i][j - 1] + 1), matrice[i - 1][j - 1] + cout);
+                int cout = (mot1.charAt(i-1) != mot2.charAt(j-1)) ? 1 : 0;
+                matrice[i][j] = Math.min(Math.min(matrice[i-1][j] + 1, matrice[i][j-1] + 1), matrice[i-1][j-1] + cout);
             }
         }
         
