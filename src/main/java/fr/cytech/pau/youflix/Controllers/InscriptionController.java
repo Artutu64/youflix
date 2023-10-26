@@ -22,11 +22,17 @@ public class InscriptionController {
 
     @GetMapping(path = "/inscription")
     public String inscription(HttpServletRequest request){
-        List<User> users = userRepository.findUserByMail("root@youfix.fr");
-        if(users.size() == 0){
+        List<User> users = userRepository.findAll();
+        boolean adminExiste = false;
+        for(User usr : users){
+            if(usr.getMail().equals("root@youflix.fr")){
+                adminExiste = true;
+            }
+        }
+        if(adminExiste == false){
             User user = new User();
             user.setUserId(RandomUtil.getRandomId());
-            user.setMail("root@youfix.fr");
+            user.setMail("root@youflix.fr");
             user.setPassword("password");
             user.setPrenom("root");
             user.setNom("root");
