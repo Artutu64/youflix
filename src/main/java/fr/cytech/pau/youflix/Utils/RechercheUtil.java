@@ -56,6 +56,9 @@ public class RechercheUtil {
         
         // calcul de la distance entre les mots
         // note : charAt récupère un caractère à une position spécifique
+        // - matrice[i-1][j] + 1      : ajout d'un caractère
+        // - matrice[i][j-1] + 1      : suppression d'un caractère
+        // - matrice[i-1][j-1] + cout : remplacement d'un caractère
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
                 int cout = (mot1.charAt(i-1) != mot2.charAt(j-1)) ? 1 : 0;
