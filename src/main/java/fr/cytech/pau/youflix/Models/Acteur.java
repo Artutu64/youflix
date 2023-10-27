@@ -48,7 +48,7 @@ public class Acteur implements Serializable{
     }
 
     public String getFullName(){
-        return getNom() + " " + getPrenom();
+        return getPrenom() + " " + getNom();
     }
 
     public String getNom() {

@@ -68,7 +68,7 @@
             <div>
                 <h3 style="margin: 30px 0px; padding: 0px; font-size: 35px;">Film le plus vu</h3>
                 <div style="display: flex; align-items: center;">
-                    <img th:src="${filmLePlusVu.getPicture()}" style="border-radius: 15px; width: 2300px;">
+                    <img th:src="${filmLePlusVu.getPicture()}" style="border-radius: 15px; max-width: 2500px;">
                     <div style="margin: 0px 0px 0px 30px; padding: 0px;">
                         <h4 th:text="${filmLePlusVu.getTitre()}" style="font-size: 40px; font-weight: bold;"></h4>
                         <p th:text="${filmLePlusVu.getDescription()}" style="font-size: 20px; text-align: justify;"></p>    
