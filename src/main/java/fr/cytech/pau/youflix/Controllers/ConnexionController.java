@@ -10,6 +10,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import fr.cytech.pau.youflix.Models.User;
 import fr.cytech.pau.youflix.Models.Repo.UserRepository;
+import fr.cytech.pau.youflix.Utils.MDPUtil;
 import fr.cytech.pau.youflix.Utils.RandomUtil;
 import fr.cytech.pau.youflix.Utils.RedirectionUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -53,7 +54,7 @@ public class ConnexionController {
             List<User> users = userRepository.findAll();
             User user = null;
             for(User u : users){
-                if(u.getMail().equals(mail) && u.getPassword().equals(password)){
+                if(u.getMail().equals(mail) && u.getPassword().equals(MDPUtil.hachage(password))){
                     user = u;
                 }
             }
