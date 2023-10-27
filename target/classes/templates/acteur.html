@@ -58,8 +58,6 @@
                 <img src="/pictures/logout.png" style="margin-left: 30px; margin-right: 30px ;width: 30px; height: 30px; cursor: pointer;"/>
             </a>
         </nav>
-
-        <!-- revoir les marges : margin générales -> "contenu-page-acteur" et pas aux éléments individuels -->
         <div id="contenu-page-acteur" style="color: white; margin: 40px;">
             <div id="presentation" style="padding: 0px; display: flex; align-items: center;">
                 <img width="130" src="https://assets.codepen.io/460692/internal/avatars/users/default.png" style="margin: 0px 15px 0px 0px; border-radius: 500px;">
@@ -79,11 +77,11 @@
                 </div>                
             </div>
             <div>
+                <h3 th:text="'Découvrir d\'autres films de ' + ${acteurConsidere.getFullName()}" style="margin: 40px 0px 30px 0px; padding: 0px; font-size: 35px;"></h3>
                 <th:block th:if="${#lists.isEmpty(listeAutresFilmsActeur)}">
-                    <p style="margin: 20px 0px; padding: 0px; color: white; font-size: 20px;">Aucune autre vidéo !</p>
+                    <p style="margin: 20px 0px; padding: 0px; color: white; font-size: 22px;">Aucune autre vidéo disponible pour cet acteur !</p>
                 </th:block>
                 <th:block th:unless="${#lists.isEmpty(listeAutresFilmsActeur)}">
-                    <h3 th:text="'Découvrir d\'autres films de ' + ${acteurConsidere.getFullName()}" style="margin: 40px 0px 30px 0px; padding: 0px; font-size: 35px;"></h3>
                     <div class="row justify-content">
                         <div th:each="video, videoIter : ${listeAutresFilmsActeur}" class="col-md-3" style="display: flex; justify-content: center; align-items: center;">
                             <div class="card" style="width: 30rem; padding: 0px; margin: 25px 10px; border: none;">
