@@ -104,14 +104,16 @@
                             <div class="carousel-inner">
                             <th:block th:each="acteur, state : ${Video.getJoueDans()}">
                                 <div th:class="${'carousel-item' + ((state.index == 0) ? ' active' : '')}" th:data-interval="${state.index*2000+2000}">
-                                    <ul style="list-style-type: none; padding: 0px; display: flex; flex-direction: row; width: 26%; margin-left: 37%;">
-                                        <li>
-                                            <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
-                                        </li>
-                                        <li style="font-size: 20px; color: white; margin: auto;" th:text="${acteur.getFullName()}">
-                                            Nom Prénom
-                                        </li>
-                                    </ul>
+                                    <a th:href="${'/acteur?q=' + acteur.getIdActeur()}">
+                                        <ul style="list-style-type: none; padding: 0px; display: flex; flex-direction: row; width: 26%; margin-left: 37%;">
+                                            <li>
+                                                <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
+                                            </li>
+                                            <li style="font-size: 20px; color: white; margin: auto;" th:text="${acteur.getFullName()}">
+                                                Nom Prénom
+                                            </li>
+                                        </ul>
+                                    </a>
                                 </div>
                             </th:block>
                             </div>
