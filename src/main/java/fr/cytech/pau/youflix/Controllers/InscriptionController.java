@@ -37,6 +37,7 @@ public class InscriptionController {
             user.setPrenom("root");
             user.setNom("root");
             userRepository.save(user);
+            return "redirect:/connexion";
         }
         return RedirectionUtil.getReturnForFacade(request.getSession(), "register");
     }
