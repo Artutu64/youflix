@@ -135,7 +135,7 @@ public class RechercheUtil {
             i++;
         }
 
-        return (listeVideosAAfficher);
+        return listeVideosAAfficher;
 
     }
 
