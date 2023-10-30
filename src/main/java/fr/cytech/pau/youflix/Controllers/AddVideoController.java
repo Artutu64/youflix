@@ -58,7 +58,7 @@ public class AddVideoController {
         String acteurs = request.getParameter("liste-acteurs");
         String genres = request.getParameter("liste-genres");
 
-        // pré-traitement des chaînes de caractères
+        // pré-traitement des chaînes de caractères pour limiter les erreurs
         dateSortieVideo = dateSortieVideo.replace("/", "-");
         acteurs = acteurs.replace(";", ",");
         genres = genres.replace(";", ",");
@@ -67,11 +67,6 @@ public class AddVideoController {
         boolean codeVideoCorrect = VerifsUtil.verifCodeVideo(codeVideo);
         boolean dateSortieVideoCorrecte = VerifsUtil.verifDateSortieVideo(dateSortieVideo);
         boolean champActeursCorrect = VerifsUtil.verifChampActeur(acteurs);
-
-        System.out.println("====================================================");
-        System.out.println("Code vidéo correct      : " + codeVideoCorrect);
-        System.out.println("Date de sortie correcte : " + dateSortieVideoCorrecte);
-        System.out.println("Champ acteurs correct   : " + champActeursCorrect);
 
         // si au moins une information est incorrecte, on redirige l'utilisateur vers une autre page
         // (il ne faut pas qu'il puisse ajouter la vidéo à la base de données)
