@@ -146,7 +146,7 @@ public class AddVideoController {
         video.setJoueDans(setActeursFilm);
         videoRepository.save(video);
 
-        return "add-video";
+        return "add_video";
 
     }
 
