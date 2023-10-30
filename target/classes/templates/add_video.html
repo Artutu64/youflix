@@ -60,32 +60,32 @@
         </nav>
         
         <div style="width: 800px; margin-left: calc(50% - 400px); color: white; margin-top: 50px;">
-            <h2 style="text-align: center">Ajout d'une vidéo</h2>
+            <h2 style="text-align: center">Ajout d'un nouveau film</h2>
             <div style="margin-top: 30px;margin-bottom: 30px;margin-left: 20%; margin-right: 20%;">
               <form method="POST">
                 <div class="form-group">
-                  <label for="exampleFormControlInput1">Titre du film</label>
-                  <input value="vidéo de test" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Titre de la vidéo" name="titre-video" required>
+                  <label for="exampleFormControlInput1">Titre</label>
+                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Titre du film" name="titre-video">
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlInput2">Lien du film</label>
-                  <input value="abcdefghijk" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Lien de la video" name="lien-video" required>
+                  <label for="exampleFormControlInput2">Identifiant</label>
+                  <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Identifiant de la bande-annonce" name="lien-video">
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlInput3">Date de sortie (de la forme : "31-01-2000")</label>
-                  <input value="31-02-2003" type="text" class="form-control" id="exampleFormControlInput3" placeholder="Date de sortie de la video" name="date-sortie-video" required>
+                  <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Date de sortie du film" name="date-sortie-video">
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1" class="form-label">Description de la vidéo</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description-video" required>ceci est une description</textarea>
+                    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description-video" placeholder="Synopsis du film"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1" class="form-label">Liste des acteurs (sous la forme: 'NomActeur1_PrenomActeur1,NomActeur2_PrenomActeur2')</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="liste-acteurs" required>hersant_hugo, bigard_jean-marie</textarea>
+                    <label for="exampleFormControlTextarea1" class="form-label">Liste des acteurs (de la forme : 'NomActeur1_PrenomActeur1, NomActeur2_PrenomActeur2')</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="liste-acteurs" placeholder="Liste des acteurs du film"></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlTextarea1" class="form-label">Catégorie(s) (sous la forme: 'cat1,cat2')</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="liste-genres" required>categorie1, categorie2</textarea>
+                  <label for="exampleFormControlTextarea1" class="form-label">Catégorie(s) (de la forme : 'cat1, cat2')</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="liste-genres" placeholder="Genres liés au film"></textarea>
                 </div>
                 <button type="text" class="btn btn-danger btn-lg btn-block">Ajouter le film</button>
               </form>
