@@ -12,8 +12,9 @@ public class VerifsUtil {
         // nouvelle chaîne, au format "title case"
         StringBuilder nouvelleChaine = new StringBuilder();
 
-        // liste des mots de la chaîne
-        String[] listeMots = chaine.split(" ");
+        // liste des mots de la chaîne (séparation en fonction des espaces ou des tirets)
+        // note : tirets car "jean-marie" --> "Jean-Marie" et pas "Jean-marie"
+        String[] listeMots = chaine.split("\\s+|-");
 
         // parcours de chacun des mots
         // on met la première lettre en majuscule et les autres en minuscule pour chacune d'eux

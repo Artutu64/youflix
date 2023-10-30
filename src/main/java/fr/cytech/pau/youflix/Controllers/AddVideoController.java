@@ -159,7 +159,7 @@ public class AddVideoController {
         video.setJoueDans(setActeursFilm);
         videoRepository.save(video);
 
-        return "add_video";
+        return "redirect:/";
 
     }
 

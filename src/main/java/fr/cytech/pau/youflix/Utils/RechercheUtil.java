@@ -92,7 +92,7 @@ public class RechercheUtil {
             }
         }
 
-        return (acteurConsidere);
+        return acteurConsidere;
 
     }
 
@@ -105,7 +105,7 @@ public class RechercheUtil {
                 break;
             }
         }
-        return (genreFilmCorrespond);
+        return genreFilmCorrespond;
     }
 
     // savoir si un acteur joue dans un film ou non
@@ -117,7 +117,7 @@ public class RechercheUtil {
                 break;
             }
         }
-        return (acteurConsidereJoueDansFilm);
+        return acteurConsidereJoueDansFilm;
     }
 
     // récupération des résultats de recherche les plus pertinents
