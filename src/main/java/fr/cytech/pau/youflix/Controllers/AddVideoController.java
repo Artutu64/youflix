@@ -83,13 +83,6 @@ public class AddVideoController {
         Date date = formatDate.parse(dateSortieVideo);
         Date dateSortieVideoSQL = new Date(date.getTime());
 
-
-
-
-
-
-
-
         // vérification des acteurs liés à la vidéo
         Set<Acteur> setActeursFilm = new HashSet<>();
         for (int i = 0; i < listeActeurs.length; i++) {

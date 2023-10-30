@@ -65,27 +65,27 @@
               <form method="POST">
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Titre</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Titre du film" name="titre-video">
+                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Titre du film" name="titre-video" required>
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlInput2">Identifiant</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Identifiant de la bande-annonce" name="lien-video">
+                  <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Identifiant de la bande-annonce" name="lien-video" required>
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlInput3">Date de sortie (de la forme : "31-01-2000")</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Date de sortie du film" name="date-sortie-video">
+                  <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Date de sortie du film" name="date-sortie-video" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description-video" placeholder="Synopsis du film"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description-video" placeholder="Synopsis du film" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1" class="form-label">Liste des acteurs (de la forme : 'NomActeur1_PrenomActeur1, NomActeur2_PrenomActeur2')</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="liste-acteurs" placeholder="Liste des acteurs du film"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="liste-acteurs" placeholder="Liste des acteurs du film" required></textarea>
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1" class="form-label">Catégorie(s) (de la forme : 'cat1, cat2')</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="liste-genres" placeholder="Genres liés au film"></textarea>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="liste-genres" placeholder="Genres liés au film" required></textarea>
                 </div>
                 <button type="text" class="btn btn-danger btn-lg btn-block">Ajouter le film</button>
               </form>
