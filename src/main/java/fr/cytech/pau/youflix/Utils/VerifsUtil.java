@@ -1,7 +1,6 @@
 package fr.cytech.pau.youflix.Utils;
 
 import java.util.regex.Pattern;
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
@@ -30,20 +29,47 @@ public class VerifsUtil {
             return false;
         }
 
-        // seconde vérification : format temporel de la date
-        // la date doit être comprise entre le 01-01-1900 et la date du jour
-        // elle doit également exister (pas de "31-02-1992" par exemple)
-        try {
-            DateTimeFormatter formatteur = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            LocalDate dateSortieLocalDate = LocalDate.parse(dateSortie, formatteur);
-            LocalDate dateMinimale = LocalDate.of(1900, 1, 1);
-            LocalDate dateDuJour = LocalDate.now();
-            return (dateSortieLocalDate.isAfter(dateMinimale) && dateSortieLocalDate.isBefore(dateDuJour));
+        // seconde vérification : la date doit exister (pas de "31-02-1992" par exemple)
+        String[] partiesDate = dateSortie.split("-");
+        int jour = Integer.parseInt(partiesDate[0]);
+        int mois = Integer.parseInt(partiesDate[1]);
+        int annee = Integer.parseInt(partiesDate[2]);
+        boolean anneeBissextile = (annee % 4 == 0);
+        int nbrJoursMois;
+        switch (mois) {
+            case 2 :
+                if (anneeBissextile) {
+                    nbrJoursMois = 29;
+                } else {
+                    nbrJoursMois = 28;
+                }
+                break;
+            case 4 :
+                nbrJoursMois = 30;
+                break;
+            case 6 :
+                nbrJoursMois = 30;
+                break;
+            case 9 :
+                nbrJoursMois = 30;
+                break;
+            case 11 :
+                nbrJoursMois = 30;
+                break;
+            default :
+                nbrJoursMois = 31;
         }
-        catch (DateTimeException e) {
+        if (jour > nbrJoursMois) {
             return false;
         }
 
+        // troisième vérification : la date doit être comprise entre le 1er janvier 1900 et la date du jour
+        DateTimeFormatter formatteur = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate dateSortieLocalDate = LocalDate.parse(dateSortie, formatteur);
+        LocalDate dateMinimale = LocalDate.of(1900, 1, 1);
+        LocalDate dateDuJour = LocalDate.now();
+        return (dateSortieLocalDate.isAfter(dateMinimale) && dateSortieLocalDate.isBefore(dateDuJour));
+        
     }
 
     // vérifier que le champ "acteurs" renseigné pour la vidéo est correct
