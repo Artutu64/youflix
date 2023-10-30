@@ -22,6 +22,7 @@ import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
 import fr.cytech.pau.youflix.Models.Repo.VideoRepository;
 import fr.cytech.pau.youflix.Utils.RandomUtil;
 import fr.cytech.pau.youflix.Utils.VerifsUtil;
+import fr.cytech.pau.youflix.Utils.StringUtil;
 
 @Controller
 public class AddVideoController {
@@ -62,6 +63,22 @@ public class AddVideoController {
         acteurs = acteurs.replace(";", ",");
         genres = genres.replace(";", ",");
 
+        // vérification de certaines informations
+        boolean codeVideoCorrect = VerifsUtil.verifCodeVideo(codeVideo);
+        boolean dateSortieVideoCorrecte = VerifsUtil.verifDateSortieVideo(dateSortieVideo);
+        boolean champActeursCorrect = VerifsUtil.verifChampActeur(acteurs);
+
+        System.out.println("====================================================");
+        System.out.println("Code vidéo correct      : " + codeVideoCorrect);
+        System.out.println("Date de sortie correcte : " + dateSortieVideoCorrecte);
+        System.out.println("Champ acteurs correct   : " + champActeursCorrect);
+
+        // si au moins une information est incorrecte, on redirige l'utilisateur vers une autre page
+        // (il ne faut pas qu'il puisse ajouter la vidéo à la base de données)
+        if (!codeVideoCorrect || !dateSortieVideoCorrecte || !champActeursCorrect) {
+            return "404";
+        }
+
         // stockage des acteurs dans un tableau
         String[] listeActeursSplit = acteurs.split(",");
         String[][] listeActeurs = new String[listeActeursSplit.length][2];
@@ -69,27 +86,21 @@ public class AddVideoController {
         for (int i = 0; i < listeActeursSplit.length; i++) {
             nomPrenom = listeActeursSplit[i].split("_");
             if (nomPrenom.length == 2) {
-                listeActeurs[i][0] = VerifsUtil.conversionTitleCase(nomPrenom[0]);
-                listeActeurs[i][1] = VerifsUtil.conversionTitleCase(nomPrenom[1]);
+                listeActeurs[i][0] = StringUtil.conversionTitleCase(nomPrenom[0]);
+                listeActeurs[i][1] = StringUtil.conversionTitleCase(nomPrenom[1]);
             }
         }
 
         // stockage des genres dans un tableau
         String[] listeGenres = genres.split(",");
         for (int i = 0; i < listeGenres.length; i++) {
-            listeGenres[i] = VerifsUtil.conversionTitleCase(listeGenres[i]);
+            listeGenres[i] = StringUtil.conversionTitleCase(listeGenres[i]);
         }
 
-        // vérification de certaines informations
-        boolean codeVideoCorrect = VerifsUtil.verifCodeVideo(codeVideo);
-        boolean dateSortieVideoCorrecte = VerifsUtil.verifDateSortieVideo(dateSortieVideo);
-
-        // si au moins une information est incorrecte, on redirige l'utilisateur vers une autre page
-        // (il ne faut pas qu'il puisse ajouter la vidéo à la base de données)
-        // note : à modifier, ne pas renvoyer la page 404 mais une autre page
-        if (!codeVideoCorrect || !dateSortieVideoCorrecte) {
-            return "404";
-        }
+        // cast de la chaîne de caractères en date
+        SimpleDateFormat formatDate = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = formatDate.parse(dateSortieVideo);
+        Date dateSortieVideoSQL = new Date(date.getTime());
 
         // vérification des acteurs liés à la vidéo
         Set<Acteur> setActeursFilm = new HashSet<>();
@@ -144,11 +155,6 @@ public class AddVideoController {
 
         }
 
-        // cast de la chaîne de caractères en date
-        SimpleDateFormat formatDate = new SimpleDateFormat("dd-MM-yyyy");
-        Date date = formatDate.parse(dateSortieVideo);
-        Date dateSortieVideoSQL = new Date(date.getTime());
-
         // ajout de la vidéo à la BDD
         Video video = new Video();
         video.setCodeVideo(codeVideo);
@@ -159,7 +165,7 @@ public class AddVideoController {
         video.setJoueDans(setActeursFilm);
         videoRepository.save(video);
 
-        return "redirect:/";
+        return "redirect:/add-video";
 
     }
 
