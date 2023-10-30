@@ -48,16 +48,6 @@ public class AddVideoController {
 
     @PostMapping(path = "/add-video")
     public String postAddVideo(WebRequest request) throws ParseException {
-
-        /*
-         * Plan à suivre :
-         *      - [ok] récupération des informations du formulaire 
-         *      - [ok] étapes préliminaires : gestion des chaînes de caractères, etc
-         *      - [ok] vérifications des données
-         *      - [ok] si au moins une donnée est incorrecte, on renvoie l'utilisateur sur une autre page (?)
-         *      - [ok] ajout éventuel des acteurs et des genres à la base de données
-         *      - ajout du film à la base de données
-         */
         
         // récupération des informations liées à la vidéo
         String titreVideo = request.getParameter("titre-video");
@@ -78,8 +68,10 @@ public class AddVideoController {
         String[] nomPrenom;
         for (int i = 0; i < listeActeursSplit.length; i++) {
             nomPrenom = listeActeursSplit[i].split("_");
-            listeActeurs[i][0] = VerifsUtil.conversionTitleCase(nomPrenom[0]);
-            listeActeurs[i][1] = VerifsUtil.conversionTitleCase(nomPrenom[1]);
+            if (nomPrenom.length == 2) {
+                listeActeurs[i][0] = VerifsUtil.conversionTitleCase(nomPrenom[0]);
+                listeActeurs[i][1] = VerifsUtil.conversionTitleCase(nomPrenom[1]);
+            }
         }
 
         // stockage des genres dans un tableau
@@ -167,7 +159,7 @@ public class AddVideoController {
         video.setJoueDans(setActeursFilm);
         videoRepository.save(video);
 
-        return "add-video";
+        return "add_video";
 
     }
 
