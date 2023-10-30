@@ -22,6 +22,7 @@ import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
 import fr.cytech.pau.youflix.Models.Repo.VideoRepository;
 import fr.cytech.pau.youflix.Utils.RandomUtil;
 import fr.cytech.pau.youflix.Utils.VerifsUtil;
+import fr.cytech.pau.youflix.Utils.StringUtil;
 
 @Controller
 public class AddVideoController {
@@ -69,15 +70,15 @@ public class AddVideoController {
         for (int i = 0; i < listeActeursSplit.length; i++) {
             nomPrenom = listeActeursSplit[i].split("_");
             if (nomPrenom.length == 2) {
-                listeActeurs[i][0] = VerifsUtil.conversionTitleCase(nomPrenom[0]);
-                listeActeurs[i][1] = VerifsUtil.conversionTitleCase(nomPrenom[1]);
+                listeActeurs[i][0] = StringUtil.conversionTitleCase(nomPrenom[0]);
+                listeActeurs[i][1] = StringUtil.conversionTitleCase(nomPrenom[1]);
             }
         }
 
         // stockage des genres dans un tableau
         String[] listeGenres = genres.split(",");
         for (int i = 0; i < listeGenres.length; i++) {
-            listeGenres[i] = VerifsUtil.conversionTitleCase(listeGenres[i]);
+            listeGenres[i] = StringUtil.conversionTitleCase(listeGenres[i]);
         }
 
         // vérification de certaines informations
