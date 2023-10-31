@@ -58,40 +58,40 @@
                 <img src="/pictures/logout.png" style="margin-left: 30px; margin-right: 30px ;width: 30px; height: 30px; cursor: pointer;"/>
             </a>
         </nav>
-                <div style="width: 60%; margin-left: 20%; color: white; margin-top: 50px;">
-                    <h2 style="text-align: center;">Vos films favoris</h2>
-                    <ul style="list-style-type: none; display: flex; flex-direction: column; padding: 0px;margin-top: 30px; margin-bottom: 80px;">
-                        <th:block th:each="video, state : ${favoris}">
+        <div style="width: 60%; margin-left: 20%; color: white; margin-top: 50px;">
+            <h2 style="text-align: center;">Vos films favoris</h2>
+            <ul style="list-style-type: none; display: flex; flex-direction: column; padding: 0px;margin-top: 30px; margin-bottom: 80px;">
+                <th:block th:each="video, state : ${favoris}">
+                    <li>
+                        <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
                             <li>
-                                <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
-                                    <li>
-                                        <img class="card-img-top" style="width: 150px; height: 84px;" th:src="${video.getPicture()}" alt="Card image cap">
-                                    </li>
-                                    <li style="font-size: 22px; margin-left: 30px; margin-top: 31px; width: 800px;" th:text="${video.getName()}">
-                                        Ceci est un titre très long de vidéo ou de film qui me semble trop long
-                                    </li>
-                                    <li style="margin-top: 31px;">
-                                        <button type="button" class="btn btn-danger" th:attr="onclick=|removeFav('${favFunc.get(state.index)}')|" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-star" viewBox="0 0 16 16">
-                                            <path d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"/>
-                                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                                        </svg> Supprimer le favori</button>
-                                    </li>
-                                </ul>
+                                <img class="card-img-top" style="width: 150px; height: 84px;" th:src="${video.getPicture()}" alt="Card image cap">
                             </li>
-                        </th:block>
-                    </ul>
-                    <td>
-                        <p th:if="${favoris.size() == 0}" style="font-size: 25px; color: red; font-family: Calibri; text-align: center;">
-                            <b>Vous n'avez pas encore ajouté de favoris !</b>
-                        </p>
-                    </td>
-                </div>
-                <div style="color: white; font-family: calibri; text-align: center; margin-top: 50px;margin-bottom: 10px;">
-                    YouFlix - 2023  &copy Tous droits réservés
-                    <p>
-                      Projet JEE de Hersant Hugo et Rimaudière Arthur
-                    </p>
-                  </div>
+                            <li style="font-size: 22px; margin-left: 30px; margin-top: 31px; width: 800px;" th:text="${video.getName()}">
+                                Ceci est un titre très long de vidéo ou de film qui me semble trop long
+                            </li>
+                            <li style="margin-top: 31px;">
+                                <button type="button" class="btn btn-danger" th:attr="onclick=|removeFav('${favFunc.get(state.index)}')|" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-star" viewBox="0 0 16 16">
+                                    <path d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"/>
+                                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                                </svg> Supprimer le favori</button>
+                            </li>
+                        </ul>
+                    </li>
+                </th:block>
+            </ul>
+            <td>
+                <p th:if="${favoris.size() == 0}" style="font-size: 25px; color: red; font-family: Calibri; text-align: center;">
+                    <b>Vous n'avez pas encore ajouté de favoris !</b>
+                </p>
+            </td>
+        </div>
+        <div style="color: white; font-family: calibri; text-align: center; margin-top: 50px;margin-bottom: 10px;">
+            YouFlix - 2023  &copy Tous droits réservés
+            <p>
+                Projet JEE de Hersant Hugo et Rimaudière Arthur
+            </p>
+            </div>
         <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
         <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
         <script type="text/javascript" src="/js/bootstrap.bundle.js.map"></script>

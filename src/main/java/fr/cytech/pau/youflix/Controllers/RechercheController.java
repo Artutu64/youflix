@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import fr.cytech.pau.youflix.Models.Acteur;
 import fr.cytech.pau.youflix.Models.Categorie;
@@ -116,13 +121,25 @@ public class RechercheController {
         // ajout de la base de données des genres pour afficher les menus déroulants correctement
         model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);
 
-        return RedirectionUtil.getReturnForContent(request.getSession(), "resultats_recherche");
+        // return RedirectionUtil.getReturnForContent(request.getSession(), "resultats_recherche");
+        return "resultats_recherche";
+    }
+
+    // test, à modifier
+    // source : https://suntargets.com/send-from-javascript-fetch-and-reply-from-java-springboot/
+    @RequestMapping(value = "/myTest", method = RequestMethod.POST)
+    @ResponseBody
+    public List<Acteur> myTest(@RequestBody String received_json_data){
+        JSONObject jsonObject = new JSONObject();
+        List<Acteur> reply_data = acteurRepository.findAll();
+        reply_data.setField1("data_1");
+        reply_data.setField2("data_2");
+
+    return reply_data;
+    
     }
 
 }
 
-/*
- * BONUS :
- *      - ajouter un champ demandant le nombre de résultats de recherche (?)
- *      - afficher des acteurs en guise de résultats
- */
+
+
