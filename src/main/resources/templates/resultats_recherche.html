@@ -142,22 +142,10 @@
                     // [temporaire]
                     console.log(acteurRecherche);
 
-                    // récupération de tous les acteurs correspondant à l'entrée de l'utilisateur
-                    $.ajax({
-                        url: '/api/recherche', // L'URL de votre nouvelle méthode
-                        type: 'POST',
-                        success: function(data) {
-                            // data contient les éléments récupérés depuis la base de données au format JSON
-                            console.log(data);
-                            // Traitez les données ici
-                        },
-                        error: function() {
-                            console.error('Erreur lors de la récupération des éléments.');
-                        }
-                    });
-
+                    // à poursuivre ici
+                    
                 }
-
+            
             }
 
             // initialisation à "null" des barres de recherche des films et des acteurs, si non renseignées

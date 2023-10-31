@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fr.cytech.pau.youflix.Models.Acteur;
@@ -122,20 +125,6 @@ public class RechercheController {
         return "resultats_recherche";
     }
 
-
-
-
-
-    @ResponseBody
-    @PostMapping("/api/recherche")
-    public List<Acteur> searchElementsViaAjax(HttpServletRequest request) {
-        // Mettez ici la logique pour récupérer les éléments de la base de données
-        // et renvoyez-les sous forme de liste au format JSON
-        // Par exemple, vous pouvez réutiliser la logique que vous avez déjà pour la recherche.
-        List<Acteur> result = acteurRepository.findAll(); // Récupérez les éléments de la base de données ici
-        return result;
-    }
 }
-
 
 
