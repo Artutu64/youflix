@@ -1,7 +1,9 @@
 package fr.cytech.pau.youflix.Controllers;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,8 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fr.cytech.pau.youflix.Models.Acteur;
@@ -125,6 +125,10 @@ public class RechercheController {
         return "resultats_recherche";
     }
 
+    @GetMapping(value = "/acteurs")
+    @ResponseBody
+    public List<Acteur> recupActeurs() {
+        return acteurRepository.findAll();
+    }
+
 }
-
-
