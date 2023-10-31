@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+    <head>
+        <meta name="publisher" content="Hugo & Arthur">
+        <meta name="copyright" content="Hugo & Arthur">
+        <meta name="date-creation-yyyymmdd" content="20231018">
+        <meta name="reply-to" content="rimaudiere@cy-tech.fr">
+        <meta name="description" content="YouFlix - Films & Vidéo">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="robots" content="index">
+        <title>YouFlix - Films & Vidéo</title>
+        <link rel="icon" type="image/png" href="/pictures/logo.png"/>
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.css.map">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.css.map">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.min.css.map">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css.map">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.css.map">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.min.css.map">        
+    </head>
+    <body class="font" style="background-color: #282c34; overflow-x: hidden;";>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/"><img width="50" src="/pictures/logo.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/" style="font-size: 22px; margin: 0px 12px;">Accueil <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/favoris" style="font-size: 22px; margin: 0px 12px;">Favoris</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 22px; margin: 0px 12px;">
+                        Genres
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <th:block th:each="categorie : ${listeCategoriesBdd}">
+                            <a th:text="${categorie.getNom()}" class="dropdown-item" th:href="${categorie.getSearch()}"></a>
+                        </th:block>
+                    </div>
+                </li>
+            </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline my-2 my-lg-0 ml-auto" action="/search" method="GET">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Rechercher un film..." aria-label="Search" style="width: 300px;" name="q">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" style="font-weight: bold; border: 2px solid;">Recherche</button>
+                </form>
+            </div>
+            <a href="/deconnexion">
+                <img src="/pictures/logout.png" style="margin-left: 30px; margin-right: 30px ;width: 30px; height: 30px; cursor: pointer;"/>
+            </a>
+        </nav>
+
+        <div id="contenu-page" style="margin: 30px; padding: 0px;">
+
+            <div style="margin: 0px 0px 40px 0px; padding: 0px;">
+                <h3 style="margin: 0px 0px 20px 0px; padding: 0px; color: white; font-size: 35px;">Recommandées pour vous</h3>
+                <div id="carouselRecommandations" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[0].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[0].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecommandees[0].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[1].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[1].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecommandees[1].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[2].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[2].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecommandees[2].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[3].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[3].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecommandees[3].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[4].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[4].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecommandees[4].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[5].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[5].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecommandees[5].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[6].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[6].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecommandees[6].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[7].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[7].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecommandees[7].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[8].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[8].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecommandees[8].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecommandees[9].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecommandees[9].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecommandees[9].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselRecommandations" role="button" data-slide="prev" style="margin-left: -60px;">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselRecommandations" role="button" data-slide="next" style="margin-right: -60px;">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- second carousel -->
+            <div style="margin: 0px 0px 40px 0px; padding: 0px;">
+                <h3 style="margin: 0px 0px 20px 0px; padding: 0px; color: white; font-size: 35px;" th:text="${CategorieFavorite}">Comédie</h3>
+                <div id="carouselGenre" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoCat[0].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[0].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[0].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoCat[1].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[1].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[1].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoCat[2].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[2].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[2].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoCat[3].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[3].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[3].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoCat[4].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[4].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[4].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoCat[5].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[5].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[5].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoCat[6].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[6].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[6].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoCat[7].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[7].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[7].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoCat[8].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[8].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[8].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoCat[9].getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoCat[9].getName()}">Titre du film</h5>
+                                        <a th:href="${VideoCat[9].getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselGenre" role="button" data-slide="prev" style="margin-left: -60px;">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselGenre" role="button" data-slide="next" style="margin-right: -60px;">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- troisième carousel -->
+            <div style="margin: 0px 0px 40px 0px; padding: 0px;">
+                <h3 style="margin: 0px 0px 20px 0px; padding: 0px; color: white; font-size: 35px;">Nouveautés</h3>
+                <div id="carouselNouveautes" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecentes.get(0).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecentes.get(0).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecentes.get(0).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecentes.get(1).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecentes.get(1).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecentes.get(1).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecentes.get(2).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecentes.get(2).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecentes.get(2).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecentes.get(3).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecentes.get(3).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecentes.get(3).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecentes.get(4).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecentes.get(4).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecentes.get(4).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecentes.get(5).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecentes.get(5).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecentes.get(5).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecentes.get(6).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecentes.get(6).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecentes.get(6).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecentes.get(7).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecentes.get(7).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecentes.get(7).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecentes.get(8).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecentes.get(8).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecentes.get(8).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoRecentes.get(9).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoRecentes.get(9).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoRecentes.get(9).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselNouveautes" role="button" data-slide="prev" style="margin-left: -60px;">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselNouveautes" role="button" data-slide="next" style="margin-right: -60px;">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- quatrième carousel -->
+            <div style="margin: 0px 0px 40px 0px; padding: 0px;">
+                <h3 style="margin: 0px 0px 20px 0px; padding: 0px; color: white; font-size: 35px;">Les plus vues</h3>
+                <div id="carouselLesPlusVues" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoMostSeen.get(0).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoMostSeen.get(0).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoMostSeen.get(0).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoMostSeen.get(1).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoMostSeen.get(1).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoMostSeen.get(1).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoMostSeen.get(2).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoMostSeen.get(2).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoMostSeen.get(2).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoMostSeen.get(3).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoMostSeen.get(3).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoMostSeen.get(3).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoMostSeen.get(4).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoMostSeen.get(4).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoMostSeen.get(4).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="image-list" style="list-style-type: none; display: flex; flex-direction: row; padding: 0px; justify-content: center;">
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoMostSeen.get(5).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoMostSeen.get(5).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoMostSeen.get(5).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoMostSeen.get(6).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoMostSeen.get(6).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoMostSeen.get(6).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoMostSeen.get(7).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoMostSeen.get(7).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoMostSeen.get(7).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoMostSeen.get(8).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoMostSeen.get(8).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoMostSeen.get(8).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem; padding: 0px; margin: 0px 10px; border: none;">
+                                    <img class="card-img-top" th:src="${VideoMostSeen.get(9).getPicture()}" alt="Card image cap">
+                                    <div class="card-body" style="background-color: black; text-align: center;">
+                                        <h5 class="card-title" style="color: white;" th:text="${VideoMostSeen.get(9).getName()}">Titre du film</h5>
+                                        <a th:href="${VideoMostSeen.get(9).getLienVideo()}" class="btn btn-danger">Voir le film</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselLesPlusVues" role="button" data-slide="prev" style="margin-left: -60px;">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselLesPlusVues" role="button" data-slide="next" style="margin-right: -60px;">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+            
+
+        <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.js.map"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.min.js.map"></script>
+        <script type="text/javascript" src="/js/bootstrap.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.js.map"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js.map"></script>  
+        <script>
+            $(document).ready(function() {
+                $('#carouselRecommandations, #carouselNouveautes, #carouselLesPlusVues, #carouselGenre').carousel({
+                    interval: false
+                });
+            });
+        </script>
+          
+    </body>
+</html>

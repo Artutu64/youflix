@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+    <head>
+        <meta name="publisher" content="Hugo & Arthur">
+        <meta name="copyright" content="Hugo & Arthur">
+        <meta name="date-creation-yyyymmdd" content="20231018">
+        <meta name="reply-to" content="rimaudiere@cy-tech.fr">
+        <meta name="description" content="YouFlix - Films & Vidéo">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="robots" content="index">
+        <title>YouFlix - Films & Vidéo</title>
+        <link rel="icon" type="image/png" href="/pictures/logo.png"/>
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.css.map">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.css.map">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-grid.min.css.map">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css.map">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.css.map">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap-reboot.min.css.map">        
+    </head>
+    <body class="font" style="background-color: #282c34";>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/"><img width="50" src="/pictures/logo.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/" style="font-size: 22px; margin: 0px 12px;">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/favoris" style="font-size: 22px; margin: 0px 12px;">Favoris</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 22px; margin: 0px 12px;">
+                        Genres
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <th:block th:each="categorie : ${listeCategoriesBdd}">
+                            <a th:text="${categorie.getNom()}" class="dropdown-item" th:href="${categorie.getSearch()}"></a>
+                        </th:block>
+                    </div>
+                </li>
+            </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline my-2 my-lg-0 ml-auto" action="/search" method="GET">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Rechercher un film..." aria-label="Search" style="width: 300px;" name="q">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" style="font-weight: bold; border: 2px solid;">Recherche</button>
+                </form>
+            </div>
+            <a href="/deconnexion">
+                <img src="/pictures/logout.png" style="margin-left: 30px; margin-right: 30px ;width: 30px; height: 30px; cursor: pointer;"/>
+            </a>
+        </nav>
+        
+        <div id="carouselExampleInterval2" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-interval="10000">
+                <div style="width: 60%; margin-left: 20%; color: white; margin-top: 50px;">
+                    <h2 style="text-align: center;">Page administrateur - Films</h2>
+                    <ul style="list-style-type: none; display: flex; flex-direction: column; padding: 0px;margin-top: 30px; margin-bottom: 80px;">
+                        <li>
+                            <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                <li>
+                                    <img class="card-img-top" style="width: 150px; height: 84px;" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" alt="Card image cap">
+                                </li>
+                                <li style="font-size: 22px; margin-left: 30px; margin-top: 31px; width: 800px;">
+                                    Ceci est un titre très long de vidéo ou de film qui me semble trop long
+                                </li>
+                                <li style="margin-top: 31px;">
+                                    <button type="button" class="btn btn-danger">Supprimer le film</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                <li>
+                                    <img class="card-img-top" style="width: 150px; height: 84px;" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" alt="Card image cap">
+                                </li>
+                                <li style="font-size: 22px; margin-left: 30px; margin-top: 31px; width: 800px;">
+                                    Ceci est un titre très long de vidéo ou de film qui me semble trop long
+                                </li>
+                                <li style="margin-top: 31px;">
+                                    <button type="button" class="btn btn-danger">Supprimer le film</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                <li>
+                                    <img class="card-img-top" style="width: 150px; height: 84px;" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" alt="Card image cap">
+                                </li>
+                                <li style="font-size: 22px; margin-left: 30px; margin-top: 31px; width: 800px;">
+                                    Ceci est un titre très long de vidéo ou de film qui me semble trop long
+                                </li>
+                                <li style="margin-top: 31px;">
+                                    <button type="button" class="btn btn-danger">Supprimer le film</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                <li>
+                                    <img class="card-img-top" style="width: 150px; height: 84px;" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" alt="Card image cap">
+                                </li>
+                                <li style="font-size: 22px; margin-left: 30px; margin-top: 31px; width: 800px;">
+                                    Ceci est un titre très long de vidéo ou de film qui me semble trop long
+                                </li>
+                                <li style="margin-top: 31px;">
+                                    <button type="button" class="btn btn-danger">Supprimer le film</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                <li>
+                                    <img class="card-img-top" style="width: 150px; height: 84px;" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" alt="Card image cap">
+                                </li>
+                                <li style="font-size: 22px; margin-left: 30px; margin-top: 31px; width: 800px;">
+                                    Ceci est un titre très long de vidéo ou de film qui me semble trop long
+                                </li>
+                                <li style="margin-top: 31px;">
+                                    <button type="button" class="btn btn-danger">Supprimer le film</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                <li>
+                                    <img class="card-img-top" style="width: 150px; height: 84px;" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" alt="Card image cap">
+                                </li>
+                                <li style="font-size: 22px; margin-left: 30px; margin-top: 31px; width: 800px;">
+                                    Ceci est un titre très long de vidéo ou de film qui me semble trop long
+                                </li>
+                                <li style="margin-top: 31px;">
+                                    <button type="button" class="btn btn-danger">Supprimer le film</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                <li>
+                                    <img class="card-img-top" style="width: 150px; height: 84px;" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" alt="Card image cap">
+                                </li>
+                                <li style="font-size: 22px; margin-left: 30px; margin-top: 31px; width: 800px;">
+                                    Ceci est un titre très long de vidéo ou de film qui me semble trop long
+                                </li>
+                                <li style="margin-top: 31px;">
+                                    <button type="button" class="btn btn-danger">Supprimer le film</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                <li>
+                                    <img class="card-img-top" style="width: 150px; height: 84px;" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" alt="Card image cap">
+                                </li>
+                                <li style="font-size: 22px; margin-left: 30px; margin-top: 31px; width: 800px;">
+                                    Ceci est un titre très long de vidéo ou de film qui me semble trop long
+                                </li>
+                                <li style="margin-top: 31px;">
+                                    <button type="button" class="btn btn-danger">Supprimer le film</button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                <li>
+                                    <img class="card-img-top" style="width: 150px; height: 84px;" src="https://img.youtube.com/vi/9aq2N6NyjyQ/maxresdefault.jpg" alt="Card image cap">
+                                </li>
+                                <li style="font-size: 22px; margin-left: 30px; margin-top: 31px; width: 800px;">
+                                    Ceci est un titre très long de vidéo ou de film qui me semble trop long
+                                </li>
+                                <li style="margin-top: 31px;">
+                                    <button type="button" class="btn btn-danger">Supprimer le film</button>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <button type="submit" class="btn btn-danger btn-lg btn-block" style="margin-bottom: 50px;">Ajouter une nouvelle vidéo</button>
+                </div>
+              </div>
+              <div class="carousel-item" data-interval="2000">
+                <div style="width: 60%; margin-left: 20%;">
+                    <div style="width: 60%; margin-left: 20%; color: white; margin-top: 75px;"></div>
+                        <h2 style="text-align: center; color: white;">Page administrateur - Acteurs</h2>
+                        <ul style="list-style-type: none; display: flex; flex-direction: column; padding: 0px;margin-top: 30px; width: 50%;margin-left: 25%;margin-bottom: 50px;">
+                            <li>
+                                <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                    <li>
+                                        <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
+                                    </li>
+                                    <li style="font-size: 20px; color: white; margin: auto;">
+                                        Nom Prénom
+                                    </li>
+                                    <li style="margin-top: 25px;">
+                                        <button type="button" class="btn btn-danger">Supprimer l'acteur</button>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                    <li>
+                                        <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
+                                    </li>
+                                    <li style="font-size: 20px; color: white; margin: auto;">
+                                        Nom Prénom
+                                    </li>
+                                    <li style="margin-top: 25px;">
+                                        <button type="button" class="btn btn-danger">Supprimer l'acteur</button>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                    <li>
+                                        <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
+                                    </li>
+                                    <li style="font-size: 20px; color: white; margin: auto;">
+                                        Nom Prénom
+                                    </li>
+                                    <li style="margin-top: 25px;">
+                                        <button type="button" class="btn btn-danger">Supprimer l'acteur</button>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                    <li>
+                                        <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
+                                    </li>
+                                    <li style="font-size: 20px; color: white; margin: auto;">
+                                        Nom Prénom
+                                    </li>
+                                    <li style="margin-top: 25px;">
+                                        <button type="button" class="btn btn-danger">Supprimer l'acteur</button>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                    <li>
+                                        <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
+                                    </li>
+                                    <li style="font-size: 20px; color: white; margin: auto;">
+                                        Nom Prénom
+                                    </li>
+                                    <li style="margin-top: 25px;">
+                                        <button type="button" class="btn btn-danger">Supprimer l'acteur</button>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                    <li>
+                                        <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
+                                    </li>
+                                    <li style="font-size: 20px; color: white; margin: auto;">
+                                        Nom Prénom
+                                    </li>
+                                    <li style="margin-top: 25px;">
+                                        <button type="button" class="btn btn-danger">Supprimer l'acteur</button>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <button type="submit" class="btn btn-danger btn-lg btn-block" style="margin-bottom: 50px;">Ajouter un acteur</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleInterval2" style="margin-top: 75px;" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleInterval2" style="margin-top: 75px;" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+          <div style="color: white; font-family: calibri; text-align: center; margin-top: 50px;margin-bottom: 10px;">
+            YouFlix - 2023  &copy Tous droits réservés
+            <p>
+              Projet JEE de Hersant Hugo et Rimaudière Arthur
+            </p>
+          </div>
+        <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.js.map"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.bundle.min.js.map"></script>
+        <script type="text/javascript" src="/js/bootstrap.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.js.map"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js.map"></script>  
+        <script>
+            $(document).ready(function() {
+                $('#carouselExampleInterval').carousel({
+                    interval: false
+                });
+            });
+        </script>   
+    </body>
+</html>
