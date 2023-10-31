@@ -13,22 +13,33 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Acteur")
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Acteur implements Serializable{
     
     @Column(unique = true)
     @Id
+    @JsonProperty("idActeur")
     private Long idActeur;
 
+    @JsonProperty("nom")
     private String nom;
 
+    @JsonProperty("prenom")
     private String prenom;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "ActeurJoueDansVideo", 
         joinColumns = {@JoinColumn(name = "AID", referencedColumnName = "idActeur")},
         inverseJoinColumns = {@JoinColumn(name = "VCODE", referencedColumnName = "codeVideo")})
+    @JsonIgnore
     private Set<Video> joueDans = new HashSet<>();
 
     @Override
@@ -40,6 +51,7 @@ public class Acteur implements Serializable{
         return false;
     }
 
+    @JsonProperty("idActeur")
     public Long getIdActeur() {
         return idActeur;
     }
@@ -51,6 +63,7 @@ public class Acteur implements Serializable{
         return getPrenom() + " " + getNom();
     }
 
+    @JsonProperty("nom")
     public String getNom() {
         return nom;
     }
@@ -58,6 +71,7 @@ public class Acteur implements Serializable{
         this.nom = nom;
     }
 
+    @JsonProperty("prenom")
     public String getPrenom() {
         return prenom;
     }
@@ -65,6 +79,7 @@ public class Acteur implements Serializable{
         this.prenom = prenom;
     }
 
+    @JsonIgnore
     public Set<Video> getJoueDans() {
         return joueDans;
     }
@@ -73,3 +88,4 @@ public class Acteur implements Serializable{
     }
 
 }
+
