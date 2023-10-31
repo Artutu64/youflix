@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import fr.cytech.pau.youflix.Models.Acteur;
 import fr.cytech.pau.youflix.Models.Categorie;
@@ -116,13 +118,24 @@ public class RechercheController {
         // ajout de la base de données des genres pour afficher les menus déroulants correctement
         model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);
 
-        return RedirectionUtil.getReturnForContent(request.getSession(), "resultats_recherche");
+        // return RedirectionUtil.getReturnForContent(request.getSession(), "resultats_recherche");
+        return "resultats_recherche";
     }
 
+
+
+
+
+    @ResponseBody
+    @PostMapping("/api/recherche")
+    public List<Acteur> searchElementsViaAjax(HttpServletRequest request) {
+        // Mettez ici la logique pour récupérer les éléments de la base de données
+        // et renvoyez-les sous forme de liste au format JSON
+        // Par exemple, vous pouvez réutiliser la logique que vous avez déjà pour la recherche.
+        List<Acteur> result = acteurRepository.findAll(); // Récupérez les éléments de la base de données ici
+        return result;
+    }
 }
 
-/*
- * BONUS :
- *      - ajouter un champ demandant le nombre de résultats de recherche (?)
- *      - afficher des acteurs en guise de résultats
- */
+
+

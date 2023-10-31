@@ -70,7 +70,7 @@
                     </div>
                     <div class="col" style="display: flex; align-items: center; justify-content: center;">
                         <label for="acteurs" class="col-sm-2 col-form-label" style="color: white; font-size: 21px;">Avec...</label>
-                        <input type="text" id="recherche-acteur" name="acteur" class="col-sm-4 form-control" placeholder="Rechercher un acteur...">
+                        <input type="text" id="recherche-acteur" name="acteur" class="col-sm-4 form-control" placeholder="Rechercher un acteur..." oninput="completionAuto()">
                     </div>
                 </div>
                 <div style="margin: 15px 0px 25px 0px; padding: 0px; display: flex; justify-content: center;">
@@ -123,11 +123,41 @@
 
             // récupérer les paramètres de l'URL pour les mettre dans le formulaire
             function ajouterParamsForm(paramAExtraire, idElementDest) {
-                var url = new URL(window.location.href);
-                var valeurParam = url.searchParams.get(paramAExtraire);
+                const url = new URL(window.location.href);
+                const valeurParam = url.searchParams.get(paramAExtraire);
                 if (valeurParam != null) {
                     document.getElementById(idElementDest).value = valeurParam;
                 }
+            }
+
+            // fonction de complétion automatique
+            async function completionAuto() {
+
+                // récupération de la valeur de l'acteur entrée par l'utilisateur
+                const acteurRecherche = document.getElementById("recherche-acteur").value;
+
+                // on ne traite la chaîne de caractères que si sa longueur est supérieure ou égale à 3
+                if ((acteurRecherche != null) && (acteurRecherche.length >= 3)) {
+
+                    // [temporaire]
+                    console.log(acteurRecherche);
+
+                    // récupération de tous les acteurs correspondant à l'entrée de l'utilisateur
+                    $.ajax({
+                        url: '/api/recherche', // L'URL de votre nouvelle méthode
+                        type: 'POST',
+                        success: function(data) {
+                            // data contient les éléments récupérés depuis la base de données au format JSON
+                            console.log(data);
+                            // Traitez les données ici
+                        },
+                        error: function() {
+                            console.error('Erreur lors de la récupération des éléments.');
+                        }
+                    });
+
+                }
+
             }
 
             // initialisation à "null" des barres de recherche des films et des acteurs, si non renseignées
@@ -141,6 +171,32 @@
             ajouterParamsForm("q", "recherche-film");
             ajouterParamsForm("acteur", "recherche-acteur");
             ajouterParamsForm("categorie", "recherche-categorie");
+
+
+
+
+
+
+            // à reprendre
+            async function clickFav(){
+                let codeVideo = document.URL.split("q=")[1];
+                let button = document.getElementById("favButton-color");
+                if(button != null){
+                    if(button.style.backgroundColor === "rgb(193, 162, 38)"){
+                        // Cas unlike
+                        const reponse = await fetch("http://localhost:8080/fav-remove?codeVideo=" + codeVideo);
+                        if(reponse.ok){
+                            document.getElementById("favButton-color").style.backgroundColor = "white";
+                        }
+
+                    } else {
+                        const reponse = await fetch("http://localhost:8080/fav-add?codeVideo=" + codeVideo);
+                        if(reponse.ok){
+                            document.getElementById("favButton-color").style.backgroundColor = "rgb(193, 162, 38)";
+                        }
+                    }
+                }
+            }
 
         </script>
     </body>
