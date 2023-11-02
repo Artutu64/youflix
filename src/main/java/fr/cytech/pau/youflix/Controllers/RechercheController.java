@@ -1,13 +1,9 @@
 package fr.cytech.pau.youflix.Controllers;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +16,7 @@ import fr.cytech.pau.youflix.Models.Repo.ActeurRepository;
 import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
 import fr.cytech.pau.youflix.Models.Repo.VideoRepository;
 import fr.cytech.pau.youflix.Utils.RechercheUtil;
-import fr.cytech.pau.youflix.Utils.RedirectionUtil;
+import fr.cytech.pau.youflix.Utils.StringUtil;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
@@ -125,10 +121,38 @@ public class RechercheController {
         return "resultats_recherche";
     }
 
-    @GetMapping(value = "/acteurs")
+    @GetMapping(value = "/recupListeActeursCorrespondants")
     @ResponseBody
-    public List<Acteur> recupActeurs() {
-        return acteurRepository.findAll();
+    public List<Acteur> recupActeurs(HttpServletRequest request) {
+
+        // champ "acteur" entré par l'utilisateur
+        String champActeur = request.getParameter("acteurRecherche");
+
+        // récupération de tous les acteurs de la base de données
+        List<Acteur> listeActeursBdd = acteurRepository.findAll();
+
+        // liste des acteurs qui correspondent à la recherche de l'utilisateur 
+        // (ie ceux qui contiennent la chaîne que l'utilisateur recherche)
+        List<Acteur> listeActeursCorrespondants = new ArrayList<>();
+
+        // parcours de tous les acteurs
+        for (Acteur acteur : listeActeursBdd) {
+
+            // récupération du fullname de l'acteur
+            String fullnameActeur = acteur.getFullName();
+
+            // normalisation des chaînes de caractères
+            fullnameActeur = StringUtil.normaliserChaine(fullnameActeur);
+            champActeur = StringUtil.normaliserChaine(champActeur);
+
+            // si la chaîne entrée par l'utilisateur est comprise dans le fullname de l'acteur, on l'ajoute à la liste
+            if (fullnameActeur.contains(champActeur)) {
+                listeActeursCorrespondants.add(acteur);
+            }
+
+        }
+
+        return listeActeursCorrespondants;
     }
 
 }
