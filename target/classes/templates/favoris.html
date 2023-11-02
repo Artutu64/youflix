@@ -67,8 +67,10 @@
                             <li>
                                 <img class="card-img-top" style="width: 150px; height: 84px;" th:src="${video.getPicture()}" alt="Card image cap">
                             </li>
-                            <li style="font-size: 22px; margin-left: 30px; margin-top: 31px; width: 800px;" th:text="${video.getName()}">
-                                Ceci est un titre très long de vidéo ou de film qui me semble trop long
+                            <li style="font-size: 22px; margin-left: 30px; margin-top: 31px; width: 800px;">
+                                <a th:text="${video.getName()}" th:href="${video.getLienVideo()}">
+                                    Ceci est un titre très long de vidéo ou de film qui me semble trop long
+                                </a>
                             </li>
                             <li style="margin-top: 31px;">
                                 <button type="button" class="btn btn-danger" th:attr="onclick=|removeFav('${favFunc.get(state.index)}')|" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-star" viewBox="0 0 16 16">
