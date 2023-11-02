@@ -68,9 +68,12 @@
                             </th:block>
                         </select>
                     </div>
-                    <div class="col" style="display: flex; align-items: center; justify-content: center;">
+                    <div class="col" style="display: flex; align-items: center; justify-content: center; position: relative;">
                         <label for="acteurs" class="col-sm-2 col-form-label" style="color: white; font-size: 21px;">Avec...</label>
-                        <input type="text" id="recherche-acteur" name="acteur" class="col-sm-4 form-control" placeholder="Rechercher un acteur..." oninput="completionAuto()">
+                        <div style="margin: 0px; padding: 0px; display: flex; align-items: center; flex-direction: column;" class="col-sm-4">
+                            <input type="text" id="recherche-acteur" name="acteur" class="form-control" placeholder="Rechercher un acteur..." oninput="autocompletion()" autocomplete="off">
+                            <ul style="margin: 0px; padding: 0px; position: absolute; top: 100%; width: 100%; list-style-type: none; background-color: white; color: black; z-index: 1;" id="liste-acteurs-correspondants"></ul>
+                        </div>
                     </div>
                 </div>
                 <div style="margin: 15px 0px 25px 0px; padding: 0px; display: flex; justify-content: center;">
@@ -130,31 +133,52 @@
                 }
             }
 
-            // fonction de complétion automatique
-            async function completionAuto() {
+            // objet permettant d'arrêter/annuler des requêtes fetch 
+            let controleurAbort = new AbortController();
 
-                // récupération de la valeur de l'acteur entrée par l'utilisateur
+            // nombre de requêtes envoyées au serveur
+            let nbrRequetes = 0;
+
+            // fonction d'autocomplétion
+            async function autocompletion() {
+
+                // annulation des requêtes précédentes
+                // (sinon certains résultats peuvent être dédoublés, 
+                // notamment si l'utilisateur tape trop vite sur son clavier)
+                controleurAbort.abort();
+                controleurAbort = new AbortController();
+
+                // récupération de la valeur de l'acteur entrée par l'utilisateur et 
+                // de la balise qui va afficher tous les acteurs correspondants
                 const acteurRecherche = document.getElementById("recherche-acteur").value;
+                const acteursCorrespondants = document.getElementById("liste-acteurs-correspondants");
+
+                // on vide la liste en supprimant tous ses éléments (ie suppression de tous les "<li>")
+                acteursCorrespondants.innerHTML = "";
 
                 // on ne traite la chaîne de caractères que si sa longueur est supérieure ou égale à 3
                 if ((acteurRecherche != null) && (acteurRecherche.length >= 3)) {
 
-                    // [temporaire]
-                    console.log(acteurRecherche);
-                    fetch("/acteurs")
-                        .then((response) => {
-                            if (response.ok) {
-                                return response.json();
-                            } else {
-                                throw new Error("Erreur");
-                            }
-                        })
-                        .then((data) => {
-                            console.log(data);
-                        })
-                        .catch((error) => {
-                            console.error(error);
+                    // récupération de tous les acteurs correspondant à la recherche
+                    // note : "signal : controleurAbort.signal" permet de pouvoir éventuellement annuler la requête 
+                    //        cela résout le problème des requêtes multiples 
+                    //        (affichage en double/triple des acteurs lorsque l'utilisateur tape vite au clavier)
+                    const reponse = await fetch("/recupListeActeursCorrespondants?acteurRecherche=" + acteurRecherche, {signal : controleurAbort.signal});
+                    nbrRequetes++;
+                    const idRequeteActuelle = nbrRequetes;
+                
+                    // s'il n'y a pas eu d'erreur, on affiche le nom de tous les acteurs
+                    // on récupère pour cela les acteurs correspondants à la recherche et, pour chacun d'eux,
+                    // on ajoute un nouvel élément à la liste
+                    if (idRequeteActuelle == nbrRequetes && reponse.ok) {
+                        const acteurs = await reponse.json();
+                        acteurs.forEach((acteur) => {
+                            const elementListe = document.createElement("li");
+                            elementListe.textContent = acteur["fullName"];
+                            elementListe.style.margin = "5px 8px";
+                            acteursCorrespondants.appendChild(elementListe);
                         });
+                    }
 
                 }
             
@@ -171,7 +195,6 @@
             ajouterParamsForm("q", "recherche-film");
             ajouterParamsForm("acteur", "recherche-acteur");
             ajouterParamsForm("categorie", "recherche-categorie");
-
 
         </script>
     </body>
