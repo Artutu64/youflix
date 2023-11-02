@@ -16,6 +16,7 @@ import fr.cytech.pau.youflix.Models.Repo.ActeurRepository;
 import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
 import fr.cytech.pau.youflix.Models.Repo.VideoRepository;
 import fr.cytech.pau.youflix.Utils.RechercheUtil;
+import fr.cytech.pau.youflix.Utils.RedirectionUtil;
 import fr.cytech.pau.youflix.Utils.StringUtil;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -117,8 +118,7 @@ public class RechercheController {
         // ajout de la base de données des genres pour afficher les menus déroulants correctement
         model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);
 
-        // return RedirectionUtil.getReturnForContent(request.getSession(), "resultats_recherche");
-        return "resultats_recherche";
+        return RedirectionUtil.getReturnForContent(request.getSession(), "resultats_recherche");
     }
 
     @GetMapping(value = "/recupListeActeursCorrespondants")
