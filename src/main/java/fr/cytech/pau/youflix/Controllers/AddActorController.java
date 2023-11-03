@@ -13,6 +13,8 @@ import fr.cytech.pau.youflix.Models.Acteur;
 import fr.cytech.pau.youflix.Models.Categorie;
 import fr.cytech.pau.youflix.Models.Repo.ActeurRepository;
 import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class AddActorController {
@@ -30,6 +32,98 @@ public class AddActorController {
         model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);
 
         return "add_actor";
+    }
+
+    @GetMapping(path = "delete-actor")
+    public void deleteActor(WebRequest request, HttpServletResponse response){
+        String id = request.getParameter("idActeur");
+        Long idActeur = -1L;
+        try {
+            idActeur = Long.parseLong(id);
+        } catch(NumberFormatException e){
+            e.printStackTrace();
+        }
+
+        Acteur acteur = null;
+        for(Acteur a : acteurRepository.findAll()){
+            if(a.getIdActeur().equals(idActeur)){
+                acteur = a;
+            }
+        }
+        if(acteur == null){
+            response.setStatus(404);
+        } else {
+            try {
+                acteurRepository.delete(acteur);
+                response.setStatus(200);
+            } catch(Exception e){
+                response.setStatus(400);
+            }
+        }
+
+    }
+
+    @PostMapping(path = "edit-actor")
+    public String editPostActor(WebRequest request, Model model){
+
+        String nomActeur = request.getParameter("nom-acteur");
+        String prenomActeur = request.getParameter("prenom-acteur");
+        String id = request.getParameter("idActeur");
+        Long idActeur = -1L;
+        try {
+            idActeur = Long.parseLong(id);
+        } catch(NumberFormatException e){
+            e.printStackTrace();
+        }
+
+        Acteur acteur = null;
+        for(Acteur a : acteurRepository.findAll()){
+            if(a.getIdActeur().equals(idActeur)){
+                acteur = a;
+            }
+        }
+        if(acteur == null){
+            return "404";
+        }
+        if(nomActeur != null && !(nomActeur.equals(""))){
+           if(prenomActeur != null && !(prenomActeur.equals(""))){
+                acteur.setNom(nomActeur);
+                acteur.setPrenom(prenomActeur);
+                acteurRepository.save(acteur);
+                return "redirect:/admin";
+            } 
+        }
+        model.addAttribute("nom", acteur.getNom());
+        model.addAttribute("prenom", acteur.getPrenom());
+        return "edit_actor";
+    }
+
+    @GetMapping(path = "edit-actor")
+    public String editActor(WebRequest request, Model model){
+
+        String id = request.getParameter("idActeur");
+        Long idActeur = -1L;
+        try {
+            idActeur = Long.parseLong(id);
+        } catch(NumberFormatException e){
+            e.printStackTrace();
+        }
+
+        Acteur acteur = null;
+        for(Acteur a : acteurRepository.findAll()){
+            if(a.getIdActeur().equals(idActeur)){
+                acteur = a;
+            }
+        }
+
+        if(acteur == null){
+            return "404";
+        }
+
+        model.addAttribute("nom", acteur.getNom());
+        model.addAttribute("prenom", acteur.getPrenom());
+
+        return "edit_actor";
     }
 
     @PostMapping(path = "/add-actor")
