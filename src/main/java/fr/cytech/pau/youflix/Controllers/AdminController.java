@@ -13,6 +13,8 @@ import fr.cytech.pau.youflix.Models.Video;
 import fr.cytech.pau.youflix.Models.Repo.ActeurRepository;
 import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
 import fr.cytech.pau.youflix.Models.Repo.VideoRepository;
+import fr.cytech.pau.youflix.Utils.RedirectionUtil;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AdminController {
@@ -27,7 +29,11 @@ public class AdminController {
     VideoRepository videoRepository;
     
     @GetMapping(path = "/admin")
-    public String admin(Model model){
+    public String admin(Model model, HttpSession session){
+
+        if(!(RedirectionUtil.canSeePageAdmin(session))){
+            return "redirect:/";
+        }
 
         List<Categorie> listeCategoriesBdd = categorieRepository.findAll();
         model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);

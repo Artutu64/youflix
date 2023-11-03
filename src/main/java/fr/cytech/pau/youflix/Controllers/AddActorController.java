@@ -1,5 +1,6 @@
 package fr.cytech.pau.youflix.Controllers;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,9 @@ import fr.cytech.pau.youflix.Models.Acteur;
 import fr.cytech.pau.youflix.Models.Categorie;
 import fr.cytech.pau.youflix.Models.Repo.ActeurRepository;
 import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
-import jakarta.servlet.http.HttpServletRequest;
+import fr.cytech.pau.youflix.Utils.RedirectionUtil;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AddActorController {
@@ -26,16 +28,22 @@ public class AddActorController {
     CategorieRepository categorieRepository;
     
     @GetMapping(path = "/add-actor")
-    public String addActor(Model model){
+    public String addActor(Model model, HttpSession session){
 
         List<Categorie> listeCategoriesBdd = categorieRepository.findAll();
         model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);
 
-        return "add_actor";
+        return RedirectionUtil.getReturnForContentAdmin(session, "add_actor");
     }
 
     @GetMapping(path = "delete-actor")
-    public void deleteActor(WebRequest request, HttpServletResponse response){
+    public void deleteActor(WebRequest request, HttpServletResponse response, HttpSession session){
+
+        if(!(RedirectionUtil.canSeePageAdmin(session))) {
+            response.setStatus(400);
+            return ;
+        }
+
         String id = request.getParameter("idActeur");
         Long idActeur = -1L;
         try {
@@ -64,7 +72,11 @@ public class AddActorController {
     }
 
     @PostMapping(path = "edit-actor")
-    public String editPostActor(WebRequest request, Model model){
+    public String editPostActor(WebRequest request, Model model, HttpSession HttpSession){
+
+        if(!(RedirectionUtil.canSeePageAdmin(HttpSession))){
+            return "redirect:/";
+        }
 
         String nomActeur = request.getParameter("nom-acteur");
         String prenomActeur = request.getParameter("prenom-acteur");
@@ -99,7 +111,11 @@ public class AddActorController {
     }
 
     @GetMapping(path = "edit-actor")
-    public String editActor(WebRequest request, Model model){
+    public String editActor(WebRequest request, Model model, HttpSession session){
+
+        if(!(RedirectionUtil.canSeePageAdmin(session))){
+            return "redirect:/";
+        }
 
         String id = request.getParameter("idActeur");
         Long idActeur = -1L;
@@ -127,8 +143,12 @@ public class AddActorController {
     }
 
     @PostMapping(path = "/add-actor")
-    public String postAddActor(WebRequest request) {
+    public String postAddActor(WebRequest request, HttpSession session) {
         
+        if(!(RedirectionUtil.canSeePageAdmin(session))){
+            return "redirect:/";
+        }
+
         // récupération de l'adresse mail et du mot de passe
         String nomActeur = request.getParameter("nom-acteur");
         String prenomActeur = request.getParameter("prenom-acteur");
