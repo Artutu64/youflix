@@ -18,6 +18,7 @@ import fr.cytech.pau.youflix.Models.Repo.VideoRepository;
 import fr.cytech.pau.youflix.Utils.RedirectionUtil;
 import fr.cytech.pau.youflix.Utils.Models.UserUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class FavorisController {
@@ -29,10 +30,11 @@ public class FavorisController {
     CategorieRepository categorieRepository;
     
     @GetMapping(path = "/favoris")
-    public String favoris(HttpServletRequest request, Model model){
+    public String favoris(HttpServletRequest request, Model model, HttpSession session){
 
         User user = UserUtil.getCurrentUser(request.getSession());
 
+        model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(session));
 		if(user != null){
 
             Set<Video> favoris = new HashSet<>();

@@ -1,6 +1,5 @@
 package fr.cytech.pau.youflix.Controllers;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +31,19 @@ public class AddActorController {
 
         List<Categorie> listeCategoriesBdd = categorieRepository.findAll();
         model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);
+        model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(session));
 
         return RedirectionUtil.getReturnForContentAdmin(session, "add_actor");
     }
 
     @GetMapping(path = "delete-actor")
-    public void deleteActor(WebRequest request, HttpServletResponse response, HttpSession session){
+    public void deleteActor(WebRequest request, HttpServletResponse response, HttpSession session, Model model){
 
         if(!(RedirectionUtil.canSeePageAdmin(session))) {
             response.setStatus(400);
             return ;
         }
+        model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(session));
 
         String id = request.getParameter("idActeur");
         Long idActeur = -1L;
@@ -77,6 +78,7 @@ public class AddActorController {
         if(!(RedirectionUtil.canSeePageAdmin(HttpSession))){
             return "redirect:/";
         }
+        model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(HttpSession));
 
         String nomActeur = request.getParameter("nom-acteur");
         String prenomActeur = request.getParameter("prenom-acteur");
@@ -116,6 +118,7 @@ public class AddActorController {
         if(!(RedirectionUtil.canSeePageAdmin(session))){
             return "redirect:/";
         }
+        model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(session));
 
         String id = request.getParameter("idActeur");
         Long idActeur = -1L;
@@ -143,11 +146,12 @@ public class AddActorController {
     }
 
     @PostMapping(path = "/add-actor")
-    public String postAddActor(WebRequest request, HttpSession session) {
+    public String postAddActor(WebRequest request, HttpSession session, Model model) {
         
         if(!(RedirectionUtil.canSeePageAdmin(session))){
             return "redirect:/";
         }
+        model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(session));
 
         // récupération de l'adresse mail et du mot de passe
         String nomActeur = request.getParameter("nom-acteur");
@@ -170,8 +174,6 @@ public class AddActorController {
                 return "redirect:/admin";
             }
         }
-
-        System.out.println("Nom de l'acteur : " + nomActeur + "\nPrénom de l'acteur : " + prenomActeur);
 
         return "redirect:/";
 

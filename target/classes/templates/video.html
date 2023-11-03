@@ -47,6 +47,9 @@
                         </th:block>
                     </div>
                 </li>
+                <li class="nav-item" th:if="${adminStatus}">
+                    <a class="nav-link" href="/admin" style="font-size: 22px; margin: 0px 12px;">Espace administrateur</a>
+                </li>
             </ul>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <form class="form-inline my-2 my-lg-0 ml-auto" action="/search" method="GET">

@@ -19,6 +19,7 @@ import fr.cytech.pau.youflix.Utils.RechercheUtil;
 import fr.cytech.pau.youflix.Utils.RedirectionUtil;
 import fr.cytech.pau.youflix.Utils.StringUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class RechercheController {
@@ -33,7 +34,8 @@ public class RechercheController {
     CategorieRepository categorieRepository;
 
     @GetMapping(path = "/search")
-    public String search(HttpServletRequest request, Model model) {
+    public String search(HttpServletRequest request, Model model, HttpSession session) {
+        model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(session));
 
         // récupération les champs potentiellement remplis : recherche, genre (catégorie) et acteur
         String champRecherche = request.getParameter("q");
