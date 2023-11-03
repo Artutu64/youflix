@@ -3239,6 +3239,9 @@ public class InitVideoController {
 
     @GetMapping(path = "/initvideos")
     public String initvideos(){
+        videoRepository.deleteAll();
+        acteurRepository.deleteAll();
+        genreRepository.deleteAll();
         ajout0();
         ajout1();
         ajout2();

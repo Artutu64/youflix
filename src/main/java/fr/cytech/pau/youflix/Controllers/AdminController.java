@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import fr.cytech.pau.youflix.Models.Acteur;
 import fr.cytech.pau.youflix.Models.Categorie;
+import fr.cytech.pau.youflix.Models.Video;
 import fr.cytech.pau.youflix.Models.Repo.ActeurRepository;
 import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
+import fr.cytech.pau.youflix.Models.Repo.VideoRepository;
 
 @Controller
 public class AdminController {
@@ -20,6 +22,9 @@ public class AdminController {
 
     @Autowired
     ActeurRepository acteurRepository;
+
+    @Autowired
+    VideoRepository videoRepository;
     
     @GetMapping(path = "/admin")
     public String admin(Model model){
@@ -34,6 +39,12 @@ public class AdminController {
             return sa.compareTo(sb);
         });
         model.addAttribute("acteurs", acteursBdd);
+
+        List<Video> videos = videoRepository.findAll();
+        videos.sort((v1, v2) -> {
+            return v1.getTitre().compareTo(v2.getTitre());
+        });
+        model.addAttribute("videos", videos);
 
         return "admin";
     }
