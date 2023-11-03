@@ -13,6 +13,7 @@ import fr.cytech.pau.youflix.Models.Acteur;
 import fr.cytech.pau.youflix.Models.Categorie;
 import fr.cytech.pau.youflix.Models.Repo.ActeurRepository;
 import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
+import fr.cytech.pau.youflix.Utils.RedirectionUtil;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
