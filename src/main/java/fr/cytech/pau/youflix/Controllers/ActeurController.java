@@ -15,6 +15,7 @@ import fr.cytech.pau.youflix.Models.Repo.ActeurRepository;
 import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
 import fr.cytech.pau.youflix.Utils.RedirectionUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ActeurController {
@@ -26,7 +27,7 @@ public class ActeurController {
     ActeurRepository acteurRepository;
     
     @GetMapping(path = "/acteur")
-    public String acteur(HttpServletRequest request, Model model) {
+    public String acteur(HttpServletRequest request, Model model, HttpSession session) {
 
         // liste des catégories de la BDD + ajout au modèle
         List<Categorie> listeCategoriesBdd = categorieRepository.findAll();
@@ -74,6 +75,7 @@ public class ActeurController {
         model.addAttribute("acteurConsidere", acteurConsidere);
         model.addAttribute("listeAutresFilmsActeur", listeAutresFilmsActeur);
         model.addAttribute("filmLePlusVu", filmLePlusVu);
+        model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(session));
 
         return RedirectionUtil.getReturnForContent(request.getSession(), "acteur");
 

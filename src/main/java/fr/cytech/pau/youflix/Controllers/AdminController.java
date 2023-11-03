@@ -34,6 +34,7 @@ public class AdminController {
         if(!(RedirectionUtil.canSeePageAdmin(session))){
             return "redirect:/";
         }
+        model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(session));
 
         List<Categorie> listeCategoriesBdd = categorieRepository.findAll();
         model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);

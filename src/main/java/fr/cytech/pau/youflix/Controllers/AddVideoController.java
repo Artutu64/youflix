@@ -46,6 +46,7 @@ public class AddVideoController {
         if(!(RedirectionUtil.canSeePageAdmin(session))){
             return "redirect:/";
         }
+        model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(session));
 
         List<Categorie> listeCategoriesBdd = categorieRepository.findAll();
         model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);
@@ -58,6 +59,7 @@ public class AddVideoController {
         if(!(RedirectionUtil.canSeePageAdmin(session))){
             return "redirect:/";
         }
+        model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(session));
 
         String codeVideo = request.getParameter("codeVideo");
         Video video = null;
@@ -97,11 +99,12 @@ public class AddVideoController {
     }
 
     @PostMapping(path = "/edit-video")
-    public String postEditVideo(WebRequest request, HttpSession session) throws ParseException {
+    public String postEditVideo(WebRequest request, HttpSession session, Model model) throws ParseException {
 
         if(!(RedirectionUtil.canSeePageAdmin(session))){
             return "redirect:/";
         }
+        model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(session));
 
         String ccodeVideo = request.getParameter("codeVideo");
         Video video = null;
@@ -217,13 +220,14 @@ public class AddVideoController {
     }
 
     @DeleteMapping(path = "delete-video")
-    public void deleteVideo(WebRequest request, HttpServletResponse response, HttpSession session){
+    public void deleteVideo(WebRequest request, HttpServletResponse response, HttpSession session, Model model){
 
         if(!(RedirectionUtil.canSeePageAdmin(session))){
             response.setStatus(400);
             return;
         }
 
+        model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(session));
         String codeVideo = request.getParameter("codeVideo");
         Video video = null;
         for(Video v : videoRepository.findAll()){
@@ -244,11 +248,12 @@ public class AddVideoController {
     }
 
     @PostMapping(path = "/add-video")
-    public String postAddVideo(WebRequest request, HttpSession session) throws ParseException {
+    public String postAddVideo(WebRequest request, HttpSession session, Model model) throws ParseException {
 
         if(!(RedirectionUtil.canSeePageAdmin(session))){
             return "redirect:/";
         }
+        model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(session));
         
         // récupération des informations liées à la vidéo
         String titreVideo = request.getParameter("titre-video");

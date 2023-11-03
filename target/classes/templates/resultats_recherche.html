@@ -47,6 +47,9 @@
                         </th:block>
                     </div>
                 </li>
+                <li class="nav-item" th:if="${adminStatus}">
+                    <a class="nav-link" href="/admin" style="font-size: 22px; margin: 0px 12px;">Espace administrateur</a>
+                </li>
             </ul>
             <a href="/deconnexion">
                 <img src="/pictures/logout.png" style="margin-left: 30px; margin-right: 30px ;width: 30px; height: 30px; cursor: pointer;"/>

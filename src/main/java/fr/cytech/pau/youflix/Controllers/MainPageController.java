@@ -20,6 +20,7 @@ import fr.cytech.pau.youflix.Utils.RedirectionUtil;
 import fr.cytech.pau.youflix.Utils.Models.UserUtil;
 import fr.cytech.pau.youflix.Utils.Models.VideoUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MainPageController {
@@ -31,9 +32,10 @@ public class MainPageController {
 	CategorieRepository categorieRepository;
 
 		@GetMapping(path = "/")
-		public String mainPage(HttpServletRequest request, Model model){
+		public String mainPage(HttpServletRequest request, Model model, HttpSession session){
 
 			User user = UserUtil.getCurrentUser(request.getSession());
+			model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(session));
 
 			if(user != null){
 

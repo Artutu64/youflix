@@ -22,6 +22,7 @@ import fr.cytech.pau.youflix.Utils.RedirectionUtil;
 import fr.cytech.pau.youflix.Utils.Models.UserUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class VideoController {
@@ -191,7 +192,8 @@ public class VideoController {
     }
 
     @GetMapping(path = "/video")
-    public String video(HttpServletRequest request, Model model){
+    public String video(HttpServletRequest request, Model model, HttpSession session){
+        model.addAttribute("adminStatus", RedirectionUtil.canSeePageAdmin(session));
 
         User user = UserUtil.getCurrentUser(request.getSession());
 
