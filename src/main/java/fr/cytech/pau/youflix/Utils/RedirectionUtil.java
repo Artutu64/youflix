@@ -22,15 +22,23 @@ public class RedirectionUtil {
     }
 
     public static String getReturnForContentAdmin(HttpSession session, String page){
-        Object object = session.getAttribute("user");
-        if(object == null && object instanceof User){
-            User user = (User)object;
-            if(user.getMail().equals("root@youflix.fr")){
-                return page;
-            }
+        if(canSeePageAdmin(session)){
+            return page;
+        } else {
             return "redirect:/";
         }
-        return page;
+    }
+
+    public static boolean canSeePageAdmin(HttpSession session){
+        Object object = session.getAttribute("user");
+        if(object != null && object instanceof User){
+            User user = (User)object;
+            if(user.getMail().equals("root@youflix.fr")){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
     
 }

@@ -2,7 +2,6 @@ package fr.cytech.pau.youflix.Controllers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 import java.util.Calendar;
@@ -24,8 +23,10 @@ import fr.cytech.pau.youflix.Models.Repo.ActeurRepository;
 import fr.cytech.pau.youflix.Models.Repo.CategorieRepository;
 import fr.cytech.pau.youflix.Models.Repo.VideoRepository;
 import fr.cytech.pau.youflix.Utils.RandomUtil;
+import fr.cytech.pau.youflix.Utils.RedirectionUtil;
 import fr.cytech.pau.youflix.Utils.VerifsUtil;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AddVideoController {
@@ -40,14 +41,24 @@ public class AddVideoController {
     VideoRepository videoRepository;
     
     @GetMapping(path = "/add-video")
-    public String addVideo(Model model){
+    public String addVideo(Model model, HttpSession session){
+
+        if(!(RedirectionUtil.canSeePageAdmin(session))){
+            return "redirect:/";
+        }
+
         List<Categorie> listeCategoriesBdd = categorieRepository.findAll();
         model.addAttribute("listeCategoriesBdd", listeCategoriesBdd);
         return "add_video";
     }
 
     @GetMapping(path = "/edit-video")
-    public String editVideo(WebRequest request, Model model){
+    public String editVideo(WebRequest request, Model model, HttpSession session){
+
+        if(!(RedirectionUtil.canSeePageAdmin(session))){
+            return "redirect:/";
+        }
+
         String codeVideo = request.getParameter("codeVideo");
         Video video = null;
         for(Video v : videoRepository.findAll()){
@@ -86,7 +97,12 @@ public class AddVideoController {
     }
 
     @PostMapping(path = "/edit-video")
-    public String postEditVideo(WebRequest request) throws ParseException {
+    public String postEditVideo(WebRequest request, HttpSession session) throws ParseException {
+
+        if(!(RedirectionUtil.canSeePageAdmin(session))){
+            return "redirect:/";
+        }
+
         String ccodeVideo = request.getParameter("codeVideo");
         Video video = null;
         for(Video v : videoRepository.findAll()){
@@ -201,7 +217,13 @@ public class AddVideoController {
     }
 
     @DeleteMapping(path = "delete-video")
-    public void deleteVideo(WebRequest request, HttpServletResponse response){
+    public void deleteVideo(WebRequest request, HttpServletResponse response, HttpSession session){
+
+        if(!(RedirectionUtil.canSeePageAdmin(session))){
+            response.setStatus(400);
+            return;
+        }
+
         String codeVideo = request.getParameter("codeVideo");
         Video video = null;
         for(Video v : videoRepository.findAll()){
@@ -222,7 +244,11 @@ public class AddVideoController {
     }
 
     @PostMapping(path = "/add-video")
-    public String postAddVideo(WebRequest request) throws ParseException {
+    public String postAddVideo(WebRequest request, HttpSession session) throws ParseException {
+
+        if(!(RedirectionUtil.canSeePageAdmin(session))){
+            return "redirect:/";
+        }
         
         // récupération des informations liées à la vidéo
         String titreVideo = request.getParameter("titre-video");
