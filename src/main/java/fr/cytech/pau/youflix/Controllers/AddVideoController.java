@@ -2,7 +2,6 @@ package fr.cytech.pau.youflix.Controllers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 import java.util.Calendar;
