@@ -85,7 +85,7 @@
             </form>
             <div id="resultats-recherche" style="margin: 25px 0px;">
                 <h2 style="color: white;">Résultats les plus pertinents pour votre recherche
-                    <span th:if="${champRecherche}" th:text="' - &quot;' + ${champRecherche} + '&quot;'"></span>
+                    <span th:if="${champRecherche != null and not #strings.isEmpty(champRecherche)}" th:text="' - &quot;' + ${champRecherche} + '&quot;'"></span>
                     <span th:if="${champGenre}" th:text="' - ' + ${champGenre}"></span>
                     <span th:if="${champActeur}" th:text="' - ' + ${champActeur}"></span>
                 </h2>
@@ -122,7 +122,7 @@
             function initialiserANull(champId) {
                 const champ = document.getElementById(champId);
                 const valeur = champ.value;
-                if (valeur === "") {
+                if (valeur == "") {
                     champ.remove();
                 }
             }
@@ -131,7 +131,7 @@
             function ajouterParamsForm(paramAExtraire, idElementDest) {
                 const url = new URL(window.location.href);
                 const valeurParam = url.searchParams.get(paramAExtraire);
-                if (valeurParam != null) {
+                if (valeurParam != null && valeurParam != "") {
                     document.getElementById(idElementDest).value = valeurParam;
                 }
             }
