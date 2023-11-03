@@ -191,86 +191,35 @@
                     <div style="width: 60%; margin-left: 20%; color: white; margin-top: 75px;"></div>
                         <h2 style="text-align: center; color: white;">Page administrateur - Acteurs</h2>
                         <ul style="list-style-type: none; display: flex; flex-direction: column; padding: 0px;margin-top: 30px; width: 50%;margin-left: 25%;margin-bottom: 50px;">
-                            <li>
-                                <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
-                                    <li>
-                                        <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
-                                    </li>
-                                    <li style="font-size: 20px; color: white; margin: auto;">
-                                        Nom Prénom
-                                    </li>
-                                    <li style="margin-top: 25px;">
-                                        <button type="button" class="btn btn-danger">Supprimer l'acteur</button>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
-                                    <li>
-                                        <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
-                                    </li>
-                                    <li style="font-size: 20px; color: white; margin: auto;">
-                                        Nom Prénom
-                                    </li>
-                                    <li style="margin-top: 25px;">
-                                        <button type="button" class="btn btn-danger">Supprimer l'acteur</button>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
-                                    <li>
-                                        <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
-                                    </li>
-                                    <li style="font-size: 20px; color: white; margin: auto;">
-                                        Nom Prénom
-                                    </li>
-                                    <li style="margin-top: 25px;">
-                                        <button type="button" class="btn btn-danger">Supprimer l'acteur</button>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
-                                    <li>
-                                        <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
-                                    </li>
-                                    <li style="font-size: 20px; color: white; margin: auto;">
-                                        Nom Prénom
-                                    </li>
-                                    <li style="margin-top: 25px;">
-                                        <button type="button" class="btn btn-danger">Supprimer l'acteur</button>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
-                                    <li>
-                                        <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
-                                    </li>
-                                    <li style="font-size: 20px; color: white; margin: auto;">
-                                        Nom Prénom
-                                    </li>
-                                    <li style="margin-top: 25px;">
-                                        <button type="button" class="btn btn-danger">Supprimer l'acteur</button>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
-                                    <li>
-                                        <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
-                                    </li>
-                                    <li style="font-size: 20px; color: white; margin: auto;">
-                                        Nom Prénom
-                                    </li>
-                                    <li style="margin-top: 25px;">
-                                        <button type="button" class="btn btn-danger">Supprimer l'acteur</button>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <button type="submit" class="btn btn-danger btn-lg btn-block" style="margin-bottom: 50px;">Ajouter un acteur</button>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top: 15px; margin-bottom: 50px;">
+                                <a href="/add-actor" style="text-decoration: none; color: white; width: 100%;">
+                                    Ajouter un acteur
+                                </a>
+                            </button>
+                            <th:block th:each="acteur : ${acteurs}">
+
+                                <li>
+                                    <ul style="list-style-type: none; display: flex; flex-direction: row; padding: 0px;margin-top: 30px; border-bottom: 1px solid rgb(242, 141, 141); margin-top: 25px;">
+                                        <li>
+                                            <img class="d-block w-10" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="First slide">
+                                        </li>
+                                        <li style="font-size: 20px; color: white; margin: auto;">
+                                            <a style="font-size: 20px; color: white; margin: auto; text-decoration: none;" th:href="${'/acteur?q=' + acteur.getIdActeur()}" th:text="${acteur.getNom() + ' ' + acteur.getPrenom()}">
+                                                Nom Prénom
+                                            </a>
+                                        </li>
+                                        <li style="margin-top: 25px;padding-right: 25px;">
+                                            <button type="button" class="btn btn-secondary" th:attr="onclick=|clickRedirectActeur('edit', '${acteur.getIdActeur()}')|" >Modifier</button>
+                                        </li>
+                                        <li style="margin-top: 25px;">
+                                            <button type="button" class="btn btn-danger" th:attr="onclick=|clickRedirectActeur('delete', '${acteur.getIdActeur()}')|" >Supprimer</button>
+                                        </li>
+                                    </ul>
+                                </li>
+                            
+                            </th:block>
+                            
+                        
                     </div>
                 </div>
               </div>
@@ -301,6 +250,20 @@
         <script type="text/javascript" src="/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/js/bootstrap.min.js.map"></script>  
         <script>
+
+            async function clickRedirectActeur(action, idActeur){
+                if(action === "edit"){
+                    window.location.replace("/edit-actor?idActeur=" + idActeur);
+                } else {
+                    const response = await fetch("/delete-actor?idActeur=" + idActeur);
+                    if(response.ok){
+                        window.location.reload();
+                    } else {
+                        alert("Erreur lors de la suppression de l'utilisateur !");
+                    }
+                }
+            }
+
             $(document).ready(function() {
                 $('#carouselExampleInterval').carousel({
                     interval: false
