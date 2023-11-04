@@ -10,8 +10,8 @@ YouFlix est une plateforme d'hébergement de bandes-annonces de films, réalisé
 
 # Installation
 1. Clonez le dossier sur votre machine
-2. Vérifiez que le dossier ```/data``` n'existe pas et dans le cas échéant supprimez le.
-3. Démarrez le serveur en utilisant le fichier /src/main/java/fr/cytech/pau/youflix/YouFlixApplication.java
-4. Rendez vous sur votre navigateur sur l'url: http://localhost:8080/initvideos
-5. Vous pouvez maintenant profiter de YouFlix sur l'url: http://localhost:8080/
-6. Après déploiement, supprimez la ligne @PostMapping(path= "/initvideos") du fichier /src/main/java/fr/cytech/pau/youflix/Controllers/InitVideoController.java
+2. Vérifiez que le dossier ```/data``` n'existe pas (supprimez-le dans le cas contraire).
+3. Démarrez le serveur en utilisant le fichier ```/src/main/java/fr/cytech/pau/youflix/YouFlixApplication.java```
+4. Rendez-vous dans votre navigateur sur l'URL ```http://localhost:8080/initvideos``` pour déployer la base de données
+5. Vous pouvez maintenant profiter de YouFlix sur l'URL : ```http://localhost:8080/```
+6. Après déploiement, ouvrez le fichier ```/src/main/java/fr/cytech/pau/youflix/Controllers/InitVideoController.java``` puis supprimez la ligne ```@PostMapping(path= "/initvideos")```
