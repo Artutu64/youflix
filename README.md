@@ -1,5 +1,5 @@
 # Présentation
-YouFlix est une plateforme d'hébergement de bandes-annonces de films, réalisée dans un cadre scolaire, non commercial, et affiliée ni à YouTube ni à Netflix.
+YouFlix est une plateforme d'hébergement de bandes-annonces de films, réalisée dans un cadre scolaire, non commercial et affiliée ni à YouTube ni à Netflix.
 
 # Pages et fonctionnalités
 1. Films : visualisation de la bande-annonce et accès aux détails du film (acteurs, synopsis, ...)
