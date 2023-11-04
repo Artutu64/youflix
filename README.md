@@ -6,7 +6,7 @@ YouFlix est une plateforme d'hébergement de bandes-annonces de films, réalisé
 2. Recommandations : mise en avant de films adaptés aux goûts de l'utilisateur
 3. Favoris : possibilité d'aimer une vidéo et de l'ajouter à ses favoris
 4. Recherche : recherche de films par nom, par genre et par acteur
-5. Administration : ajout, modification et suppression de films et d'acteurs
+5. Administration : ajout, modification et suppression de films et d'acteurs (seulement pour l'administrateur du site)
 
 # Installation
 1. Clonez le dossier sur votre machine
